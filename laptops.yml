@@ -1,0 +1,10 @@
+---
+
+- name: 'Laptops playbook'
+  hosts: 'laptops'
+  collections:
+    - 'marcwrobel.debian_basics'
+  tasks:
+    - name: 'Display all variables/facts'
+      debug:
+        var: 'hostvars[inventory_hostname]'

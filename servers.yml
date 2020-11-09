@@ -1,0 +1,10 @@
+---
+
+- name: 'Servers playbook'
+  hosts: 'servers'
+  collections:
+    - 'marcwrobel.debian_basics'
+  tasks:
+    - name: 'Display all variables/facts'
+      debug:
+        var: 'hostvars[inventory_hostname]'
