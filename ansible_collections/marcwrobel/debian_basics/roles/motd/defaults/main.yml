@@ -1,0 +1,8 @@
+---
+
+# https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Security/Baseline_Security/securebasebook/appendxA.html
+motd__message: >-
+  Unauthorized access to this device is prohibited. You must have explicit, authorized permission to
+  access or configure this device. Unauthorized attempts and actions to access or use this system
+  may result in civil and/or criminal penalties. All activities performed on this device are logged
+  and monitored.

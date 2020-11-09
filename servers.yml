@@ -4,7 +4,5 @@
   hosts: 'servers'
   collections:
     - 'marcwrobel.debian_basics'
-  tasks:
-    - name: 'Display all variables/facts'
-      debug:
-        var: 'hostvars[inventory_hostname]'
+  roles:
+    - { role: 'motd', tags: [ 'motd' ] }
