@@ -1,3 +1,3 @@
 # Ansible Collection - marcwrobel.debian_basics
 
-Documentation for the collection.
+A collection of roles for basic Debian configuration.
