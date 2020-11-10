@@ -4,3 +4,4 @@
   gather_facts: false
   tasks:
     - include_tasks: 'verify-banner.yml'
+    - include_tasks: 'verify-sudo.yml'

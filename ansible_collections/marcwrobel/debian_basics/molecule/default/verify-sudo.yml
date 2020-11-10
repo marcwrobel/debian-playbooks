@@ -1,0 +1,25 @@
+---
+- name: 'Get /etc/sudoers file status'
+  stat:
+    path: '/etc/sudoers'
+  register: 'sudoers'
+- name: 'Ensure /etc/sudoers status is correct'
+  assert:
+    that:
+      - 'sudoers.stat.exists'
+      - 'sudoers.stat.mode == "0440"'
+      - 'sudoers.stat.uid == 0'
+      - 'sudoers.stat.gid == 0'
+    fail_msg: '{{ sudoers.stat | to_json }}'
+
+- name: 'Check if /etc/sudoers has been templated by ansible'
+  lineinfile:
+    path: '/etc/sudoers'
+    regexp: 'Ansible managed'
+    line: ''
+    state: 'present'
+  register: 'sudoers'
+- name: 'Ensure /etc/sudoers has been templated by ansible'
+  assert:
+    that: 'not sudoers.changed'
+    fail_msg: '/etc/sudoers does not seem to be from an ansible template'

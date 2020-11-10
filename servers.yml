@@ -6,3 +6,4 @@
     - 'marcwrobel.debian_basics'
   roles:
     - { role: 'banner', tags: [ 'banner' ] }
+    - { role: 'sudo',   tags: [ 'sudo' ] }

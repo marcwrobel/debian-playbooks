@@ -1,0 +1,23 @@
+---
+- name: Install sudo
+  package:
+    name: 'sudo'
+    state: 'present'
+
+- name: Ensure sudoers.d directory exists
+  file:
+    path: '/etc/sudoers.d'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+
+- name: Copy global configuration
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  loop:
+    - 'etc/sudoers'

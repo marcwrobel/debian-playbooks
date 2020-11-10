@@ -1,0 +1,46 @@
+{{ ansible_managed | comment }}
+
+# To enable sudo to be invoked from a real tty but not through methods such as cron or cgi-bin scripts.
+Defaults requiretty
+
+# Prevent arbitrary code execution as your user when sudoing to another user due to TTY hijacking via TIOCSTI ioctl.
+# https://ruderich.org/simon/notes/su-sudo-from-root-tty-hijacking
+Defaults use_pty
+
+# Refuse to run if unable to disable echo on the tty.
+Defaults !visiblepw
+
+# Preserving HOME has security implications since many programs use it when searching for configuration files. Note that HOME is already set when the the
+# env_reset option is enabled, so this option is only effective for configurations where either env_reset is disabled or HOME is present in the env_keep list.
+Defaults always_set_home
+Defaults match_group_by_gid
+
+# Reset environment
+Defaults env_reset
+Defaults env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE LS_COLORS MAIL PS1 PS2 USERNAME LANG LANGUAGE"
+Defaults env_keep += "LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_TIME LC_ALL"
+
+# Send email on bad password
+Defaults mail_badpass
+
+# We do not trust sudo users to have a secure PATH. This is the path used for every command run with sudo.
+Defaults secure_path = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root ALL=(ALL:ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# Log sudo sessions input / outputs
+Defaults log_input, log_output, iolog_dir = /var/log/sudo-io/%{user}
+Defaults!/usr/bin/sudoreplay !log_output
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
