@@ -59,6 +59,14 @@ commands individually:
     # Run automated tests against instances
     molecule verify
 
+### Continuous integration
+
+The GitHub Action workflow [`CI`](https://github.com/marcwrobel/debian-playbooks/actions?query=workflow%3ACI)
+is executed for each commit on or merge request targeting the `main` branch (and at least once a
+week on saturday morning). This workflow runs :
+
+- linting ([YAMLlint](https://yamllint.readthedocs.io/en/stable/), [Ansible-lint](https://github.com/ansible/ansible-lint)),
+- [Molecule](https://molecule.readthedocs.io/en/stable/) tests on collections.
 
 ## Links
 
