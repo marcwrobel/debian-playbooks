@@ -1,12 +1,2 @@
-# Eclipse Core
-.project
-
-# Intellij IDEA
-.idea
-*.iml
-
 # Ansible
 *.retry
-
-# Python
-venvs/

@@ -25,11 +25,10 @@ The following instruction assume you are have Python 3 installed along with [`py
 [`python3-venv`](https://docs.python.org/3/library/venv.html) and `libssl-dev` (for Molecule) on
 Debian 10.
 
-First create a Python [virtual environment :
+First create a Python [virtual environment](https://docs.python.org/3/library/venv.html) :
 
-    mkdir venvs
-    python3 -m venv venvs/ansible
-    source venvs/ansible/bin/activate
+    python3 -m venv .environments/ansible
+    source .environments/ansible/bin/activate
 
 Then install ansible and the required dependencies :
 
