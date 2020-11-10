@@ -1,4 +1,4 @@
-# motd
+# banner
 
 An often forgotten area in system protection is a well-formed banner text. This role configures
 `/etc/motd` in order to display such banner after a user has logged in, and immediately before the
@@ -16,7 +16,7 @@ None.
 
 Available variables are listed below, along with default values:
 
-    motd__message: >-
+    banner__message: >-
       Unauthorized access to this device is prohibited. You must have explicit, authorized permission to
       access or configure this device. Unauthorized attempts and actions to access or use this system
       may result in civil and/or criminal penalties. All activities performed on this device are logged
@@ -28,7 +28,7 @@ See `defaults/main.yml` for more information.
 
     - hosts: servers
       roles:
-         - { role: marcwrobel.debian_basics.motd }
+         - { role: marcwrobel.debian_basics.banner }
 
 ## Links
 

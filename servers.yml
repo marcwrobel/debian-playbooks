@@ -5,4 +5,4 @@
   collections:
     - 'marcwrobel.debian_basics'
   roles:
-    - { role: 'motd', tags: [ 'motd' ] }
+    - { role: 'banner', tags: [ 'banner' ] }
