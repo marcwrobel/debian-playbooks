@@ -35,11 +35,30 @@ Then install ansible and the required dependencies :
     pip install -r requirements.txt
     ansible --version
 
-### Executing ansible-lint
+### Run linting
 
-Just execute the following command at the root of the project :
+Linting is performed at repository level using [YAMLlint](https://yamllint.readthedocs.io/en/stable/)
+and [Ansible-lint](https://github.com/ansible/ansible-lint) :
 
+    yamllint .
     ansible-lint
+
+### Run integration tests
+
+Integration tests are performed at collection level using [Molecule](https://molecule.readthedocs.io/en/stable/) :
+
+    cd ansible_collections/marcwrobel/<collection>
+    molecule test
+
+During the development lifecycle you may prefer to keep the instances running and run `molecule`
+commands individually:
+
+    # Use the provisioner to create and configure instances
+    molecule converge
+
+    # Run automated tests against instances
+    molecule verify
+
 
 ## Links
 

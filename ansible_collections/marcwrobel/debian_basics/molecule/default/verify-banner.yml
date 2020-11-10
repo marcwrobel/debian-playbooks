@@ -1,0 +1,22 @@
+---
+- name: 'Get motd file status'
+  stat:
+    path: '/etc/motd'
+  register: 'motd'
+- name: 'Ensure motd stats did not change'
+  assert:
+    that:
+      - 'motd.stat.exists'
+      - 'motd.stat.mode == "0644"'
+      - 'motd.stat.uid == 0'
+      - 'motd.stat.gid == 0'
+    fail_msg: '{{ motd.stat | to_json }}'
+
+- name: 'Get motd file content'
+  slurp:
+    path: '/etc/motd'
+  register: 'motd'
+- name: 'Ensure motd content contains legal warning'
+  assert:
+    that: '(motd.content | b64decode) is match("^Warning!")'
+    fail_msg: '{{ motd.content | b64decode }}'

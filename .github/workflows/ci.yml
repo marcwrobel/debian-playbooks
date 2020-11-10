@@ -46,7 +46,7 @@ jobs:
         run: 'pip3 install ansible molecule[docker] docker'
       - name: 'Run Molecule tests'
         run: |
-          cd ansible_collections/marcwrobel/debian_basics/roles/banner
+          cd ansible_collections/marcwrobel/debian_basics
           molecule test
         env:
           PY_COLORS: '1'
