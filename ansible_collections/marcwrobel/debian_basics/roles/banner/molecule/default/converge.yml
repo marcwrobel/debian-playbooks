@@ -1,0 +1,7 @@
+---
+- name: 'Converge'
+  hosts: 'all'
+  collections:
+    - 'marcwrobel.debian_basics'
+  roles:
+    - { role: 'banner' }

@@ -1,0 +1,15 @@
+---
+dependency:
+  name: 'galaxy'
+  enabled: false
+driver:
+  name: 'docker'
+platforms:
+  - name: 'debian-10'
+    image: 'geerlingguy/docker-debian10-ansible:latest'
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: 'ansible'
+verifier:
+  name: 'ansible'
