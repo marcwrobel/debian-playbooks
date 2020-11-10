@@ -1,8 +1,8 @@
-[![Build](https://github.com/marcwrobel/debian-playbooks/workflows/Ansible%20Lint/badge.svg)](https://github.com/marcwrobel/debian-playbooks/actions)
+[![Build](https://github.com/marcwrobel/debian-playbooks/workflows/CI/badge.svg)](https://github.com/marcwrobel/debian-playbooks/actions)
 
 # debian-playbooks
 
-A set of ansible playbooks, collections and roles for Debian.
+A set of ansible playbooks, collections and roles for Debian 10.
 
 ## Getting started
 
@@ -12,7 +12,8 @@ De not forget to take a look at [control nodes](https://docs.ansible.com/ansible
 and [managed nodes](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#managed-node-requirements)
 requirements.
 
-Once Ansible is installed you can clone this repository, prepare an inventory, and run the playbooks :
+Once Ansible has been installed you can clone this repository, prepare an inventory, and run the
+playbooks :
 
     ansible-playbook -i /path/to/hosts laptops.yml --diff --check
     ansible-playbook -i /path/to/hosts servers.yml --diff --check
@@ -40,3 +41,10 @@ Then install ansible and the required dependencies :
 Just execute the following command at the root of the project :
 
     ansible-lint
+
+## Links
+
+- [Ansible tips & tricks](https://www.marcwrobel.fr/ansible)
+- [A great collection of Docker container for Ansible playbook and role testing](https://hub.docker.com/u/geerlingguy)
+- [Ansible - Testing Strategies](https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html)
+- [How to add integration tests to an Ansible collection with Molecule](https://www.jeffgeerling.com/blog/2019/how-add-integration-tests-ansible-collection-molecule)

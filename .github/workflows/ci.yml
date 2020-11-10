@@ -1,0 +1,54 @@
+# This GitHub workflow has been inspired from https://github.com/geerlingguy/ansible-role-filebeat/blob/master/.github/workflows/ci.yml
+name: 'CI'
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  schedule:
+    - cron:  '6 6 * * 6'
+
+jobs:
+  lint:
+    name: 'Lint'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Check out the codebase'
+        uses: 'actions/checkout@v2'
+      - name: 'Set up Python 3'
+        uses: 'actions/setup-python@v2'
+        with:
+          python-version: '3.x'
+      - name: 'Install test dependencies'
+        run: 'pip3 install yamllint ansible-lint'
+      - name: 'Run YAMLlint'
+        run: 'yamllint .'
+      - name: 'Run Ansible-lint'
+        run: 'ansible-lint'
+
+  molecule:
+    name: 'Molecule'
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        distro: [ 'debian10' ]
+    steps:
+      - name: 'Check out the codebase'
+        uses: 'actions/checkout@v2'
+      - name: 'Set up Python 3'
+        uses: 'actions/setup-python@v2'
+        with:
+          python-version: '3.x'
+      - name: 'Install test dependencies'
+        run: 'pip3 install ansible molecule[docker] docker'
+      - name: 'Run Molecule tests'
+        run: |
+          cd ansible_collections/marcwrobel/debian_basics/roles/banner
+          molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
