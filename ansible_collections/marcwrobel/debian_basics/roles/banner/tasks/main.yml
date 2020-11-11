@@ -1,7 +1,6 @@
 ---
 
 - name: 'Copy banner'
-  become: true
   template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
@@ -10,3 +9,4 @@
     mode: '0644'
   loop:
     - 'etc/motd'
+  become: true
