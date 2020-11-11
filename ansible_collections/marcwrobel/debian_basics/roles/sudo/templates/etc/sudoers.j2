@@ -1,7 +1,8 @@
 {{ ansible_managed | comment }}
 
 # To enable sudo to be invoked from a real tty but not through methods such as cron or cgi-bin scripts.
-Defaults requiretty
+# Not activated - needed by Ansible
+#Defaults requiretty
 
 # Prevent arbitrary code execution as your user when sudoing to another user due to TTY hijacking via TIOCSTI ioctl.
 # https://ruderich.org/simon/notes/su-sudo-from-root-tty-hijacking
