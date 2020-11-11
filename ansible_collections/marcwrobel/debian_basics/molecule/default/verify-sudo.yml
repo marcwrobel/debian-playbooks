@@ -12,14 +12,15 @@
       - 'sudoers.stat.gid == 0'
     fail_msg: '{{ sudoers.stat | to_json }}'
 
-- name: 'Check if /etc/sudoers has been templated by ansible'
+- name: 'Check if Ansible string is absent from /etc/sudoers'
   lineinfile:
     path: '/etc/sudoers'
-    regexp: 'Ansible managed'
-    line: ''
-    state: 'present'
-  register: 'sudoers'
+    regexp: '^#.+Ansible managed'
+    state: 'absent'
+  check_mode: true
+  changed_when: false
+  register: 'ansible_managed_line'
 - name: 'Ensure /etc/sudoers has been templated by ansible'
   assert:
-    that: 'not sudoers.changed'
-    fail_msg: '/etc/sudoers does not seem to be from an ansible template'
+    that: 'ansible_managed_line.found == 1'
+    fail_msg: '/etc/sudoers does not seem to be from a templated Ansible file : {{ ansible_managed_line | to_json }}'
