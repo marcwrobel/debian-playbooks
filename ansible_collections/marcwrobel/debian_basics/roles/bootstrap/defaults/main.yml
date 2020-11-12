@@ -1,0 +1,14 @@
+---
+
+# Whether to upgrade packages on first run
+bootstrap__upgrade_packages: true
+
+# Whether to reboot after upgrade (if something was upgraded)
+bootstrap__reboot_after_upgrade: true
+
+# Maximum seconds to wait for machine to reboot and respond to a test command.
+# See https://docs.ansible.com/ansible/latest/collections/ansible/builtin/reboot_module.html
+bootstrap__reboot_timeout: 600
+
+# Name of the package to install for python-apt. By default it is python-apt because Python 2 is still the default Python version on Debian 10.
+bootstrap__python_apt_package: 'python-apt'

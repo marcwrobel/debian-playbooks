@@ -4,5 +4,6 @@
   collections:
     - 'marcwrobel.debian_basics'
   roles:
+    - { role: 'bootstrap', vars: { bootstrap__reboot_after_upgrade: false } }
     - { role: 'banner' }
     - { role: 'sudo' }

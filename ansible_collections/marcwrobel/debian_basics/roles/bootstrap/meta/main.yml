@@ -1,0 +1,11 @@
+galaxy_info:
+  author: 'Marc Wrobel'
+  description: 'Bootstrap a freshly installed Debian system for Ansible management'
+  license: 'MIT'
+  min_ansible_version: '2.9'
+  platforms:
+    - name: 'Debian'
+      versions:
+        - '10'
+  galaxy_tags: [ 'linux', 'debian', 'bootstrap' ]
+dependencies: [ ]
