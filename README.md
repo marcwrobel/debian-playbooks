@@ -6,7 +6,7 @@ A set of [Ansible](https://www.ansible.com/) playbooks, collections and roles fo
 
 ## Requirements
 
-Playbooks, collections and roles in this repository needs Ansible 2.9+ and are targeted for Debian 10.
+Playbooks, collections and roles in this repository needs Ansible 2.10+ and are targeted for Debian 10.
 
 For Ansible installation and own requirements have a look at [the official documentation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 

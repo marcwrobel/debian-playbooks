@@ -1,22 +1,18 @@
 ---
-- name: 'Get motd file status'
-  stat:
-    path: '/etc/motd'
-  register: 'motd'
-- name: 'Ensure motd stats did not change'
-  assert:
-    that:
-      - 'motd.stat.exists'
-      - 'motd.stat.mode == "0644"'
-      - 'motd.stat.uid == 0'
-      - 'motd.stat.gid == 0'
-    fail_msg: '{{ motd.stat | to_json }}'
 
-- name: 'Get motd file content'
-  slurp:
+- name: 'Ensure motd file has expected characteristics'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
     path: '/etc/motd'
-  register: 'motd'
-- name: 'Ensure motd content contains legal warning'
-  assert:
-    that: '(motd.content | b64decode) is match("^Warning!")'
-    fail_msg: '{{ motd.content | b64decode }}'
+    has_type: 'file'
+    has_mode: '0644'
+    has_owner: 'root'
+    has_group: 'root'
+
+- name: 'Ensure motd content contains the legal warning'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+  vars:
+    path: '/etc/motd'
+    has_content_matching: '^Warning'

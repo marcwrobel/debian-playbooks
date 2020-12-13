@@ -1,37 +1,21 @@
 ---
-- name: 'Check if package was upgraded'
-  apt:
-    update_cache: true
-    upgrade: true
-  check_mode: true
-  register: 'upgraded'
-- name: 'Ensure no package was upgraded'
-  assert:
-    that: 'upgraded is not changed'
-    fail_msg: '{{ upgraded | to_json }}'
 
-- name: 'Get /etc/ansible/facts.d status'
-  stat:
+- name: 'Ensure facts.d has expect characteristics'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
     path: '/etc/ansible/facts.d'
-  register: 'factsd'
-- name: 'Ensure /etc/ansible/facts.d status is correct'
-  assert:
-    that:
-      - 'factsd.stat.exists'
-      - 'factsd.stat.mode == "0755"'
-      - 'factsd.stat.uid == 0'
-      - 'factsd.stat.gid == 0'
-    fail_msg: '{{ factsd.stat | to_json }}'
+    has_type: 'directory'
+    has_mode: '0755'
+    has_owner: 'root'
+    has_group: 'root'
 
-- name: 'Get /etc/ansible/facts.d/bootstrap.fact status'
-  stat:
+- name: 'Ensure bootstrap.fact has expect characteristics'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
     path: '/etc/ansible/facts.d/bootstrap.fact'
-  register: 'fact'
-- name: 'Ensure /etc/ansible/facts.d/bootstrap.fact status is correct'
-  assert:
-    that:
-      - 'fact.stat.exists'
-      - 'fact.stat.mode == "0644"'
-      - 'fact.stat.uid == 0'
-      - 'fact.stat.gid == 0'
-    fail_msg: '{{ fact.stat | to_json }}'
+    has_type: 'file'
+    has_mode: '0644'
+    has_owner: 'root'
+    has_group: 'root'
