@@ -2,17 +2,10 @@
 
 - name: 'Ensure motd file has expected characteristics'
   include_role:
-    name: 'marcwrobel.assertions.assert_that_path'
+    name: 'marcwrobel.assertions.assert_that_file'
   vars:
-    path: '/etc/motd'
-    has_type: 'file'
+    with_path: '/etc/motd'
     has_mode: '0644'
     has_owner: 'root'
     has_group: 'root'
-
-- name: 'Ensure motd content contains the legal warning'
-  include_role:
-    name: 'marcwrobel.assertions.assert_that_file'
-  vars:
-    path: '/etc/motd'
     has_content_matching: '^Warning'

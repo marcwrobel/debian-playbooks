@@ -4,7 +4,7 @@
   include_role:
     name: 'marcwrobel.assertions.assert_that_path'
   vars:
-    path: '/etc/ansible/facts.d'
+    with_path: '/etc/ansible/facts.d'
     has_type: 'directory'
     has_mode: '0755'
     has_owner: 'root'
@@ -12,10 +12,9 @@
 
 - name: 'Ensure bootstrap.fact has expect characteristics'
   include_role:
-    name: 'marcwrobel.assertions.assert_that_path'
+    name: 'marcwrobel.assertions.assert_that_file'
   vars:
-    path: '/etc/ansible/facts.d/bootstrap.fact'
-    has_type: 'file'
+    with_path: '/etc/ansible/facts.d/bootstrap.fact'
     has_mode: '0644'
     has_owner: 'root'
     has_group: 'root'

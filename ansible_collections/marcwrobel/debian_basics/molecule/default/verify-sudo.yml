@@ -2,17 +2,10 @@
 
 - name: 'Ensure sudoers has expect characteristics'
   include_role:
-    name: 'marcwrobel.assertions.assert_that_path'
+    name: 'marcwrobel.assertions.assert_that_file'
   vars:
-    path: '/etc/sudoers'
-    has_type: 'file'
+    with_path: '/etc/sudoers'
     has_mode: '0440'
     has_owner: 'root'
     has_group: 'root'
-
-- name: 'Ensure sudoers is managed by Ansible'
-  include_role:
-    name: 'marcwrobel.assertions.assert_that_file'
-  vars:
-    path: '/etc/sudoers'
     has_content_matching: '^#.+Ansible managed'
