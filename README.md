@@ -27,4 +27,3 @@ Take a look at the [Contributing guide](/CONTRIBUTING.md).
 - [Ansible tips & tricks](https://www.marcwrobel.fr/ansible)
 - [A great collection of Docker container for Ansible playbook and role testing](https://hub.docker.com/u/geerlingguy)
 - [Ansible - Testing Strategies](https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html)
-- [How to add integration tests to an Ansible collection with Molecule](https://www.jeffgeerling.com/blog/2019/how-add-integration-tests-ansible-collection-molecule)

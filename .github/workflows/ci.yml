@@ -33,28 +33,3 @@ jobs:
           ansible --version
           ansible-lint --version
           ansible-lint
-
-  molecule:
-    name: 'Molecule'
-    runs-on: 'ubuntu-latest'
-    strategy:
-      matrix:
-        distro: [ 'debian10' ]
-    steps:
-      - name: 'Check out the codebase'
-        uses: 'actions/checkout@v2'
-      - name: 'Set up Python 3'
-        uses: 'actions/setup-python@v2'
-        with:
-          python-version: '3.x'
-      - name: 'Install test dependencies'
-        run: 'pip3 install ansible molecule[docker]==3.1.5 molecule-docker==0.2.4 docker'
-      - name: 'Run Molecule tests'
-        run: |
-          molecule --version
-          cd ansible_collections/marcwrobel/debian_basics
-          molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}

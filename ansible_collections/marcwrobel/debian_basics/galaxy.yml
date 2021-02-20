@@ -17,5 +17,3 @@ repository: https://github.com/marcwrobel/debian-playbooks
 documentation: https://github.com/marcwrobel/debian-playbooks
 homepage: https://github.com/marcwrobel/debian-playbooks
 issues: https://github.com/marcwrobel/debian-playbooks/issues
-
-build_ignore: [ 'molecule' ]
