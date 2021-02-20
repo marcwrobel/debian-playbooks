@@ -1,0 +1,22 @@
+---
+
+# Name of the interface
+#kimsufi_network__interface
+
+# Static IPv4 of the interface
+#kimsufi_network__ipv4_address
+
+# Subnet mask of the network
+kimsufi_network__ipv4_netmask: '255.255.255.0'
+
+# IPv4 of the network gateway
+#kimsufi_network__ipv4_gateway
+
+# Static IPv6 of the interface
+#kimsufi_network__ipv6_address
+
+# Subnet mask of the network
+kimsufi_network__ipv6_netmask: '128'
+
+# IPv6 of the network gateway
+#kimsufi_network__ipv6_gateway

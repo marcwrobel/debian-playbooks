@@ -4,7 +4,9 @@
   hosts: 'servers'
   collections:
     - 'marcwrobel.debian_basics'
+    - 'marcwrobel.debian_kimsufi'
   roles:
-    - { role: 'bootstrap', tags: [ 'bootstrap' ] }
-    - { role: 'banner',    tags: [ 'banner' ] }
-    - { role: 'sudo',      tags: [ 'sudo' ] }
+    - { role: 'bootstrap',            tags: [ 'bootstrap' ] }
+    - { role: 'banner',               tags: [ 'banner' ] }
+    - { role: 'sudo',                 tags: [ 'sudo' ] }
+    - { role: 'kimsufi_network',      tags: [ 'net' ] }
