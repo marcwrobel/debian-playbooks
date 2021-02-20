@@ -1,0 +1,16 @@
+---
+
+- name: 'Install firewalld'
+  package:
+    name: 'firewalld'
+    state: 'present'
+  become: true
+
+# ssh and dhcpv6-client are enabled by default, keep only ssh
+- name: 'Deny traffic in default zone for dhcpv6-client'
+  ansible.posix.firewalld:
+    service: 'dhcpv6-client'
+    permanent: true
+    state: 'disabled'
+    immediate: true
+  become: true

@@ -10,3 +10,4 @@
     - { role: 'banner',               tags: [ 'banner' ] }
     - { role: 'sudo',                 tags: [ 'sudo' ] }
     - { role: 'kimsufi_network',      tags: [ 'net' ] }
+    - { role: 'firewalld',            tags: [ 'fw' ] }
