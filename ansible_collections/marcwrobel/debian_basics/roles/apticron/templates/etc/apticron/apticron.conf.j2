@@ -1,0 +1,18 @@
+{{ ansible_managed | comment }}
+
+# The values set in this file will override the default settings in /usr/lib/apticron/apticron.conf
+
+# Set EMAIL to a space separated list of addresses which will be notified of impending updates.
+EMAIL="root"
+
+# Apticron will output everything that needs to be upgraded.
+DIFF_ONLY="0"
+
+# Notify about new versions of packages on hold in this system.
+NOTIFY_HOLDS="1"
+
+# Notify about packages which are not installed in this system.
+NOTIFY_NEW="1"
+
+# Do not notify when there are no new versions.
+NOTIFY_NO_UPDATES="0"
