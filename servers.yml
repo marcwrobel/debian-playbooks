@@ -7,6 +7,7 @@
     - 'marcwrobel.debian_kimsufi'
   roles:
     - { role: 'bootstrap',            tags: [ 'bootstrap' ] }
+    - { role: 'apt',                  tags: [ 'apt' ] }
     - { role: 'banner',               tags: [ 'banner' ] }
     - { role: 'sudo',                 tags: [ 'sudo' ] }
     - { role: 'kimsufi_network',      tags: [ 'net' ] }

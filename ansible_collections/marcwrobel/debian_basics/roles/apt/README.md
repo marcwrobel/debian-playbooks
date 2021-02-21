@@ -1,6 +1,6 @@
-# sudo
+# APT
 
-Harden `sudo` configuration.
+Basic configuration around APT (configuration, repositories...).
 
 ## Requirements
 
@@ -20,7 +20,7 @@ None.
       collections:
         - 'marcwrobel.debian_basics'
       roles:
-        - { role: 'sudo', tags: [ 'sudo' ] }
+        - role: 'apt'
 
 ## Links
 

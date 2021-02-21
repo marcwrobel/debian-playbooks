@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+
+# Do not enable debsig-verify by default; since the distribution is not using
+# embedded signatures, debsig-verify would reject all packages.
+no-debsig
+
+# Log status changes and actions to a file.
+log /var/log/dpkg.log

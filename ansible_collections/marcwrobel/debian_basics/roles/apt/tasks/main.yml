@@ -1,0 +1,46 @@
+---
+
+- name: 'Install base packages'
+  package:
+    name:
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'needrestart'
+      - 'python-apt'
+    state: 'present'
+  become: true
+
+- name: 'Remove unneeded default APT configurations'
+  file:
+    path: '{{ item }}'
+    state: 'absent'
+  loop:
+    - '/etc/apt/apt.conf'
+    - '/etc/apt/apt.conf.d/00CDMountPoint'
+    - '/etc/apt/apt.conf.d/00trustcdrom'
+    - '/etc/apt/apt.conf.d/02proxy'
+    - '/etc/apt/apt.conf.d/10periodic'
+    - '/etc/apt/apt.conf.d/20archive'
+    - '/etc/apt/apt.conf.d/20listchanges'
+  become: true
+
+- name: 'Copy configuration files and scripts'
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/apt/apt.conf.d/00aptitude'
+    - 'etc/apt/apt.conf.d/00InstallRecommends'
+    - 'etc/apt/sources.list'
+    - 'etc/dpkg/dpkg.cfg'
+  register: 'package_management__configuration'
+  become: true
+
+- name: 'Update package indexes'
+  apt:
+    update_cache: true
+  when: 'package_management__configuration is changed'
+  become: true

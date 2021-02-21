@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+
+deb https://deb.debian.org/debian {{ansible_distribution_release}} main contrib non-free
+deb https://deb.debian.org/debian-security {{ansible_distribution_release}}/updates main contrib non-free
+deb https://deb.debian.org/debian {{ansible_distribution_release}}-updates main contrib non-free
+{% if package_management__enable_backports %}
+deb https://deb.debian.org/debian {{ansible_distribution_release}}-backports main contrib non-free
+{% endif %}
