@@ -1,0 +1,10 @@
+{{ ansible_managed | comment('c') }}
+
+APT::Periodic::Enable "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Download-Upgradeable-Packages "always";
+APT::Periodic::MaxAge "30";
+APT::Periodic::MaxSize "500";
+APT::Periodic::MinAge "2";
+APT::Periodic::Update-Package-Lists "always";
+APT::Periodic::Unattended-Upgrade "always";

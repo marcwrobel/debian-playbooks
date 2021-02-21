@@ -1,0 +1,29 @@
+---
+
+- name: 'Install unattended-upgrades'
+  package:
+    name: 'unattended-upgrades'
+    state: 'present'
+  become: true
+
+- name: 'Configure unattended-upgrades'
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/apt/apt.conf.d/20auto-upgrades'
+    - 'etc/apt/apt.conf.d/50unattended-upgrades'
+  become: true
+
+- name: 'Enable apt-daily'
+  ansible.builtin.systemd:
+    name: '{{ item }}'
+    state: 'started'
+    enabled: true
+  loop:
+    - 'apt-daily.timer'
+    - 'apt-daily-upgrade.timer'
+  become: true
