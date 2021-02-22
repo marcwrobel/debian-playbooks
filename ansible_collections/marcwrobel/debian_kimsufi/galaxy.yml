@@ -1,17 +1,16 @@
-### REQUIRED
-
+---
 namespace: marcwrobel
 name: debian_kimsufi
 description: A collection of roles for Debian configuration on Kimsufi servers.
 version: 1.0.0
-license: [ 'MIT' ]
+license: ['MIT']
 
 readme: README.md
-authors: [ 'Marc Wrobel (https://www.marcwrobel.fr/)' ]
+authors: ['Marc Wrobel (https://www.marcwrobel.fr/)']
 
-dependencies: { }
+dependencies: {}
 
-tags: [ 'linux', 'debian', 'kimsufi' ]
+tags: ['linux', 'debian', 'kimsufi']
 
 repository: https://github.com/marcwrobel/debian-playbooks
 documentation: https://github.com/marcwrobel/debian-playbooks

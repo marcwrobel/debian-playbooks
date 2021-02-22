@@ -28,7 +28,8 @@
   package:
     name: '{{ bootstrap__python_apt_package }}'
     state: 'present'
-  check_mode: false # python-apt is required to use Ansible check mode - so it must be installed even in check mode
+  # python-apt is required to use Ansible check mode - so it must be installed even in check mode
+  check_mode: false
   become: true
 
 - name: 'Copy role local facts'

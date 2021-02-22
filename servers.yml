@@ -6,11 +6,19 @@
     - 'marcwrobel.debian_basics'
     - 'marcwrobel.debian_kimsufi'
   roles:
-    - { role: 'bootstrap',            tags: [ 'bootstrap' ] }
-    - { role: 'apt',                  tags: [ 'apt' ] }
-    - { role: 'apticron',             tags: [ 'apticron' ] }
-    - { role: 'unattended_upgrades',  tags: [ 'unattended-upgrades' ] }
-    - { role: 'banner',               tags: [ 'banner' ] }
-    - { role: 'sudo',                 tags: [ 'sudo' ] }
-    - { role: 'kimsufi_network',      tags: [ 'net' ] }
-    - { role: 'firewalld',            tags: [ 'fw' ] }
+    - role: 'bootstrap'
+      tags: ['bootstrap']
+    - role: 'apt'
+      tags: ['apt']
+    - role: 'apticron'
+      tags: ['apticron']
+    - role: 'unattended_upgrades'
+      tags: ['unattended-upgrades']
+    - role: 'banner'
+      tags: ['banner']
+    - role: 'sudo'
+      tags: ['sudo']
+    - role: 'kimsufi_network'
+      tags: ['net']
+    - role: 'firewalld'
+      tags: ['fw']

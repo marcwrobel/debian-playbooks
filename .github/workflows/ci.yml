@@ -1,7 +1,7 @@
-# This GitHub workflow has been inspired from https://github.com/geerlingguy/ansible-role-filebeat/blob/master/.github/workflows/ci.yml
+---
 name: 'CI'
 
-on:
+on: # noqa yaml
   push:
     branches:
       - 'main'
@@ -9,7 +9,7 @@ on:
     branches:
       - 'main'
   schedule:
-    - cron:  '6 6 * * 6'
+    - cron: '6 6 * * 6'
 
 jobs:
   lint:
@@ -24,12 +24,5 @@ jobs:
           python-version: '3.x'
       - name: 'Install test dependencies'
         run: 'pip3 install ansible yamllint ansible-lint'
-      - name: 'Run YAMLlint'
-        run: |
-          yamllint --version
-          yamllint .
       - name: 'Run Ansible-lint'
-        run: |
-          ansible --version
-          ansible-lint --version
-          ansible-lint
+        run: 'ansible-lint'

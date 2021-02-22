@@ -5,6 +5,9 @@
   collections:
     - 'marcwrobel.debian_basics'
   roles:
-    - { role: 'bootstrap', tags: [ 'bootstrap' ] }
-    - { role: 'banner',    tags: [ 'banner' ] }
-    - { role: 'sudo',      tags: [ 'sudo' ] }
+    - role: 'bootstrap'
+      tags: ['bootstrap']
+    - role: 'banner'
+      tags: ['banner']
+    - role: 'sudo'
+      tags: ['sudo']
