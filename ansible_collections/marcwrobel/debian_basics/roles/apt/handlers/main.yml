@@ -1,0 +1,6 @@
+---
+
+- name: 'Update package indexes'
+  apt:
+    update_cache: true
+  become: true

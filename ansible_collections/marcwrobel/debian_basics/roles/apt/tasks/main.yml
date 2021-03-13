@@ -36,11 +36,6 @@
     - 'etc/apt/apt.conf.d/00InstallRecommends'
     - 'etc/apt/sources.list'
     - 'etc/dpkg/dpkg.cfg'
-  register: 'package_management__configuration'
-  become: true
-
-- name: 'Update package indexes'
-  apt:
-    update_cache: true
-  when: 'package_management__configuration is changed'
+  notify:
+    - 'Update package indexes'
   become: true
