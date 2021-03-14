@@ -5,7 +5,7 @@
     path: '{{ item }}'
     state: 'absent'
   loop:
-    - '/etc/sysctl.d/protect-links.conf' # managed by this role
+    - '/etc/sysctl.d/protect-links.conf'  # managed by this role
     - '/etc/sysctl.d/README.sysctl'
   notify: 'Reload sysctl settings'
   become: true
