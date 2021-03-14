@@ -2,7 +2,7 @@
 
 # Debian playbooks
 
-A set of [Ansible](https://www.ansible.com/) playbooks, collections and roles for Debian 10.
+A set of opinionated [Ansible](https://www.ansible.com/) playbooks, collections and roles for Debian 10.
 
 ## Requirements
 

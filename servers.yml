@@ -8,6 +8,8 @@
   roles:
     - role: 'bootstrap'
       tags: ['bootstrap']
+    - role: 'sysctl'
+      tags: ['sysctl']
     - role: 'apt'
       tags: ['apt']
     - role: 'apticron'

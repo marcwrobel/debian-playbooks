@@ -1,0 +1,23 @@
+---
+
+- name: 'Remove unneeded default sysctl configurations'
+  file:
+    path: '{{ item }}'
+    state: 'absent'
+  loop:
+    - '/etc/sysctl.d/protect-links.conf' # managed by this role
+    - '/etc/sysctl.d/README.sysctl'
+  notify: 'Reload sysctl settings'
+  become: true
+
+- name: 'Configure sysctl parameters'
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/sysctl.conf'
+  notify: 'Reload sysctl settings'
+  become: true

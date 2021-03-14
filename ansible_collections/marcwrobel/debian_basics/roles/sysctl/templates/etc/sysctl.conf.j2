@@ -1,0 +1,155 @@
+{{ ansible_managed | comment }}
+
+##
+# Kernel
+# See https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html.
+##
+
+# Shared memory
+kernel.shmmax = {{ sysctl__shmmax }}
+kernel.shmall = {{ sysctl__shmall }}
+
+# dmesg is the kernel log. It exposes a large amount of useful kernel debugging information but this can often leak sensitive information such as kernel
+# pointers. This setting restricts the kernel log to the CAP_SYSLOG capability.
+kernel.dmesg_restrict = 1
+
+# A kernel pointer points to a specific location in kernel memory. These can be very useful in exploiting the kernel but kernel pointers are not hidden by
+# default — it is easy to uncover them by, for example, reading the contents of /proc/kallsyms. This setting hide kernel pointers from processes without the
+# CAP_SYSLOG capability.
+kernel.kptr_restrict = 1
+
+# Stop low-level messages on console
+kernel.printk = 3 4 1 3
+
+# The SysRq key exposes a lot of potentially dangerous debugging functionality to unprivileged users. Contrary to common assumptions, SysRq is not only an issue
+# for physical attacks as it can also be triggered remotely. The value of this sysctl makes it so that a user can only use the secure attention key which will
+# be necessary for accessing root securely.
+kernel.sysrq = 4
+
+# kexec is a system call that is used to boot another kernel during runtime. This functionality can be abused to load a malicious kernel and gain arbitrary code
+# execution in kernel mode so this sysctl disables it.
+kernel.kexec_load_disabled = 1
+
+# Performance events add considerable kernel attack surface and have caused abundant vulnerabilities (https://lore.kernel.org/kernel-hardening/1469630746-32279-1-git-send-email-jeffv@google.com/).
+# This sysctl restricts all usage of performance events to the CAP_PERFMON capability (CAP_SYS_ADMIN on kernel versions prior to 5.8).
+kernel.perf_event_paranoid = 3
+
+# ptrace is a system call that allows a program to alter and inspect another running process which allows attackers to trivially modify the memory of other
+# running programs. This restricts usage of ptrace to only processes with the CAP_SYS_PTRACE capability.
+kernel.yama.ptrace_scope = 2
+
+##
+# Virtual Memory
+# See https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html.
+##
+
+# Only swap if absolutely necessary. Swapping or paging copies parts of memory to disk which can contain sensitive information.
+vm.swappiness = 1
+
+# Attempt to reclaim dentries and inodes at a “fair” rate with respect to pagecache and swapcache reclaim.
+vm.vfs_cache_pressure = 100
+
+# The userfaultfd() syscall is often abused to exploit use-after-free flaws. Due to this, this sysctl is used to restrict this syscall to the CAP_SYS_PTRACE
+# capability.
+# This setting is not available on a Debian 10 (Kernel 4.19) - retry with Debian 11
+#vm.unprivileged_userfaultfd = 0
+
+# ASLR is a common exploit mitigation which randomizes the position of critical parts of a process in memory. This can make a wide variety of exploits harder to
+# pull off as they first require an information leak. The above settings increase the bits of entropy used for mmap ASLR, improving its effectiveness.
+# The values of these sysctls must be set in relation to the CPU architecture (those values are compatible with x86 but other architectures may differ).
+vm.mmap_rnd_bits = 32
+vm.mmap_rnd_compat_bits = 16
+
+##
+# Network
+# See https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html.
+##
+
+# Configure IP forwarding
+net.ipv4.ip_forward = {{ sysctl__ip_forward | ternary('1', '0') }}
+net.ipv6.conf.all.forwarding = {{ sysctl__ip_forward | ternary('1', '0') }}
+
+# eBPF exposes quite large attack surface. As such, it must be restricted. These sysctls restrict eBPF to the CAP_BPF capability (CAP_SYS_ADMIN on kernel
+# versions prior to 5.8) and enable JIT hardening techniques such as constant blinding.
+kernel.unprivileged_bpf_disabled=1
+net.core.bpf_jit_harden = 2
+
+# Enable TCP/IP SYN cookies (see http://lwn.net/Articles/277146/). This helps protect against SYN flood attacks which are a form of denial of service attack in
+# which an attacker sends a large amount of bogus SYN requests in an attempt to consume enough resources to make the system unresponsive to legitimate traffic.
+net.ipv4.tcp_syncookies = 1
+
+# This protects against time-wait assassination (https://tools.ietf.org/html/rfc1337) by dropping RST packets for sockets in the time-wait state.
+net.ipv4.tcp_rfc1337 = 1
+
+# Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# Do not log bogus ICMP error responses. Nobody would want to accept bogus error responses, so we can safely ignore them.
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# Limit the amount of traffic the system uses for ICMP. This includes ping, dst unreachable, source quench, time exceed, param problem, timestamp reply,
+# information reply.
+net.ipv4.icmp_ratelimit = 100
+net.ipv4.icmp_ratemask = 88089
+
+# Protect against wrapping sequence numbers at gigabit speeds.
+net.ipv4.tcp_timestamps = 0
+
+# Turn on Source Address Verification in all interfaces to prevent some spoofing attacks (reverse-path filter).
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# These disable ICMP redirect acceptance and sending to prevent man-in-the-middle attacks (https://askubuntu.com/questions/118273/what-are-icmp-redirects-and-should-they-be-blocked)
+# and minimize information disclosure.
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# Source routing is a mechanism that allows users to redirect network traffic (https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security_guide/sect-security_guide-server_security-disable-source-routing).
+# As this can be used to perform man-in-the-middle attacks in which the traffic is redirected for nefarious purposes, we disable this functionality.
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv6.conf.all.accept_source_route = 0
+net.ipv6.conf.default.accept_source_route = 0
+
+# Malicious IPv6 router advertisements can result in a man-in-the-middle attack so they should be disabled.
+net.ipv6.conf.all.accept_ra = 0
+net.ipv6.conf.default.accept_ra = 0
+
+# This disables TCP SACK (https://tools.ietf.org/html/rfc2018). SACK is commonly exploited (https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-001.md)
+# and unnecessary for many circumstances (https://serverfault.com/questions/10955/when-to-turn-tcp-sack-off= so it should be disabled if not required.
+net.ipv4.tcp_sack = 0
+net.ipv4.tcp_dsack = 0
+net.ipv4.tcp_fack = 0
+
+# Make sure spoofed packets get logged.
+net.ipv4.conf.all.log_martians = 1
+
+##
+# Filesystem
+# See https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html.
+##
+
+# This only permits symlinks to be followed when outside of a world-writable sticky directory, when the owner of the symlink and follower match, or when the
+# directory owner matches the symlink's owner. This also prevents hardlinks from being created by users that do not have read/write access to the source file.
+# Both of these prevent many common TOCTOU races (https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use).
+fs.protected_symlinks = 1
+fs.protected_hardlinks = 1
+
+# These prevent creating files in potentially attacker-controlled environments such as world-writable directories to make data spoofing attacks more difficult
+# (https://github.com/torvalds/linux/commit/30aba6656f61ed44cba445a3c0d38b296fa9e8f5).
+fs.protected_fifos = 2
+fs.protected_regular = 2
+
+##
+# Device specific
+##
+
+# This restricts loading TTY line disciplines to the CAP_SYS_MODULE capability to prevent unprivileged attackers from loading vulnerable line disciplines with
+# the TIOCSETD ioctl which has been abused in a number of exploits before. See also https://lkml.org/lkml/2019/4/15/890.
+dev.tty.ldisc_autoload = 0

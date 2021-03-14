@@ -1,0 +1,5 @@
+---
+
+- name: 'Reload sysctl settings'
+  command: '/sbin/sysctl -p'
+  become: true
