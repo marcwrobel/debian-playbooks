@@ -14,15 +14,16 @@
     state: 'absent'
   become: true
 
-# IPv6 auto-configuration cause issues on Kimsufi server
-- name: 'Disable IPv6 auto-configuration'
-  sysctl:
-    name: 'net.ipv6.conf.all.autoconf'
-    value: '0'
-    state: 'present'
+- name: 'Configure sysctl parameters'
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
   loop:
-    - 'net.ipv6.conf.all.autoconf'
-    - 'net.ipv6.conf.all.accept_ra'
+    - 'etc/sysctl.d/kimsufi_network.conf'
+  notify: 'Reload sysctl settings'
   become: true
 
 - name: 'Configure /etc/network/interfaces'
