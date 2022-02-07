@@ -2,12 +2,7 @@
 
 - name: 'Laptops playbook'
   hosts: 'laptops'
-  collections:
-    - 'marcwrobel.debian_basics'
   roles:
-    - role: 'bootstrap'
-      tags: ['bootstrap']
-    - role: 'banner'
-      tags: ['banner']
-    - role: 'sudo'
-      tags: ['sudo']
+    - { role: 'marcwrobel.debian_basics.bootstrap', tags: [ 'bootstrap' ] }
+    - { role: 'marcwrobel.debian_basics.banner',    tags: [ 'banner' ] }
+    - { role: 'marcwrobel.debian_basics.sudo',      tags: [ 'sudo' ] }
