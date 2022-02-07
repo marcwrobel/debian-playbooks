@@ -10,5 +10,5 @@ bootstrap__reboot_after_upgrade: true
 # See https://docs.ansible.com/ansible/latest/collections/ansible/builtin/reboot_module.html
 bootstrap__reboot_timeout: 600
 
-# Name of the package to install for python-apt. By default it is python-apt because Python 2 is still the default Python version on Debian 10.
-bootstrap__python_apt_package: 'python-apt'
+# Name of the package to install for python-apt. By default it is python3-apt because Python 3 is now the default Python version on Debian 11.
+bootstrap__python_apt_package: 'python3-apt'

@@ -24,7 +24,7 @@
   when: 'bootstrap__upgrade_packages and ansible_local.bootstrap is not defined'
   become: true
 
-- name: 'Install python-apt'
+- name: 'Install python3-apt'
   package:
     name: '{{ bootstrap__python_apt_package }}'
     state: 'present'

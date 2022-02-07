@@ -1,6 +1,6 @@
 ## Requirements
 
-The following instructions assume [`pipenv`](https://pipenv.pypa.io) is installed. On Debian 10 run :
+The following instructions assume [`pipenv`](https://pipenv.pypa.io) is installed. On Debian 11 run :
 
     sudo apt install pipenv
 
