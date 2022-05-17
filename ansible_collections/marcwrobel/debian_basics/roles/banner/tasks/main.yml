@@ -1,7 +1,7 @@
 ---
 
 - name: 'Copy banner'
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'

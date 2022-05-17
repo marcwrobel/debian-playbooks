@@ -4,7 +4,7 @@
 # apt-listchanges - to a configurable Email address.
 
 - name: 'Install Apticron'
-  package:
+  ansible.builtin.package:
     name:
       - 'apt-listchanges'
       - 'apticron-systemd'
@@ -12,7 +12,7 @@
   become: true
 
 - name: 'Configure Apticron '
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'

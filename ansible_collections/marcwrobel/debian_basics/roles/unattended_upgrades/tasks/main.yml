@@ -1,13 +1,13 @@
 ---
 
 - name: 'Install unattended-upgrades'
-  package:
+  ansible.builtin.package:
     name: 'unattended-upgrades'
     state: 'present'
   become: true
 
 - name: 'Configure unattended-upgrades'
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'

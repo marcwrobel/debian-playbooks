@@ -2,7 +2,7 @@
 
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#facts-d-or-local-facts
 - name: 'Create facts.d directory'
-  file:
+  ansible.builtin.file:
     path: '/etc/ansible/facts.d'
     state: 'directory'
     mode: '0755'
@@ -12,20 +12,20 @@
 - name: 'Upgrade packages and reboot'
   block:
     - name: 'Upgrade packages'
-      apt:
+      ansible.builtin.apt:
         update_cache: true
         upgrade: 'safe'
       register: 'local__upgraded'
 
     - name: 'Reboot after upgrading packages'
-      reboot:
+      ansible.builtin.reboot:
         reboot_timeout: '{{ bootstrap__reboot_timeout }}'
       when: 'bootstrap__reboot_after_upgrade and local__upgraded is changed'
   when: 'bootstrap__upgrade_packages and ansible_local.bootstrap is not defined'
   become: true
 
 - name: 'Install python3-apt'
-  package:
+  ansible.builtin.package:
     name: '{{ bootstrap__python_apt_package }}'
     state: 'present'
   # python-apt is required to use Ansible check mode - so it must be installed even in check mode
@@ -33,7 +33,7 @@
   become: true
 
 - name: 'Copy role local facts'
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
     owner: 'root'

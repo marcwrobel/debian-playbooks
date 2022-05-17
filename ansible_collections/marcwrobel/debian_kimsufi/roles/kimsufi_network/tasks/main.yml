@@ -2,20 +2,20 @@
 
 # cloud-init does not setup IPv6 and configure IPv4 using DHCP
 - name: 'Uninstall cloud-init'
-  package:
+  ansible.builtin.package:
     name: 'cloud-init'
     state: 'absent'
   become: true
 
 # configuration resides only in /etc/network/interfaces
 - name: 'Remove /etc/network/interfaces.d'
-  file:
+  ansible.builtin.file:
     path: '/etc/network/interfaces.d'
     state: 'absent'
   become: true
 
 - name: 'Configure sysctl parameters'
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'
@@ -27,7 +27,7 @@
   become: true
 
 - name: 'Configure /etc/network/interfaces'
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'

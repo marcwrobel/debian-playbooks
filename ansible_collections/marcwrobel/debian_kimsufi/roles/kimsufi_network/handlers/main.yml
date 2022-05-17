@@ -1,5 +1,5 @@
 ---
 
 - name: 'Reload sysctl settings'
-  command: '/sbin/sysctl -p'
+  ansible.builtin.command: '/sbin/sysctl -p'
   become: true

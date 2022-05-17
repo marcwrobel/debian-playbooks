@@ -1,12 +1,12 @@
 ---
 - name: Install sudo
-  package:
+  ansible.builtin.package:
     name: 'sudo'
     state: 'present'
   become: true
 
 - name: Ensure sudoers.d directory exists
-  file:
+  ansible.builtin.file:
     path: '/etc/sudoers.d'
     state: 'directory'
     owner: 'root'
@@ -15,7 +15,7 @@
   become: true
 
 - name: Copy global configuration
-  template:
+  ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     owner: 'root'
