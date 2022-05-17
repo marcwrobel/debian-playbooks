@@ -1,5 +1,7 @@
 ---
 
 - name: 'Reload sysctl settings'
-  ansible.builtin.command: '/sbin/sysctl -p'
+  ansible.builtin.service:
+    name: 'systemd-sysctl'
+    state: 'restarted'
   become: true

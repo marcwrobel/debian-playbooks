@@ -1,5 +1,14 @@
 ---
 
+- name: 'Create sysctl.d directory'
+  ansible.builtin.file:
+    path: '/etc/sysctl.d'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+  become: true
+
 - name: 'Remove unneeded default sysctl configurations'
   ansible.builtin.file:
     path: '{{ item }}'
@@ -19,5 +28,16 @@
     mode: '0644'
   loop:
     - 'etc/sysctl.conf'
+  notify: 'Reload sysctl settings'
+  become: true
+
+# Done in Debian 11 by default, maybe for systemd (https://man7.org/linux/man-pages/man5/sysctl.d.5.html) ?
+- name: 'Symlink sysctl.conf'
+  ansible.builtin.file:
+    src: '/etc/sysctl.conf'
+    dest: '/etc/sysctl.d/99-sysctl.conf'
+    owner: 'root'
+    group: 'root'
+    state: link
   notify: 'Reload sysctl settings'
   become: true

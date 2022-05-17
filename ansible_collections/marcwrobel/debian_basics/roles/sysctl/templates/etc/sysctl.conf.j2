@@ -23,7 +23,7 @@ kernel.printk = 3 4 1 3
 
 # The SysRq key exposes a lot of potentially dangerous debugging functionality to unprivileged users. Contrary to common assumptions, SysRq is not only an issue
 # for physical attacks as it can also be triggered remotely. The value of this sysctl makes it so that a user can only use the secure attention key which will
-# be necessary for accessing root securely.
+# be necessary for accessing root securely. See also https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html.
 kernel.sysrq = 4
 
 # kexec is a system call that is used to boot another kernel during runtime. This functionality can be abused to load a malicious kernel and gain arbitrary code
@@ -51,8 +51,7 @@ vm.vfs_cache_pressure = 100
 
 # The userfaultfd() syscall is often abused to exploit use-after-free flaws. Due to this, this sysctl is used to restrict this syscall to the CAP_SYS_PTRACE
 # capability.
-# This setting is not available on a Debian 10 (Kernel 4.19) - retry with Debian 11
-#vm.unprivileged_userfaultfd = 0
+vm.unprivileged_userfaultfd = 0
 
 # ASLR is a common exploit mitigation which randomizes the position of critical parts of a process in memory. This can make a wide variety of exploits harder to
 # pull off as they first require an information leak. The above settings increase the bits of entropy used for mmap ASLR, improving its effectiveness.

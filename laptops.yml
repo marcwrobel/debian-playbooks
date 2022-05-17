@@ -4,5 +4,6 @@
   hosts: 'laptops'
   roles:
     - { role: 'marcwrobel.debian_basics.bootstrap', tags: ['bootstrap'] }
+    - { role: 'marcwrobel.debian_basics.sysctl', tags: ['sysctl'] }
     - { role: 'marcwrobel.debian_basics.banner', tags: ['banner'] }
     - { role: 'marcwrobel.debian_basics.sudo', tags: ['sudo'] }
