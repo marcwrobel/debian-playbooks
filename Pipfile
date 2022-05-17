@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 setuptools = "*"
-ansible = "~=5.3"
-ansible-lint = "~=5.3"
+ansible = "~=5.7"
+ansible-lint = "~=5.4"
 yamllint = "~=1.26"
 
 [dev-packages]
