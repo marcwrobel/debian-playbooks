@@ -22,10 +22,11 @@ packages__default_list:
   - "zip" # archiver for .zip files
   - "zstd" # fast lossless compression algorithm -- CLI tool
   # Editors
-  - 'vim' # Vi IMproved - enhanced vi editor
+  - "vim" # Vi IMproved - enhanced vi editor
   # System
   - "util-linux" # miscellaneous system utilities
   - "uptimed" # daemon to track uptimes, especially the high ones
+  - "lsb-release" # linux Standard Base version reporting utility
 packages__group_list: []
 packages__host_list: []
 packages__list: "{{ packages__default_list + packages__group_list + packages__host_list }}"
