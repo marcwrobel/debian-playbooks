@@ -23,6 +23,8 @@ packages__host_list:
   - 'geany-plugin-extrasel' # extra selection plugin for Geany
   # System
   - "netcat-openbsd" # TCP/IP swiss army knife
+  # Security
+  - "torbrowser-launcher" # helps download and run the Tor Browser Bundle
   # Misc
   - "gnupg" # GNU privacy guard - a free PGP replacement
   - "jq" # lightweight and flexible command-line JSON processor
