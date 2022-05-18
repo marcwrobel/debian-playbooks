@@ -6,7 +6,6 @@
     - { role: 'marcwrobel.debian_basics.bootstrap', tags: ['bootstrap'] }
     - { role: 'marcwrobel.debian_basics.sysctl', tags: ['sysctl'] }
     - { role: 'marcwrobel.debian_basics.apt', tags: ['apt'] }
-    - { role: 'marcwrobel.debian_basics.apticron', tags: ['apticron'] }
     - { role: 'marcwrobel.debian_basics.unattended_upgrades', tags: ['unattended-upgrades'] }
     - { role: 'marcwrobel.debian_basics.banner', tags: ['banner'] }
     - { role: 'marcwrobel.debian_basics.sudo', tags: ['sudo'] }
