@@ -4,6 +4,7 @@
   ansible.builtin.package:
     name:
       - 'apt-listchanges'
+      - 'apt-show-versions'
       - 'apt-transport-https'
       - 'ca-certificates'
       - 'needrestart'
