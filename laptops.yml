@@ -9,3 +9,4 @@
     - { role: 'marcwrobel.debian_basics.banner', tags: ['banner'] }
     - { role: 'marcwrobel.debian_basics.sudo', tags: ['sudo'] }
     - { role: 'marcwrobel.debian_desktop.vscodium', tags: ['vscodium'] }
+    - { role: 'marcwrobel.debian_desktop.virtualbox', tags: ['virtualbox'] }

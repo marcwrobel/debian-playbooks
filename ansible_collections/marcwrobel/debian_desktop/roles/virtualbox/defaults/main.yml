@@ -1,0 +1,6 @@
+---
+# Whether VirtualBox must be installed (`present`) or not (`absent`).
+virtualbox__state: 'present'
+
+# VirtualBox <major>.<minor> version to install. See https://www.virtualbox.org/manual/UserManual.html#ChangeLog for the latest version.
+virtualbox__version: '6.1'

@@ -1,0 +1,6 @@
+---
+
+virtualbox__gpg_key_id: 'A2F683C52980AECF'
+virtualbox__gpg_key_url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+virtualbox__repo: 'deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib'
+virtualbox__package_base: 'virtualbox-'
