@@ -1,0 +1,20 @@
+---
+
+- name: Install repository key
+  ansible.builtin.apt_key:
+    id: '{{ vscodium__gpg_key_id }}'
+    url: '{{ vscodium__gpg_key_url }}'
+    state: '{{ vscodium__state }}'
+
+- name: Install repository
+  ansible.builtin.apt_repository:
+    filename: 'vscodium'
+    repo: '{{ vscodium__repo }}'
+    state: '{{ vscodium__state }}'
+    update_cache: true
+
+- name: Install packages
+  ansible.builtin.package:
+    name: '{{ vscodium__package }}'
+    state: '{{ vscodium__state }}'
+  ignore_errors: '{{ ansible_check_mode }}'

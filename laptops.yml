@@ -8,3 +8,4 @@
     - { role: 'marcwrobel.debian_basics.apt', tags: ['apt'] }
     - { role: 'marcwrobel.debian_basics.banner', tags: ['banner'] }
     - { role: 'marcwrobel.debian_basics.sudo', tags: ['sudo'] }
+    - { role: 'marcwrobel.debian_desktop.vscodium', tags: ['vscodium'] }

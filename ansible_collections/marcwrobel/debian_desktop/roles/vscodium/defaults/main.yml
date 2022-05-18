@@ -1,0 +1,3 @@
+---
+# Whether VSCodium must be installed, must be 'present', 'absent'
+vscodium__state: 'present'
