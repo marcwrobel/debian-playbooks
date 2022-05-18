@@ -9,18 +9,19 @@ packages__host_list:
   - "p7zip" # 7zr file archiver with high compression ratio
   - "xz-utils" # XZ-format compression utilities
   # Images
-  - 'gthumb' # image viewer and browser
-  - 'renrot' # rename and rotate files according to EXIF tags
+  - "gthumb" # image viewer and browser
+  - "renrot" # rename and rotate files according to EXIF tags
   # Development
-  - 'git' # fast, scalable, distributed revision control system
-  - 'gitg' # git repository viewer
-  - 'openjdk-17-doc' # OpenJDK Development Kit (JDK) documentation
-  - 'openjdk-17-jdk' # OpenJDK Development Kit (JDK)
-  - 'openjdk-17-source' # OpenJDK Development Kit (JDK) source files
+  - "git" # fast, scalable, distributed revision control system
+  - "gitg" # git repository viewer
+  - "openjdk-17-doc" # OpenJDK Development Kit (JDK) documentation
+  - "openjdk-17-jdk" # OpenJDK Development Kit (JDK)
+  - "openjdk-17-source" # OpenJDK Development Kit (JDK) source files
+  - "pipenv" # creates and manages a virtualenv for your projects
   # Editors
-  - 'geany' # fast and lightweight IDE
-  - 'geany-plugins' # set of plugins for Geany
-  - 'geany-plugin-extrasel' # extra selection plugin for Geany
+  - "geany" # fast and lightweight IDE
+  - "geany-plugins" # set of plugins for Geany
+  - "geany-plugin-extrasel" # extra selection plugin for Geany
   # System
   - "netcat-openbsd" # TCP/IP swiss army knife
   # Security
@@ -28,5 +29,5 @@ packages__host_list:
   # Misc
   - "gnupg" # GNU privacy guard - a free PGP replacement
   - "jq" # lightweight and flexible command-line JSON processor
-  - 'pass' # lightweight directory-based password manager
+  - "pass" # lightweight directory-based password manager
   - "uuid" # Universally Unique Identifier Command-Line Tool
