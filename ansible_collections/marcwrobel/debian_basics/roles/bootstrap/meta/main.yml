@@ -6,6 +6,6 @@ galaxy_info:
   platforms:
     - name: 'Debian'
       versions:
-        - '10'
+        - 'bullseye'
   galaxy_tags: ['linux', 'debian', 'bootstrap']
 dependencies: []

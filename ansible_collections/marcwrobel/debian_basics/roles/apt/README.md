@@ -1,12 +1,11 @@
-# APT
+# apt
 
-APT configuration :
-- basic configuration,
-- repositories configuration,
+Configures the APT package manager :
+- basic configuration (dpkg, repositories...),
 - auto-upgrade with `UnattendedUpgrades`,
 - changelogs with `apt-listchanges`.
 
-Backports are always enabled : only manually installed older packages are upgraded to newer ones from backports.
+Backports are always enabled because only manually installed older packages are upgraded to newer ones from backports.
 
 ## Requirements
 

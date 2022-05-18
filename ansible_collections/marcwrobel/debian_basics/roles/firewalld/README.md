@@ -1,4 +1,4 @@
-# sudo
+# firewalld
 
 Install and configure `firewalld`.
 
