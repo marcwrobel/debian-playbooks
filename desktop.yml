@@ -1,7 +1,7 @@
 ---
 
-- name: 'Laptops playbook'
-  hosts: 'laptops'
+- name: 'Desktop playbook'
+  hosts: 'desktops'
   roles:
     - { role: 'marcwrobel.debian_basics.bootstrap', tags: ['bootstrap'] }
     - { role: 'marcwrobel.debian_basics.sysctl', tags: ['sysctl'] }

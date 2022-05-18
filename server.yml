@@ -1,6 +1,6 @@
 ---
 
-- name: 'Servers playbook'
+- name: 'Server playbook'
   hosts: 'servers'
   roles:
     - { role: 'marcwrobel.debian_basics.bootstrap', tags: ['bootstrap'] }
