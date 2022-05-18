@@ -1,5 +1,7 @@
 ---
 
+packages__host_list: []
+
 kimsufi_network__interface: 'eno0'
 kimsufi_network__ipv4_address: '5.196.89.31'
 kimsufi_network__ipv4_gateway: '5.196.95.254'
