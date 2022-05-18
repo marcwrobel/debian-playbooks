@@ -12,7 +12,19 @@ None.
 
 ## Role Variables
 
-See `defaults/main.yml`.
+Available variables are listed below, along with default values:
+
+    sysctl__shmmax: '{{ sysctl__kernel_shmmax_default }}'
+    sysctl__shmall: '{{ sysctl__kernel_shmall_default }}'
+    sysctl__ip_forward: false
+
+See `defaults/main.yml` for more information.
+
+## Usage
+
+    - hosts: servers
+      roles:
+        - role: 'marcwrobel.debian_basics.sysctl'
 
 ## Links
 

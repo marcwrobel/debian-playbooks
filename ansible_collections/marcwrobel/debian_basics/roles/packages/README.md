@@ -24,10 +24,8 @@ See `defaults/main.yml` for more information.
 ## Usage
 
     - hosts: servers
-      collections:
-        - 'marcwrobel.debian_basics'
       roles:
-        - { role: 'packages', tags: [ 'packages' ] }
+        - role: 'marcwrobel.debian_basics.packages'
 
 ## Links
 

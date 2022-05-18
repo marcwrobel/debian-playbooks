@@ -27,10 +27,8 @@ See `defaults/main.yml` for more information.
 ## Usage
 
     - hosts: servers
-      collections:
-        - 'marcwrobel.debian_basics'
       roles:
-        - { role: 'banner', tags: [ 'banner' ] }
+        - role: 'marcwrobel.debian_basics.banner'
 
 ## Links
 

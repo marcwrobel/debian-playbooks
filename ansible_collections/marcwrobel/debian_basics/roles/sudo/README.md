@@ -17,10 +17,8 @@ None.
 ## Usage
 
     - hosts: servers
-      collections:
-        - 'marcwrobel.debian_basics'
       roles:
-        - { role: 'sudo', tags: [ 'sudo' ] }
+        - role: 'marcwrobel.debian_basics.sudo'
 
 ## Links
 

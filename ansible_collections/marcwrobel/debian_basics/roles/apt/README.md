@@ -22,10 +22,8 @@ None.
 ## Usage
 
     - hosts: servers
-      collections:
-        - 'marcwrobel.debian_basics'
       roles:
-        - role: 'apt'
+        - role: 'marcwrobel.debian_basics.apt'
 
 ## Links
 

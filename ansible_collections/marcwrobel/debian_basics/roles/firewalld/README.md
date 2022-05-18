@@ -17,10 +17,8 @@ None.
 ## Usage
 
     - hosts: servers
-      collections:
-        - 'marcwrobel.debian_basics'
       roles:
-        - { role: 'firewalld', tags: [ 'fw' ] }
+        - role: 'marcwrobel.debian_basics.firewalld'
 
 ## Links
 

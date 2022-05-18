@@ -24,11 +24,8 @@ See `defaults/main.yml` for more information.
 ## Usage
 
     - hosts: laptops
-      collections:
-        - 'marcwrobel.debian_desktop'
       roles:
-        - role: 'virtualbox'
-          tags: [ 'virtualbox' ]
+        - role: 'marcwrobel.debian_desktop.virtualbox'
 
 ## Links
 

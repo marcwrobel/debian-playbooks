@@ -23,11 +23,8 @@ See `defaults/main.yml` for more information.
 ## Usage
 
     - hosts: laptops
-      collections:
-        - 'marcwrobel.debian_desktop'
       roles:
-        - role: 'vscodium'
-          tags: [ 'vscodium' ]
+        - role: 'marcwrobel.debian_desktop.vscodium'
 
 ## Links
 
