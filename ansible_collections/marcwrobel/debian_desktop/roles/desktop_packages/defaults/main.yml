@@ -1,0 +1,17 @@
+---
+# Default packages to uninstall, along with variables for adding packages for an host or an hosts group.
+desktop_packages__default_blacklist: []
+desktop_packages__group_blacklist: []
+desktop_packages__host_blacklist: []
+desktop_packages__blacklist: "{{ desktop_packages__default_blacklist + desktop_packages__group_blacklist + desktop_packages__host_blacklist }}"
+
+# Default packages to install, along with variables for adding packages for an host or an hosts group.
+desktop_packages__default_list:
+  - 'geany'
+  - 'geany-plugins'
+  - 'geany-plugin-extrasel'
+  - 'gitg'
+  - 'gthumb'
+desktop_packages__group_list: []
+desktop_packages__host_list: []
+desktop_packages__list: "{{ desktop_packages__default_list + desktop_packages__group_list + desktop_packages__host_list }}"

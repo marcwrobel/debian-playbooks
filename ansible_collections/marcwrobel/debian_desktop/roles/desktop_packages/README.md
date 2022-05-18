@@ -1,6 +1,6 @@
 # packages
 
-Manage basic packages commonly needed (or not) on Debian, but not always installed by default.
+Manage basic packages commonly needed (or not) on Debian Desktop, but not always installed by default.
 
 See `defaults/main.yml` for the full list of packages.
 
@@ -16,10 +16,10 @@ None.
 
 Available variables are listed below, along with default values:
 
-    packages__group_blacklist: []
-    packages__host_blacklist: []
-    packages__group_list: []
-    packages__host_list: []
+    desktop_packages__group_blacklist: []
+    desktop_packages__host_blacklist: []
+    desktop_packages__group_list: []
+    desktop_packages__host_list: []
 
 See `defaults/main.yml` for more information.
 
