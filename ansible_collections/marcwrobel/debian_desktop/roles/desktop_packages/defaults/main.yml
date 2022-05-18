@@ -7,11 +7,13 @@ desktop_packages__blacklist: "{{ desktop_packages__default_blacklist + desktop_p
 
 # Default packages to install, along with variables for adding packages for an host or an hosts group.
 desktop_packages__default_list:
-  - 'geany'
-  - 'geany-plugins'
-  - 'geany-plugin-extrasel'
-  - 'gitg'
-  - 'gthumb'
+  - 'geany' # fast and lightweight IDE
+  - 'geany-plugins' # set of plugins for Geany
+  - 'geany-plugin-extrasel' # extra selection plugin for Geany
+  - 'git' # fast, scalable, distributed revision control system
+  - 'gitg' # git repository viewer
+  - 'gthumb' # image viewer and browser
+  - 'pass' # lightweight directory-based password manager
 desktop_packages__group_list: []
 desktop_packages__host_list: []
 desktop_packages__list: "{{ desktop_packages__default_list + desktop_packages__group_list + desktop_packages__host_list }}"

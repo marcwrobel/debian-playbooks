@@ -27,6 +27,8 @@ packages__default_list:
   - "xz-utils" # XZ-format compression utilities
   - "zip" # archiver for .zip files
   - "zstd" # fast lossless compression algorithm -- CLI tool
+  # Editors
+  - 'vim'
   # System
   - "netcat-openbsd" # TCP/IP swiss army knife
   - "util-linux" # miscellaneous system utilities
