@@ -1,0 +1,4 @@
+---
+etckeeper__packages:
+  - "git"
+  - "etckeeper"

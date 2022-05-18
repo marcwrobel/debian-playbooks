@@ -5,6 +5,8 @@
   roles:
     - role: 'marcwrobel.debian_basics.bootstrap'
       tags: ['bootstrap']
+    - role: 'marcwrobel.debian_basics.etckeeper'
+      tags: ['etckeeper']
     - role: 'marcwrobel.debian_basics.sysctl'
       tags: ['sysctl']
     - role: 'marcwrobel.debian_basics.apt'
