@@ -8,8 +8,9 @@ packages__host_list:
   - "atool" # tool for managing file archives of various types
   - "p7zip" # 7zr file archiver with high compression ratio
   - "xz-utils" # XZ-format compression utilities
-  # Desktop
+  # Images
   - 'gthumb' # image viewer and browser
+  - 'renrot' # rename and rotate files according to EXIF tags
   # Development
   - 'git' # fast, scalable, distributed revision control system
   - 'gitg' # git repository viewer
