@@ -1,0 +1,25 @@
+---
+
+- name: Install repository key
+  ansible.builtin.apt_key:
+    id: '{{ docker__gpg_key_id }}'
+    url: '{{ docker__gpg_key_url }}'
+    state: '{{ docker__state }}'
+
+- name: Install repository
+  ansible.builtin.apt_repository:
+    filename: 'docker'
+    repo: '{{ docker__repo }}'
+    state: '{{ docker__state }}'
+    update_cache: true
+
+- name: Remove alternative docker packages
+  ansible.builtin.package:
+    name: '{{ docker__alternative_packages }}'
+    state: 'absent'
+
+- name: Install packages
+  ansible.builtin.package:
+    name: '{{ docker__packages }}'
+    state: '{{ docker__state }}'
+  ignore_errors: '{{ ansible_check_mode }}'

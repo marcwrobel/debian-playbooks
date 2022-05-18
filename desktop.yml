@@ -21,3 +21,5 @@
       tags: ['vscodium']
     - role: 'marcwrobel.debian_desktop.virtualbox'
       tags: ['virtualbox']
+    - role: 'marcwrobel.debian_desktop.docker'
+      tags: ['docker']
