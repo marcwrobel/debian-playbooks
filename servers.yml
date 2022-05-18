@@ -6,6 +6,7 @@
     - { role: 'marcwrobel.debian_basics.bootstrap', tags: ['bootstrap'] }
     - { role: 'marcwrobel.debian_basics.sysctl', tags: ['sysctl'] }
     - { role: 'marcwrobel.debian_basics.apt', tags: ['apt'] }
+    - { role: 'marcwrobel.debian_basics.packages', tags: ['packages'] }
     - { role: 'marcwrobel.debian_basics.banner', tags: ['banner'] }
     - { role: 'marcwrobel.debian_basics.sudo', tags: ['sudo'] }
     - { role: 'marcwrobel.debian_kimsufi.kimsufi_network', tags: ['net'] }
