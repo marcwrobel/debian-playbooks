@@ -17,6 +17,8 @@
       tags: ['sudo']
     - role: 'marcwrobel.debian_desktop.desktop_packages'
       tags: ['packages']
+    - role: 'marcwrobel.debian_desktop.flatpak'
+      tags: ['flatpak']
     - role: 'marcwrobel.debian_desktop.vscodium'
       tags: ['vscodium']
     - role: 'marcwrobel.debian_desktop.virtualbox'

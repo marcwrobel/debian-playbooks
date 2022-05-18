@@ -1,0 +1,4 @@
+---
+flatpak__packages:
+  - 'flatpak'
+  - 'gnome-software-plugin-flatpak'
