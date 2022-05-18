@@ -1,6 +1,12 @@
 # APT
 
-Basic configuration around APT (configuration, repositories...).
+APT configuration :
+- basic configuration,
+- repositories configuration,
+- auto-upgrade with `UnattendedUpgrades`,
+- changelogs with `apt-listchanges`.
+
+Backports are always enabled : only manually installed older packages are upgraded to newer ones from backports.
 
 ## Requirements
 
@@ -24,4 +30,4 @@ None.
 
 ## Links
 
-None.
+- [UnattendedUpgrades](https://wiki.debian.org/UnattendedUpgrades)

@@ -1,9 +1,0 @@
-{{ ansible_managed | comment('c') }}
-
-// Should APT install recommended or suggested packages?
-APT::Install-Recommends "false";
-APT::Install-Suggests "false";
-
-// Should APT autoremove recommended or suggested packages?
-APT::AutoRemove::RecommendsImportant "false";
-APT::AutoRemove::SuggestsImportant "false";

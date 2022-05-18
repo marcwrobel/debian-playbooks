@@ -1,0 +1,45 @@
+{{ ansible_managed | comment('c') }}
+
+// Controls which packages are upgraded.
+Unattended-Upgrade::Origins-Pattern {
+  "origin=Debian,archive=stable,label=Debian";
+  "origin=Debian,archive=stable,label=Debian-Security";
+};
+
+// Python regular expressions matching packages to exclude from upgrading.
+Unattended-Upgrade::Package-Blacklist {
+  "libc6";
+  "linux-";
+  "openssh-server";
+  "docker*";
+};
+
+// Download and install upgrades only when conditions are favorable.
+Unattended-Upgrade::OnlyOnACPower "true";
+Unattended-Upgrade::Skip-Updates-On-Metered-Connections "true";
+
+// Ensure updates keep getting installed even after an unclean dpkg exit.
+Unattended-Upgrade::AutoFixInterruptedDpkg "true";
+
+// Make shutdown while an upgrade is running possible (with a small delay).
+Unattended-Upgrade::MinimalSteps "true";
+
+// Install all update it in the background while the machine is running.
+Unattended-Upgrade::InstallOnShutdown "false";
+
+// Automatically remove unused packages.
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
+Unattended-Upgrade::Remove-New-Unused-Dependencies "true";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+
+// Do not reboot *WITHOUT CONFIRMATION* if /var/run/reboot-required is found after the upgrade.
+Unattended-Upgrade::Automatic-Reboot "false";
+Unattended-Upgrade::Automatic-Reboot-WithUsers "false";
+
+// Do not send emails.
+Unattended-Upgrade::Mail "root";
+Unattended-Upgrade::MailReport "only-on-error";
+
+// Enable logging to syslog.
+Unattended-Upgrade::SyslogEnable "true";
+Unattended-Upgrade::SyslogFacility "daemon";

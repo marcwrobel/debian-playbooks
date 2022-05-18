@@ -1,0 +1,3 @@
+{{ ansible_managed | comment('c') }}
+
+DPkg::Pre-Install-Pkgs {"/usr/sbin/dpkg-preconfigure --apt || true";};
