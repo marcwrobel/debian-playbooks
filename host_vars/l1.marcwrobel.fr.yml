@@ -26,6 +26,7 @@ packages__host_list:
   - "geany-plugins" # set of plugins for Geany
   - "geany-plugin-extrasel" # extra selection plugin for Geany
   # System
+  - "htop" # Interactive process viewer
   - "netcat-openbsd" # TCP/IP swiss army knife
   # Security
   - "torbrowser-launcher" # helps download and run the Tor Browser Bundle
