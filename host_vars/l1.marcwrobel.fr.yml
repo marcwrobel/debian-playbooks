@@ -12,12 +12,15 @@ packages__host_list:
   - "gthumb" # image viewer and browser
   - "renrot" # rename and rotate files according to EXIF tags
   # Development
+  - "build-essential" # Required by jekyll
   - "git" # fast, scalable, distributed revision control system
   - "gitg" # git repository viewer
   - "openjdk-17-doc" # OpenJDK Development Kit (JDK) documentation
   - "openjdk-17-jdk" # OpenJDK Development Kit (JDK)
   - "openjdk-17-source" # OpenJDK Development Kit (JDK) source files
   - "pipenv" # creates and manages a virtualenv for your projects
+  - "ruby-full" # Required by jekyll
+  - "zlib1g-dev" # Required by jekyll
   # Editors
   - "geany" # fast and lightweight IDE
   - "geany-plugins" # set of plugins for Geany
