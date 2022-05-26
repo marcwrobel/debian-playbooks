@@ -1,4 +1,3 @@
 ---
-
 protonvpn__repository_deb_url: 'https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb'
 protonvpn__packages: ['protonvpn-stable-release', 'protonvpn']

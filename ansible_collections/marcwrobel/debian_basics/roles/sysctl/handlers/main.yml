@@ -1,5 +1,4 @@
 ---
-
 - name: 'Reload sysctl settings'
   ansible.builtin.service:
     name: 'systemd-sysctl'

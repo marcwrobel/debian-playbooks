@@ -1,5 +1,4 @@
 ---
-
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#facts-d-or-local-facts
 - name: 'Create facts.d directory'
   ansible.builtin.file:

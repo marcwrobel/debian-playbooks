@@ -1,5 +1,4 @@
 ---
-
 # Maximum amount of shared memory a process can reserve for itself
 sysctl__shmmax: '{{ sysctl__kernel_shmmax_default }}'
 

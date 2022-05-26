@@ -1,5 +1,4 @@
 ---
-
 flatpak__system_remotes_default:
   - name: 'flathub'
     url: 'https://flathub.org/repo/flathub.flatpakrepo'

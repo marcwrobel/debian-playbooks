@@ -1,5 +1,4 @@
 ---
-
 - name: 'Update package indexes'
   ansible.builtin.apt:
     update_cache: true

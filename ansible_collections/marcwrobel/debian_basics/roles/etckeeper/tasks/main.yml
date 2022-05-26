@@ -1,26 +1,26 @@
 ---
 - name: Install packages
   ansible.builtin.package:
-    name: "{{ etckeeper__packages }}"
-    state: "present"
+    name: '{{ etckeeper__packages }}'
+    state: 'present'
   become: true
 
 - name: Copy configuration files
   ansible.builtin.template:
-    src: "{{ item }}.j2"
-    dest: "/{{ item }}"
-    owner: "root"
-    group: "root"
-    mode: "0644"
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
   loop:
-    - "etc/etckeeper/etckeeper.conf"
+    - 'etc/etckeeper/etckeeper.conf'
   become: true
 
 - name: Set repository permissions
   ansible.builtin.file:
-    state: "directory"
-    path: "/etc/.git"
-    mode: "0700"
-    owner: "root"
-    group: "root"
+    state: 'directory'
+    path: '/etc/.git'
+    mode: '0700'
+    owner: 'root'
+    group: 'root'
   become: true

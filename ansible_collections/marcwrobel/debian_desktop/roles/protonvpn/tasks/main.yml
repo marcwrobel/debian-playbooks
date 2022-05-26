@@ -1,5 +1,4 @@
 ---
-
 - name: Set up repository
   ansible.builtin.apt:
     deb: '{{ protonvpn__repository_deb_url }}'

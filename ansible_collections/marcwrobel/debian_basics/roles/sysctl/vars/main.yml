@@ -1,5 +1,4 @@
 ---
-
 # Base amount of memory used for shared memory calculations.
 sysctl__kernel_shm_base: '{{ ((ansible_memtotal_mb|int * 1024 * 1024) - 8192) }}'
 

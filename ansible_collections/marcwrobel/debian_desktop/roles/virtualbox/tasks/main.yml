@@ -1,5 +1,4 @@
 ---
-
 - name: Install repository key
   ansible.builtin.apt_key:
     id: '{{ virtualbox__gpg_key_id }}'

@@ -1,5 +1,4 @@
 ---
-
 - name: Uninstall blacklisted packages
   ansible.builtin.package:
     name: '{{ packages__blacklist }}'

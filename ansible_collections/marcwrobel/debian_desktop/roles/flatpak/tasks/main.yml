@@ -2,7 +2,7 @@
 - name: Install packages
   ansible.builtin.package:
     name: '{{ flatpak__packages }}'
-    state: "present"
+    state: 'present'
   become: true
 
 - name: Add flatpak remotes to the system installation

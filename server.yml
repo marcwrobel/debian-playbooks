@@ -1,5 +1,4 @@
 ---
-
 - name: 'Server playbook'
   hosts: 'servers'
   roles:

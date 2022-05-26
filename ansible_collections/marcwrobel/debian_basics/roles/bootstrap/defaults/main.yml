@@ -1,5 +1,4 @@
 ---
-
 # Whether to upgrade packages on first run
 bootstrap__upgrade_packages: true
 

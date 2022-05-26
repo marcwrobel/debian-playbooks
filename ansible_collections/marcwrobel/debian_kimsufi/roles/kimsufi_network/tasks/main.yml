@@ -1,5 +1,4 @@
 ---
-
 # cloud-init does not setup IPv6 and configure IPv4 using DHCP
 - name: 'Uninstall cloud-init'
   ansible.builtin.package:

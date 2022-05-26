@@ -1,5 +1,4 @@
 ---
-
 - name: 'Install base packages'
   ansible.builtin.package:
     name:

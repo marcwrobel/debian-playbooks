@@ -1,5 +1,4 @@
 ---
-
 - name: 'Desktop playbook'
   hosts: 'desktops'
   roles:

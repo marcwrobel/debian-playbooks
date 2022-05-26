@@ -1,32 +1,32 @@
 ---
 # Default packages to uninstall, along with variables for adding packages for an host or an hosts group.
 packages__default_blacklist:
-  - "telnet" # use netcat instead
-  - "manpages-de" # only english manpages are needed
-  - "manpages-es" # only english manpages are needed
-  - "manpages-fr" # only english manpages are needed
-  - "manpages-it" # only english manpages are needed
-  - "manpages-pl" # only english manpages are needed
-  - "manpages-pt" # only english manpages are needed
+  - 'telnet' # use netcat instead
+  - 'manpages-de' # only english manpages are needed
+  - 'manpages-es' # only english manpages are needed
+  - 'manpages-fr' # only english manpages are needed
+  - 'manpages-it' # only english manpages are needed
+  - 'manpages-pl' # only english manpages are needed
+  - 'manpages-pt' # only english manpages are needed
 packages__group_blacklist: []
 packages__host_blacklist: []
-packages__blacklist: "{{ packages__default_blacklist + packages__group_blacklist + packages__host_blacklist }}"
+packages__blacklist: '{{ packages__default_blacklist + packages__group_blacklist + packages__host_blacklist }}'
 
 # Default packages to install, along with variables for adding packages for an host or an hosts group.
 packages__default_list:
   # Clients
-  - "rsync" # fast, versatile, remote (and local) file-copying tool
+  - 'rsync' # fast, versatile, remote (and local) file-copying tool
   # Compression
-  - "bzip2" # high-quality block-sorting file compressor
-  - "unzip" # de-archiver for .zip files
-  - "zip" # archiver for .zip files
-  - "zstd" # fast lossless compression algorithm -- CLI tool
+  - 'bzip2' # high-quality block-sorting file compressor
+  - 'unzip' # de-archiver for .zip files
+  - 'zip' # archiver for .zip files
+  - 'zstd' # fast lossless compression algorithm -- CLI tool
   # Editors
-  - "vim" # Vi IMproved - enhanced vi editor
+  - 'vim' # Vi IMproved - enhanced vi editor
   # System
-  - "util-linux" # miscellaneous system utilities
-  - "uptimed" # daemon to track uptimes, especially the high ones
-  - "lsb-release" # linux Standard Base version reporting utility
+  - 'util-linux' # miscellaneous system utilities
+  - 'uptimed' # daemon to track uptimes, especially the high ones
+  - 'lsb-release' # linux Standard Base version reporting utility
 packages__group_list: []
 packages__host_list: []
-packages__list: "{{ packages__default_list + packages__group_list + packages__host_list }}"
+packages__list: '{{ packages__default_list + packages__group_list + packages__host_list }}'

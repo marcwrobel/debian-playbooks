@@ -1,5 +1,4 @@
 ---
-
 - name: 'Copy banner'
   ansible.builtin.template:
     src: '{{ item }}.j2'
