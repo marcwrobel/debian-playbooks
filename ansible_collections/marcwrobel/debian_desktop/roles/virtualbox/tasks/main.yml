@@ -8,7 +8,7 @@
 
 - name: Install repository
   ansible.builtin.apt_repository:
-    filename: 'vscodium'
+    filename: 'virtualbox'
     repo: '{{ virtualbox__repo }}'
     state: '{{ virtualbox__state }}'
     update_cache: true
