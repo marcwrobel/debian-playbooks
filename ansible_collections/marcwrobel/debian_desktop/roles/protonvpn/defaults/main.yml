@@ -1,0 +1,3 @@
+---
+# Whether Proton VPN must be installed (`present`) or not (`absent`).
+protonvpn__state: 'present'

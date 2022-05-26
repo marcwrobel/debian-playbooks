@@ -1,0 +1,19 @@
+---
+
+- name: Set up repository
+  ansible.builtin.apt:
+    deb: '{{ protonvpn__repository_deb_url }}'
+    state: '{{ protonvpn__state }}'
+  register: 'protonvpn__install_state'
+  when: "protonvpn__state == 'present'"
+
+- name: Update cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: 'protonvpn__install_state is changed'
+
+- name: Set up packages
+  ansible.builtin.package:
+    name: '{{ protonvpn__packages }}'
+    state: '{{ protonvpn__state }}'
+  ignore_errors: '{{ ansible_check_mode }}'

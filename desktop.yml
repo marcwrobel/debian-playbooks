@@ -18,10 +18,12 @@
     - role: 'marcwrobel.debian_basics.sudo'
       tags: ['sudo']
     - role: 'marcwrobel.debian_desktop.flatpak'
-      tags: ['flatpak']
+      tags: ['packages', 'flatpak']
     - role: 'marcwrobel.debian_desktop.vscodium'
-      tags: ['vscodium']
+      tags: ['packages', 'vscodium']
     - role: 'marcwrobel.debian_desktop.virtualbox'
-      tags: ['virtualbox']
+      tags: ['packages', 'virtualbox']
     - role: 'marcwrobel.debian_desktop.docker'
-      tags: ['docker']
+      tags: ['packages', 'docker']
+    - role: 'marcwrobel.debian_desktop.protonvpn'
+      tags: ['packages', 'protonvpn']
