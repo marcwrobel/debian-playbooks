@@ -1,0 +1,11 @@
+galaxy_info:
+  author: 'Marc Wrobel'
+  description: 'Configures git'
+  license: 'MIT'
+  min_ansible_version: '2.9'
+  platforms:
+    - name: 'Debian'
+      versions:
+        - 'all'
+  galaxy_tags: ['linux', 'git']
+dependencies: []

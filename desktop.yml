@@ -17,6 +17,8 @@
       tags: ['banner']
     - role: 'marcwrobel.debian_basics.sudo'
       tags: ['sudo']
+    - role: 'marcwrobel.debian_basics.git'
+      tags: ['packages', 'git']
     - role: 'marcwrobel.debian_desktop.flatpak'
       tags: ['packages', 'flatpak']
     - role: 'marcwrobel.debian_desktop.vscodium'

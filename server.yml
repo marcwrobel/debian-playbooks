@@ -21,3 +21,5 @@
       tags: ['net']
     - role: 'marcwrobel.debian_basics.firewalld'
       tags: ['fw']
+    - role: 'marcwrobel.debian_basics.git'
+      tags: ['packages', 'git']

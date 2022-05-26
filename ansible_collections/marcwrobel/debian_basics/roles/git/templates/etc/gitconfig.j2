@@ -1,0 +1,56 @@
+{{ ansible_managed | comment }}
+
+[alias]
+  # A better git log
+  # https://www.git-scm.com/docs/git-log#Documentation/git-log.txt---graph
+  # https://www.git-scm.com/docs/git-log#Documentation/git-log.txt---abbrev-commit
+  # https://www.git-scm.com/docs/git-log#Documentation/git-log.txt---dateltformatgt
+  # https://www.git-scm.com/docs/git-log#_pretty_formats
+  lg = log --graph --abbrev-commit --date=short --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+[diff]
+  # Colors moved lines in diffs differently.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffcolorMoved
+  colorMoved = true
+  # Uses a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffmnemonicPrefix
+  mnemonicprefix = true
+
+[fetch]
+  # Remove remote-tracking references that no longer exist on the remote.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchprune
+  prune = true
+  # Remove any local tags that no longer exist on the remote
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchpruneTags
+  pruneTags = true
+
+[pull]
+  # fast-forward only
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pullrebase
+  ff = only
+  # Rebase branches on top of the fetched branch, instead of merging.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pullrebase
+  rebase = true
+
+[push]
+  # Pushes the current branch with the same name on the remote.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault
+  default = simple
+  # Pushes annotated tags in refs/tags that are missing from the remote.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushfollowTags
+  followTags = true
+
+[rebase]
+  # Always show a diffstat of what changed upstream since the last rebase.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-rebasestat
+  stat = true
+
+[status]
+  # Show individual files in untracked directories.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles
+  showUntrackedFiles = all
+
+[transfer]
+  # Abort when a malformed object or a link to a nonexistent object is detected.
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-transferfsckObjects
+  fsckObjects = true
