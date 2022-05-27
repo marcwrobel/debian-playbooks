@@ -18,6 +18,8 @@
       tags: ['sudo']
     - role: 'marcwrobel.debian_basics.git'
       tags: ['packages', 'git']
+    - role: 'marcwrobel.debian_basics.vim'
+      tags: ['packages', 'vim']
     - role: 'marcwrobel.debian_desktop.virtualbox'
       tags: ['packages', 'virtualbox']
     - role: 'marcwrobel.debian_desktop.docker'

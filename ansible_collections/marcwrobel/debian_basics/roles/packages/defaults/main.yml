@@ -21,8 +21,6 @@ packages__default_list:
   - 'unzip' # de-archiver for .zip files
   - 'zip' # archiver for .zip files
   - 'zstd' # fast lossless compression algorithm -- CLI tool
-  # Editors
-  - 'vim' # Vi IMproved - enhanced vi editor
   # System
   - 'util-linux' # miscellaneous system utilities
   - 'uptimed' # daemon to track uptimes, especially the high ones

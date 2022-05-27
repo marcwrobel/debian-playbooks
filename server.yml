@@ -22,3 +22,5 @@
       tags: ['fw']
     - role: 'marcwrobel.debian_basics.git'
       tags: ['packages', 'git']
+    - role: 'marcwrobel.debian_basics.vim'
+      tags: ['packages', 'vim']

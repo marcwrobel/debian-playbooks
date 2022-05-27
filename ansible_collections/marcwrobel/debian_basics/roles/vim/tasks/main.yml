@@ -1,0 +1,23 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: 'vim'
+    state: 'present'
+  become: true
+
+- name: Make VIM the default editor
+  community.general.alternatives:
+    name: 'editor'
+    path: '/usr/bin/vim.basic'
+  become: true
+
+- name: Copy system configuration
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/vim/vimrc.local'
+  become: true
