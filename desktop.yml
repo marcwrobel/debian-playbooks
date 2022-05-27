@@ -18,10 +18,6 @@
       tags: ['sudo']
     - role: 'marcwrobel.debian_basics.git'
       tags: ['packages', 'git']
-    - role: 'marcwrobel.debian_desktop.flatpak'
-      tags: ['packages', 'flatpak']
-    - role: 'marcwrobel.debian_desktop.vscodium'
-      tags: ['packages', 'vscodium']
     - role: 'marcwrobel.debian_desktop.virtualbox'
       tags: ['packages', 'virtualbox']
     - role: 'marcwrobel.debian_desktop.docker'

@@ -1,0 +1,5 @@
+---
+flatpak__remotes:
+  - name: 'flathub'
+    url: 'https://flathub.org/repo/flathub.flatpakrepo'
+flatpak__apps: []

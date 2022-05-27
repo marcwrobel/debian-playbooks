@@ -1,0 +1,18 @@
+---
+namespace: 'marcwrobel'
+name: 'debian_user'
+description: 'A collection of roles for Debian users.'
+version: '1.0.0'
+license: ['MIT']
+
+readme: 'README.md'
+authors: ['Marc Wrobel (https://www.marcwrobel.fr/)']
+
+dependencies: {}
+
+tags: ['linux', 'debian', 'user']
+
+repository: 'https://github.com/marcwrobel/debian-playbooks'
+documentation: 'https://github.com/marcwrobel/debian-playbooks'
+homepage: 'https://github.com/marcwrobel/debian-playbooks'
+issues: 'https://github.com/marcwrobel/debian-playbooks/issues'

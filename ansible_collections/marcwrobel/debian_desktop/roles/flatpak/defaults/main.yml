@@ -1,7 +1,0 @@
----
-flatpak__system_remotes_default:
-  - name: 'flathub'
-    url: 'https://flathub.org/repo/flathub.flatpakrepo'
-flatpak__system_remotes_group: []
-flatpak__system_remotes_host: []
-flatpak__system_remotes: '{{ flatpak__system_remotes_default + flatpak__system_remotes_group + flatpak__system_remotes_host }}'

@@ -1,5 +1,0 @@
----
-vscodium__gpg_key_id: '54678CF75A278D9C'
-vscodium__gpg_key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'
-vscodium__repo: 'deb https://download.vscodium.com/debs vscodium main'
-vscodium__package: 'codium'

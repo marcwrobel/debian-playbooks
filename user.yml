@@ -1,0 +1,6 @@
+---
+- name: 'User playbook'
+  hosts: 'desktops'
+  roles:
+    - role: 'marcwrobel.debian_user.flatpak'
+      tags: ['flatpak']

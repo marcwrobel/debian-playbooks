@@ -1,3 +1,0 @@
----
-# Whether VSCodium must be installed (`present`) or not (`absent`).
-vscodium__state: 'present'
