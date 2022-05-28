@@ -1,3 +1,4 @@
 ---
 git__packages:
   - 'git'
+  - 'git-lfs'

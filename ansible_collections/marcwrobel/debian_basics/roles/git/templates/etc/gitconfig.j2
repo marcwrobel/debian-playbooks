@@ -54,3 +54,9 @@
   # Abort when a malformed object or a link to a nonexistent object is detected.
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-transferfsckObjects
   fsckObjects = true
+
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
