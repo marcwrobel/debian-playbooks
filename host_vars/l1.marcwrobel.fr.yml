@@ -42,3 +42,5 @@ flatpak__apps:
   - 'com.jetbrains.IntelliJ-IDEA-Community' # an IDE written in Java for developing computer software
   - 'com.slack.Slack' # a messaging program designed specifically for the workplace
   - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
+
+dotfiles__repository: 'https://github.com/marcwrobel/dotfiles.git'

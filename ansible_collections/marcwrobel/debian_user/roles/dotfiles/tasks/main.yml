@@ -1,0 +1,58 @@
+---
+- name: Checkout repository
+  ansible.builtin.git:
+    repo: '{{ dotfiles__repository }}'
+    dest: '{{ ansible_env.HOME }}/.dotfiles'
+    single_branch: true
+    version: '{{ dotfiles__repository_version }}'
+
+# Too bad we can't exclude a whole directory with ansible.builtin.find
+- name: Look for dotfiles
+  block:
+    - name: Find dotfiles directories
+      ansible.builtin.find:
+        paths: '{{ ansible_env.HOME }}/.dotfiles'
+        file_type: 'directory'
+        excludes:
+          - '.git'
+        hidden: true
+        recurse: false
+      register: 'dotfiles__dirs_result'
+
+    - name: Build dotfiles directories list
+      ansible.builtin.set_fact:
+        dotfiles__dirs: "{{ dotfiles__dirs_result | json_query('files[*].path') }}"
+
+    - name: Find dotfiles
+      ansible.builtin.find:
+        paths: "{{ [ansible_env.HOME + '/.dotfiles'] + dotfiles__dirs }}"
+        file_type: 'file'
+        excludes:
+          - '.editorconfig'
+          - 'README.md'
+          - 'LICENSE'
+          - 'install'
+        hidden: true
+        recurse: false
+      register: dotfiles__files_result
+
+    - name: Build dotfiles list
+      ansible.builtin.set_fact:
+        dotfiles__files: "{{ dotfiles__files_result | json_query('files[*].path') }}"
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item | regex_replace('/.dotfiles') }}"
+    owner: '{{ ansible_user_id }}'
+    group: '{{ ansible_user_id }}'
+    mode: '0750'
+    state: 'directory'
+  loop: '{{ dotfiles__dirs }}'
+
+- name: Symlink dotfiles
+  ansible.builtin.file:
+    src: '{{ item }}'
+    dest: "{{ item | regex_replace('/.dotfiles') }}"
+    force: '{{ dotfiles__remove_existing_files | bool }}'
+    state: 'link'
+  loop: '{{ dotfiles__files }}'

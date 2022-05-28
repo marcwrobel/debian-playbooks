@@ -4,3 +4,5 @@
   roles:
     - role: 'marcwrobel.debian_user.flatpak'
       tags: ['flatpak']
+    - role: 'marcwrobel.debian_user.dotfiles'
+      tags: ['dotfiles']
