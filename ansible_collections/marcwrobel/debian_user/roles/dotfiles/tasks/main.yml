@@ -29,6 +29,7 @@
         file_type: 'file'
         excludes:
           - '.editorconfig'
+          - '.gitignore'
           - 'README.md'
           - 'LICENSE'
           - 'install'
