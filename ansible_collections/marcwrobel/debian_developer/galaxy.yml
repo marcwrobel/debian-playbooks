@@ -1,0 +1,18 @@
+---
+namespace: 'marcwrobel'
+name: 'debian_developer'
+description: 'A collection of developer roles for Debian.'
+version: '1.0.0'
+license: ['MIT']
+
+readme: 'README.md'
+authors: ['Marc Wrobel (https://www.marcwrobel.fr/)']
+
+dependencies: {}
+
+tags: ['linux', 'debian', 'desktop']
+
+repository: 'https://github.com/marcwrobel/debian-playbooks'
+documentation: 'https://github.com/marcwrobel/debian-playbooks'
+homepage: 'https://github.com/marcwrobel/debian-playbooks'
+issues: 'https://github.com/marcwrobel/debian-playbooks/issues'

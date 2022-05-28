@@ -1,0 +1,7 @@
+---
+nodejs__gpg_key_id: '1655A0AB68576280'
+nodejs__gpg_key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+nodejs__repo_url: 'https://deb.nodesource.com'
+nodejs__packages:
+  - 'nodejs'
+  - 'build-essential' # to build native addons

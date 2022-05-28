@@ -1,0 +1,6 @@
+---
+# Whether Node.js must be installed (`present`) or not (`absent`).
+nodejs__state: 'present'
+
+# Node.js major version to install. See https://github.com/nodesource/distributions/blob/master/README.md for a list of versions.
+nodejs__version: '16'
