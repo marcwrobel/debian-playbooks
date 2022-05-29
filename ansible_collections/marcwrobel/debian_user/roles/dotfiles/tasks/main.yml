@@ -2,7 +2,7 @@
 - name: Checkout repository
   ansible.builtin.git:
     repo: '{{ dotfiles__repository }}'
-    dest: '{{ ansible_env.HOME }}/.dotfiles'
+    dest: '{{ ansible_env.HOME }}/{{ dotfiles__repository_path }}'
     single_branch: true
     version: '{{ dotfiles__repository_version }}'
 
@@ -11,7 +11,7 @@
   block:
     - name: Find dotfiles directories
       ansible.builtin.find:
-        paths: '{{ ansible_env.HOME }}/.dotfiles'
+        paths: '{{ ansible_env.HOME }}/{{ dotfiles__repository_path }}'
         file_type: 'directory'
         excludes:
           - '.git'
@@ -25,7 +25,7 @@
 
     - name: Find dotfiles
       ansible.builtin.find:
-        paths: "{{ [ansible_env.HOME + '/.dotfiles'] + dotfiles__dirs }}"
+        paths: "{{ [ansible_env.HOME + '/' + dotfiles__repository_path] + dotfiles__dirs }}"
         file_type: 'file'
         excludes:
           - '.editorconfig'
@@ -43,7 +43,7 @@
 
 - name: Create directories
   ansible.builtin.file:
-    path: "{{ item | regex_replace('/.dotfiles') }}"
+    path: '{{ item | regex_replace(dotfiles__repository_path) }}'
     owner: '{{ ansible_user_id }}'
     group: '{{ ansible_user_id }}'
     mode: '0750'
@@ -52,8 +52,8 @@
 
 - name: Symlink dotfiles
   ansible.builtin.file:
+    path: '{{ item | regex_replace(dotfiles__repository_path) }}'
     src: '{{ item }}'
-    dest: "{{ item | regex_replace('/.dotfiles') }}"
     force: '{{ dotfiles__remove_existing_files | bool }}'
     state: 'link'
   loop: '{{ dotfiles__files }}'
