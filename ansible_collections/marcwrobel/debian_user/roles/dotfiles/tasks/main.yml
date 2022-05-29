@@ -5,6 +5,7 @@
     dest: '{{ ansible_env.HOME }}/{{ dotfiles__repository_path }}'
     single_branch: true
     version: '{{ dotfiles__repository_version }}'
+    force: true
 
 # Too bad we can't exclude a whole directory with ansible.builtin.find
 - name: Look for dotfiles
