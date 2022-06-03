@@ -33,7 +33,7 @@
           - '.gitignore'
           - 'README.md'
           - 'LICENSE'
-          - 'install'
+          - 'refresh'
         hidden: true
         recurse: false
       register: dotfiles__files_result
