@@ -1,0 +1,17 @@
+---
+- name: Clone repository
+  ansible.builtin.git:
+    repo: '{{ asdf__repository_url }}'
+    dest: '{{ asdf__directory }}'
+    version: '{{ asdf__version }}'
+
+- name: Install plugins
+  ansible.builtin.shell: >-
+    . {{ asdf__directory }}/asdf.sh &&
+    asdf plugin-add {{ item.name }} {{ item.repository | default() }}
+  args:
+    executable: '/bin/bash'
+    chdir: '{{ ansible_env.HOME }}'
+    creates: '{{ asdf__directory }}/plugins/{{ item.name }}'
+  loop: '{{ asdf__plugins }}'
+  ignore_errors: true

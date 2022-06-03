@@ -1,0 +1,9 @@
+---
+asdf__repository_url: 'https://github.com/asdf-vm/asdf.git'
+asdf__version: 'v0.10.1'
+asdf__directory: '{{ ansible_env.HOME }}/.asdf'
+
+# Each entry must have :
+# - name: name of the plugin
+# - repository: an optional link to the plugin's git repository.
+asdf__plugins: []

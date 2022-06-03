@@ -44,4 +44,9 @@ flatpak__apps:
   - 'com.slack.Slack' # a messaging program designed specifically for the workplace
   - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
 
+asdf__plugins:
+  - name: 'nodejs'
+  - name: 'java'
+  - name: 'maven'
+
 dotfiles__repository: 'https://github.com/marcwrobel/dotfiles.git'

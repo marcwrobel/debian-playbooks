@@ -6,3 +6,5 @@
       tags: ['flatpak']
     - role: 'marcwrobel.debian_user.dotfiles'
       tags: ['dotfiles']
+    - role: 'marcwrobel.debian_user.asdf'
+      tags: ['asdf']
