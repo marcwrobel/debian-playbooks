@@ -9,7 +9,9 @@ packages__host_list:
   - 'p7zip' # 7zr file archiver with high compression ratio
   - 'xz-utils' # XZ-format compression utilities
   # Desktop
+  - 'chromium' # The open-source version of Chrome
   - 'flatpak' # Application deployment framework for desktop apps
+  - 'fonts-liberation' # A replacement for Times New Roman, Arial and Courier New
   - 'gnome-software-plugin-flatpak' # Flatpak support for GNOME Software
   - 'gthumb' # image viewer and browser
   - 'renrot' # rename and rotate files according to EXIF tags
