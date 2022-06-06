@@ -47,6 +47,7 @@ flatpak__apps:
   - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
 
 asdf__plugins:
+  - name: 'ruby'
   - name: 'nodejs'
   - name: 'java'
   - name: 'maven'
