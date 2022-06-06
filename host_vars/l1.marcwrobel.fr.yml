@@ -19,6 +19,7 @@ packages__host_list:
   - 'build-essential' # Required by jekyll
   - 'git' # fast, scalable, distributed revision control system
   - 'gitg' # git repository viewer
+  - 'libssl-dev' # needed while installing ruby using asdf
   - 'openjdk-17-doc' # OpenJDK Development Kit (JDK) documentation
   - 'openjdk-17-jdk' # OpenJDK Development Kit (JDK)
   - 'openjdk-17-source' # OpenJDK Development Kit (JDK) source files
