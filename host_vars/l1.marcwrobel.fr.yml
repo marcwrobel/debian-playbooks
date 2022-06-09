@@ -50,5 +50,7 @@ asdf__plugins:
   - name: 'nodejs'
   - name: 'java'
   - name: 'maven'
+  - name: 'quarkus'
+    repository: 'https://github.com/marcwrobel/asdf-quarkus'
 
 dotfiles__repository: 'https://github.com/marcwrobel/dotfiles.git'
