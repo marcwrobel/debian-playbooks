@@ -14,6 +14,7 @@ packages__host_list:
   - 'fonts-liberation' # A replacement for Times New Roman, Arial and Courier New
   - 'gnome-software-plugin-flatpak' # Flatpak support for GNOME Software
   - 'gthumb' # image viewer and browser
+  - 'meld' # graphical tool to diff and merge files
   - 'renrot' # rename and rotate files according to EXIF tags
   # Development
   - 'build-essential' # Required by asdf
