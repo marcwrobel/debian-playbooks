@@ -15,8 +15,8 @@ For Ansible installation and own requirements have a look at [the official docum
 Once Ansible has been installed you can clone this repository, prepare an inventory, and run the
 playbooks :
 
-    ansible-playbook -i /path/to/hosts laptops.yml --diff --check
-    ansible-playbook -i /path/to/hosts servers.yml --diff --check
+    ansible-playbook -i /path/to/hosts desktop.yml --ask-become-pass --diff --check
+    ansible-playbook -i /path/to/hosts servers.yml --ask-become-pass --diff --check
 
 ## Development
 
