@@ -32,6 +32,7 @@ packages__host_list:
   # System
   - 'htop' # Interactive process viewer
   - 'netcat-openbsd' # TCP/IP swiss army knife
+  - 'nmon' # performance monitoring tool for Linux
   # Security
   - 'torbrowser-launcher' # helps download and run the Tor Browser Bundle
   # Misc
