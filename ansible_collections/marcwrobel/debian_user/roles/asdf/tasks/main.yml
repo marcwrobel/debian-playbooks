@@ -14,4 +14,3 @@
     chdir: '{{ ansible_env.HOME }}'
     creates: '{{ asdf__directory }}/plugins/{{ item.name }}'
   loop: '{{ asdf__plugins }}'
-  ignore_errors: true

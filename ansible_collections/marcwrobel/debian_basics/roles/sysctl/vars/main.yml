@@ -1,16 +1,16 @@
 ---
 # Base amount of memory used for shared memory calculations.
-sysctl__kernel_shm_base: '{{ ((ansible_memtotal_mb|int * 1024 * 1024) - 8192) }}'
+sysctl__kernel_shm_base: '{{ ((ansible_memtotal_mb | int * 1024 * 1024) - 8192) }}'
 
 # Maximum size of shared memory segment as % of available memory
-sysctl__kernel_shmmax_limiter: '{{ 0.5 if (ansible_memtotal_mb|int >= 4096) else 0.2 }}'
+sysctl__kernel_shmmax_limiter: '{{ 0.5 if (ansible_memtotal_mb | int >= 4096) else 0.2 }}'
 
 # How much of the total memory is reserved for shared memory.
-sysctl__kernel_shmall_limiter: '{{ 0.8 if (ansible_memtotal_mb|int >= 4096) else 0.5 }}'
+sysctl__kernel_shmall_limiter: '{{ 0.8 if (ansible_memtotal_mb | int >= 4096) else 0.5 }}'
 
 # Maximum amount of shared memory a process can reserve for itself
-sysctl__kernel_shmmax_default: '{{ (sysctl__kernel_shm_base|int * sysctl__kernel_shmmax_limiter|float) | round | int }}'
+sysctl__kernel_shmmax_default: '{{ (sysctl__kernel_shm_base | int * sysctl__kernel_shmmax_limiter | float) | round | int }}'
 
 # Number of memory pages that can be used for shared memory.
 # 4096 is the standard page size on Debian / CentOS / RedHat. Use `getconf PAGE_SIZE` to get your system PAGE_SIZE.
-sysctl__kernel_shmall_default: '{{ ((sysctl__kernel_shm_base|int * sysctl__kernel_shmall_limiter|float) / 4096) | round | int }}'
+sysctl__kernel_shmall_default: '{{ ((sysctl__kernel_shm_base | int * sysctl__kernel_shmall_limiter | float) / 4096) | round | int }}'

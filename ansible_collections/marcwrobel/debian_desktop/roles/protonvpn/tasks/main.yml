@@ -6,7 +6,7 @@
   register: 'protonvpn__install_state'
   when: "protonvpn__state == 'present'"
 
-- name: Update cache
+- name: Update cache # noqa no-handler
   ansible.builtin.apt:
     update_cache: true
   when: 'protonvpn__install_state is changed'
