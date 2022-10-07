@@ -9,6 +9,8 @@
 
 # No need to always upgrade packages : after initial configuration packages should be kept up-to-date automatically.
 - name: 'Upgrade packages and reboot'
+  when: 'bootstrap__upgrade_packages and ansible_local.bootstrap is not defined'
+  become: true
   block:
     - name: 'Upgrade packages'
       ansible.builtin.apt:
@@ -20,8 +22,6 @@
       ansible.builtin.reboot:
         reboot_timeout: '{{ bootstrap__reboot_timeout }}'
       when: 'bootstrap__reboot_after_upgrade and local__upgraded is changed'
-  when: 'bootstrap__upgrade_packages and ansible_local.bootstrap is not defined'
-  become: true
 
 - name: 'Install python3-apt'
   ansible.builtin.package:
