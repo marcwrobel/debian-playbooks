@@ -4,6 +4,7 @@
     id: '{{ virtualbox__gpg_key_id }}'
     url: '{{ virtualbox__gpg_key_url }}'
     state: '{{ virtualbox__state }}'
+  become: true
 
 - name: Install repository
   ansible.builtin.apt_repository:
@@ -11,9 +12,11 @@
     repo: '{{ virtualbox__repo }}'
     state: '{{ virtualbox__state }}'
     update_cache: true
+  become: true
 
 - name: Install packages
   ansible.builtin.package:
     name: '{{ virtualbox__package_base }}{{ virtualbox__version }}'
     state: '{{ virtualbox__state }}'
   ignore_errors: '{{ ansible_check_mode }}'
+  become: true
