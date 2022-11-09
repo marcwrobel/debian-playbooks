@@ -17,14 +17,19 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: 'Check out the codebase'
-        uses: 'actions/checkout@v2'
+        uses: 'actions/checkout@v3'
+
       - name: 'Set up Python 3'
-        uses: 'actions/setup-python@v2'
+        uses: 'actions/setup-python@v4'
         with:
-          python-version: '3.x'
-      - name: 'Install test dependencies'
-        run: 'pip3 install ansible yamllint ansible-lint'
+          python-version: '3.9'
+
+      - name: 'Install dependencies'
+        run: |
+          pip3 install pipenv
+          pipenv install
+
       - name: 'Run Ansible-lint'
         run: |
-          ansible-lint --version
-          ansible-lint
+          pipenv run ansible-lint --version
+          pipenv run ansible-lint
