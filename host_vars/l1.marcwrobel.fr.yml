@@ -21,6 +21,7 @@ packages__host_list:
   - 'build-essential' # Required by asdf
   - 'git' # fast, scalable, distributed revision control system
   - 'gitg' # git repository viewer
+  - 'hexedit' # viewer and editor in hexadecimal or ASCII for files or devices
   - 'libssl-dev' # needed while installing ruby using asdf
   - 'openjdk-17-doc' # OpenJDK Development Kit (JDK) documentation
   - 'openjdk-17-jdk' # OpenJDK Development Kit (JDK)
