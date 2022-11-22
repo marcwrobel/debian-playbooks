@@ -43,7 +43,6 @@ packages__host_list:
   - 'jq' # lightweight and flexible command-line JSON processor
   - 'pass' # lightweight directory-based password manager
   - 'uuid' # Universally Unique Identifier Command-Line Tool
-  - 'stow' # A symlink farm manager
 
 flatpak__apps:
   - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
