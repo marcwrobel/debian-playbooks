@@ -5,11 +5,23 @@
     state: 'present'
   become: true
 
-# ssh and dhcpv6-client are enabled by default, keep only ssh
-- name: 'Deny traffic in default zone for dhcpv6-client'
+- name: 'Set up sources'
   ansible.posix.firewalld:
-    service: 'dhcpv6-client'
-    permanent: true
-    state: 'disabled'
-    immediate: true
+    zone: '{{ item.zone }}'
+    source: '{{ item.source }}'
+    permanent: '{{ item.permanent | bool }}'
+    immediate: '{{ item.immediate | bool }}'
+    state: '{{ item.state }}'
+  loop: '{{ firewalld__sources }}'
+  become: true
+
+
+- name: 'Set up services'
+  ansible.posix.firewalld:
+    zone: '{{ item.zone }}'
+    service: '{{ item.service }}'
+    permanent: '{{ item.permanent | bool }}'
+    immediate: '{{ item.immediate | bool }}'
+    state: '{{ item.state }}'
+  loop: '{{ firewalld__services }}'
   become: true
