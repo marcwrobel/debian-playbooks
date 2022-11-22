@@ -16,7 +16,6 @@ packages__host_list:
   - 'gnome-software-plugin-flatpak' # Flatpak support for GNOME Software
   - 'gthumb' # image viewer and browser
   - 'meld' # graphical tool to diff and merge files
-  - 'renrot' # rename and rotate files according to EXIF tags
   # Development
   - 'build-essential' # Required by asdf
   - 'git' # fast, scalable, distributed revision control system
@@ -43,6 +42,7 @@ packages__host_list:
   - 'jq' # lightweight and flexible command-line JSON processor
   - 'pass' # lightweight directory-based password manager
   - 'uuid' # Universally Unique Identifier Command-Line Tool
+  - 'renrot' # rename and rotate files according to EXIF tags
 
 flatpak__apps:
   - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
@@ -53,6 +53,5 @@ asdf__plugins:
   - name: 'java'
   - name: 'maven'
   - name: 'quarkus'
-    repository: 'https://github.com/marcwrobel/asdf-quarkus'
 
 dotfiles__repository: 'https://github.com/marcwrobel/dotfiles.git'
