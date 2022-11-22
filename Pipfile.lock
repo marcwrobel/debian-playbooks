@@ -36,7 +36,6 @@
                 "sha256:31fe322b63290674a8f7386110df501f0044aa44890be3ab313a6e225b9a29cf",
                 "sha256:e31fd550a5ea9423f1fc1391de6b41bb0d264a83bbfc9c7edfef0f78b7624fd3"
             ],
-            "markers": "python_version >= '3.9'",
             "version": "==2.13.6"
         },
         "ansible-lint": {
