@@ -50,4 +50,4 @@
 
 # Required because package indexes must be updated before the packages role
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
