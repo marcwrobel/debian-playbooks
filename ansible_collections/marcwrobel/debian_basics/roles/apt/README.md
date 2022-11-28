@@ -17,13 +17,24 @@ None.
 
 ## Role Variables
 
-None.
+Available variables are listed below, along with default values:
+
+    apt__extra_repositories: []
+
+See `defaults/main.yml` for more information.
 
 ## Usage
 
     - hosts: servers
       roles:
         - role: 'marcwrobel.debian_basics.apt'
+          vars:
+            apt__extra_repositories:
+              - name: 'virtualbox'
+                key_url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+                key_format: 'asc'
+                repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.asc] https://download.virtualbox.orgvirtualbox/debian {{ ansible_distribution_release }} contrib"
+                state: 'present'
 
 ## Links
 

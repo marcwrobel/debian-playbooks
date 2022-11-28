@@ -47,3 +47,7 @@
 - name: 'Configure extra repositories'
   ansible.builtin.include_tasks: 'extra_repositories.yml'
   loop: '{{ apt__extra_repositories }}'
+
+# Required because package indexes must be updated before the packages role
+- name: Flush handlers
+  meta: flush_handlers

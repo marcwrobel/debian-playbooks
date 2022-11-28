@@ -1,0 +1,10 @@
+---
+# Extra repositories to install.
+# Syntax: {
+#   zone: '<name>',
+#   key_url: '<url>',
+#   key_format: 'asc|gpg',
+#   repo: '<repo_url>'
+#   state: '<present|absent>',
+# }
+apt__extra_repositories: []

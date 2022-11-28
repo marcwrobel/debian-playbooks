@@ -11,6 +11,11 @@ apt__extra_repositories:
     key_format: 'asc'
     repo: "deb [signed-by=/usr/share/keyrings/node_16.x.asc ] https://deb.nodesource.com/node_16.x {{ ansible_distribution_release }} main"
     state: 'present'
+  - name: 'virtualbox'
+    key_url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+    key_format: 'asc'
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.asc] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: 'present'
 
 # Description from https://pkgs.org
 packages__host_list:
@@ -59,6 +64,7 @@ packages__host_list:
   # Packages from external repositories
   - 'codium' # from vscodium
   - 'nodejs' # from node_NN.x
+  - 'virtualbox-7.0' # from virtualbox
 
 asdf__plugins:
   - name: 'ruby'
