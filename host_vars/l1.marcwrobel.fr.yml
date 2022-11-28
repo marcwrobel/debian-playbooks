@@ -14,8 +14,14 @@ apt__extra_repositories:
   - name: 'virtualbox'
     key_url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
     key_format: 'asc'
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.asc] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.asc] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib" # noqa: yaml[line-length]
     state: 'present'
+  - name: 'github-cli'
+    key_url: 'https://cli.github.com/packages/githubcli-archive-keyring.gpg'
+    key_format: 'gpg'
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/github-cli.gpg] https://cli.github.com/packages stable main"
+    state: 'present'
+
 
 # Description from https://pkgs.org
 packages__host_list:
@@ -65,6 +71,7 @@ packages__host_list:
   - 'codium' # from vscodium
   - 'nodejs' # from node_NN.x
   - 'virtualbox-7.0' # from virtualbox
+  - 'gh' # from github-cli
 
 asdf__plugins:
   - name: 'ruby'
