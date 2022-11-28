@@ -26,5 +26,3 @@
       tags: ['packages', 'docker']
     - role: 'marcwrobel.debian_desktop.protonvpn'
       tags: ['packages', 'protonvpn']
-    - role: 'marcwrobel.debian_developer.nodejs'
-      tags: ['packages', 'nodejs']

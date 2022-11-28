@@ -6,6 +6,11 @@ apt__extra_repositories:
     key_format: 'asc'
     repo: 'deb [ signed-by=/usr/share/keyrings/vscodium.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main'
     state: 'present'
+  - name: 'node_16.x'
+    key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    key_format: 'asc'
+    repo: "deb [signed-by=/usr/share/keyrings/node_16.x.asc ] https://deb.nodesource.com/node_16.x {{ ansible_distribution_release }} main"
+    state: 'present'
 
 # Description from https://pkgs.org
 packages__host_list:
@@ -19,13 +24,11 @@ packages__host_list:
   - 'xz-utils' # XZ-format compression utilities
   # Desktop
   - 'chromium' # The open-source version of Chrome
-  - 'flatpak' # Application deployment framework for desktop apps
   - 'fonts-liberation' # A replacement for Times New Roman, Arial and Courier New
-  - 'gnome-software-plugin-flatpak' # Flatpak support for GNOME Software
   - 'gthumb' # image viewer and browser
   - 'meld' # graphical tool to diff and merge files
   # Development
-  - 'build-essential' # Required by asdf
+  - 'build-essential' # Required by asdf, nodejs
   - 'git' # fast, scalable, distributed revision control system
   - 'gitg' # git repository viewer
   - 'hexedit' # viewer and editor in hexadecimal or ASCII for files or devices
@@ -53,8 +56,9 @@ packages__host_list:
   - 'pass' # lightweight directory-based password manager
   - 'uuid' # Universally Unique Identifier Command-Line Tool
   - 'renrot' # rename and rotate files according to EXIF tags
-  # External repositories
-  - 'codium'
+  # Packages from external repositories
+  - 'codium' # from vscodium
+  - 'nodejs' # from node_NN.x
 
 asdf__plugins:
   - name: 'ruby'
