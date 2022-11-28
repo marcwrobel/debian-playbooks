@@ -1,9 +1,21 @@
 ---
 
-# Sources to enable / disable
-# Syntax: { zone: '<zone>', source: '<ip|network>', permanent: true|false, state: '<enabled|disabled>', immediate: true|false }
+# Sources to enable / disable.
+# Syntax: {
+#   zone: '<zone>',
+#   source: '<ip|network>',
+#   permanent: true|false,
+#   state: '<enabled|disabled>',
+#   immediate: true|false
+# }
 firewalld__sources: []
 
-# Services to enable / disable
-# Syntax: { zone: '<zone>', service: '<service>', permanent: true|false, state: '<enabled|disabled>', immediate: true|false }
+# Services to enable / disable.
+# Syntax: {
+#   zone: '<zone>',
+#   service: '<service>',
+#   permanent: true|false,
+#   state: '<enabled|disabled>',
+#   immediate: true|false
+# }
 firewalld__services: []
