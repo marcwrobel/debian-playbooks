@@ -43,3 +43,7 @@
   notify:
     - 'Update package indexes'
   become: true
+
+- name: 'Configure extra repositories'
+  ansible.builtin.include_tasks: 'extra_repositories.yml'
+  loop: '{{ apt__extra_repositories }}'

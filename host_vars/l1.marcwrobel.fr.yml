@@ -1,4 +1,12 @@
 ---
+
+apt__extra_repositories:
+  - name: 'vscodium'
+    key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'
+    key_format: 'asc'
+    repo: 'deb [ signed-by=/usr/share/keyrings/vscodium.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main'
+    state: 'present'
+
 # Description from https://pkgs.org
 packages__host_list:
   # Clients
@@ -45,9 +53,8 @@ packages__host_list:
   - 'pass' # lightweight directory-based password manager
   - 'uuid' # Universally Unique Identifier Command-Line Tool
   - 'renrot' # rename and rotate files according to EXIF tags
-
-flatpak__apps:
-  - 'com.vscodium.codium' # open source software binaries of VS Code, a source-code editor
+  # External repositories
+  - 'codium'
 
 asdf__plugins:
   - name: 'ruby'
