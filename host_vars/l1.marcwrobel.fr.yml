@@ -40,6 +40,7 @@ packages__host_list:
   # Misc
   - 'dos2unix' # convert text file line endings between CRLF and LF
   - 'gnupg' # GNU privacy guard - a free PGP replacement
+  - 'jc' # JSON CLI output utility
   - 'jq' # lightweight and flexible command-line JSON processor
   - 'pass' # lightweight directory-based password manager
   - 'uuid' # Universally Unique Identifier Command-Line Tool
