@@ -32,6 +32,7 @@ packages__host_list:
   - 'geany-plugin-extrasel' # extra selection plugin for Geany
   # System
   - 'htop' # Interactive process viewer
+  - 'ncdu' # ncurses disk usage viewer
   - 'netcat-openbsd' # TCP/IP swiss army knife
   - 'nmon' # performance monitoring tool for Linux
   # Security
