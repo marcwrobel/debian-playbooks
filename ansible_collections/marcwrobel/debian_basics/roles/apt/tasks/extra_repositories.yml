@@ -10,7 +10,7 @@
 - name: 'Uninstall {{ item.name }} repository key' # noqa: risky-file-permissions (only delete files)
   ansible.builtin.file:
     path: '/etc/apt/trusted.gpg.d/{{ item.name }}.{{ item.key_format }}'
-    state: '{{ item.state }}'
+    state: 'absent'
   when: "item.state == 'absent'"
   become: true
 
@@ -18,7 +18,7 @@
   ansible.builtin.apt_repository:
     filename: '{{ item.name }}'
     repo: '{{ item.repo }}'
-    state: '{{ item.state }}'
+    state: '{{ item.state }}' # noqa: args[module] (variable)
     update_cache: false
   become: true
   notify:

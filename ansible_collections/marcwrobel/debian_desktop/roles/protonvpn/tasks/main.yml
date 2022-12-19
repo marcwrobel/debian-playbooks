@@ -2,7 +2,7 @@
 - name: Set up repository
   ansible.builtin.apt:
     deb: '{{ protonvpn__repository_deb_url }}'
-    state: '{{ protonvpn__state }}'
+    state: '{{ protonvpn__state }}' # noqa: args[module] (variable)
   register: 'protonvpn__install_state'
   when: "protonvpn__state == 'present'"
 
