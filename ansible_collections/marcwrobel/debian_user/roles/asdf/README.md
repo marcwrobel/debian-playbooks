@@ -20,7 +20,7 @@ None.
 Available variables are listed below, along with default values:
 
     asdf__repository_url: 'https://github.com/asdf-vm/asdf.git'
-    asdf__version: 'v0.10.1'
+    asdf__version: 'v0.11.0'
     asdf__directory: '{{ ansible_env.HOME }}/.asdf'
     asdf__plugins: []
 
