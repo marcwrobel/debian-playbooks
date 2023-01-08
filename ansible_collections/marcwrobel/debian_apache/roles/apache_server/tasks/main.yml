@@ -1,0 +1,3 @@
+---
+- name: 'Include required tasks'
+  ansible.builtin.include_tasks: "{{ apache_server__state }}.yml"

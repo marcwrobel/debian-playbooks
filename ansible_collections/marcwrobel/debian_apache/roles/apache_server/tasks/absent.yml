@@ -1,0 +1,13 @@
+---
+
+- name: Uninstall packages
+  ansible.builtin.package:
+    name: '{{ apache_server_packages }}'
+    state: 'absent'
+  become: true
+
+- name: Remove apache configuration
+  ansible.builtin.file:
+    name: '/etc/apache2'
+    state: 'absent'
+  become: true

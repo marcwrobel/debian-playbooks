@@ -1,0 +1,7 @@
+---
+
+- name: Install packages
+  ansible.builtin.package:
+    name: '{{ apache_server_packages }}'
+    state: 'present'
+  become: true
