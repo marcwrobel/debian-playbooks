@@ -1,4 +1,4 @@
-# flatpak
+# asdf
 
 Install [asdf](https://asdf-vm.com/).
 
@@ -8,7 +8,8 @@ asdf is a tool version manager.
 
 `curl` and `git` must be available.
 
-Note that each plugin have their own dependencies too. See https://asdf-vm.com/guide/getting-started.html#plugin-dependencies.
+Note that each plugin have their own dependencies too.
+See https://asdf-vm.com/guide/getting-started.html#plugin-dependencies.
 
 ## Dependencies
 
@@ -18,8 +19,10 @@ None.
 
 Available variables are listed below, along with default values:
 
-    flatpak__remotes: []
-    flatpak__apps: []
+    asdf__repository_url: 'https://github.com/asdf-vm/asdf.git'
+    asdf__version: 'v0.10.1'
+    asdf__directory: '{{ ansible_env.HOME }}/.asdf'
+    asdf__plugins: []
 
 See `defaults/main.yml` for more information.
 
@@ -27,8 +30,8 @@ See `defaults/main.yml` for more information.
 
     - hosts: desktop
       roles:
-        - role: 'marcwrobel.debian_user.flatpak'
+        - role: 'marcwrobel.debian_user.asdf'
 
 ## Links
 
-- [Debian Quick Setup](https://flatpak.org/setup/Debian)
+None.
