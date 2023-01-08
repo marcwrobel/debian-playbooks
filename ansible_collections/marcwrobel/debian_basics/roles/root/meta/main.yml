@@ -1,0 +1,11 @@
+galaxy_info:
+  author: 'Marc Wrobel'
+  description: 'Manage basic configuration for the root user.'
+  license: 'MIT'
+  min_ansible_version: '2.9'
+  platforms:
+    - name: 'Debian'
+      versions:
+        - 'bullseye'
+  galaxy_tags: ['linux', 'debian', 'root']
+dependencies: []

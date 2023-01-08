@@ -8,6 +8,8 @@
       tags: ['etckeeper']
     - role: 'marcwrobel.debian_basics.sysctl'
       tags: ['sysctl']
+    - role: 'marcwrobel.debian_basics.root'
+      tags: ['root', 'user']
     - role: 'marcwrobel.debian_basics.apt'
       tags: ['apt']
     - role: 'marcwrobel.debian_basics.packages'

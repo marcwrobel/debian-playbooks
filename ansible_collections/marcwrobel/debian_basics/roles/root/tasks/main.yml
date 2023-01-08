@@ -1,0 +1,8 @@
+---
+- name: Enforce root home permissions
+  ansible.builtin.file:
+    path: '/root'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
