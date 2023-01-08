@@ -7,3 +7,14 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: ansible-lint
+        name: Ansible-lint
+        description: This hook runs ansible-lint.
+        entry: ansible-lint
+        language: system
+        # see https://github.com/ansible/ansible-lint/issues/611
+        pass_filenames: false
+        always_run: true
