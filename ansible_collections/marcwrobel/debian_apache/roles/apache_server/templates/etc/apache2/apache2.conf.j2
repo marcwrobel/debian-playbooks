@@ -52,6 +52,10 @@ ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
 MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
 MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 
+# http2_module configuration.
+LoadModule http2_module /usr/lib/apache2/modules/mod_http2.so
+Protocols h2 h2c http/1.1
+
 # modules configuration
 LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
 LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
@@ -167,9 +171,9 @@ AccessFileName .htaccess
 </FilesMatch>
 
 # The following directives define some format nicknames for use with a CustomLog directive.
-LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
-LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
-LogFormat "%h %l %u %t \"%r\" %>s %O" common
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "%h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %B" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 

@@ -11,6 +11,7 @@ Mandatory modules are:
 
 - [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html) (this role is promoting
   scalability over compatibility with older software),
+- [http2_module](https://httpd.apache.org/docs/2.4/mod/mod_http2.html),
 - [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html) (required by
   authz_host_module),
 - [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html) (required to set
