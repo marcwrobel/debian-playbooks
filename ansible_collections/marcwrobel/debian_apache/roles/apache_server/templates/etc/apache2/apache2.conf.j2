@@ -85,6 +85,9 @@ LoadModule env_module /usr/lib/apache2/modules/mod_env.so
 {% if apache_server__mime_module_enabled %}
 LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
 {% endif %}
+{% if apache_server__negotiation_module_enabled %}
+LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
@@ -112,6 +115,12 @@ AddLanguage {{ language }} {{ apache_server__mime_module_languages[language] }}
 {% for charset in apache_server__mime_module_charsets %}
 AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
 {% endfor %}
+
+{% endif %}
+{% if apache_server__negotiation_module_enabled %}
+# negotiation_module default configuration
+LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv tr zh-CN zh-TW
+ForceLanguagePriority Prefer Fallback
 
 {% endif %}
 # List of ports to listen on
