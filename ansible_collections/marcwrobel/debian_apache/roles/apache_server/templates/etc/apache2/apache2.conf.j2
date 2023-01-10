@@ -58,6 +58,9 @@ LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
 {% if apache_server__alias_module_enabled %}
 LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
 {% endif %}
+{% if apache_server__allowmethods_module_enabled %}
+LoadModule allowmethods_module /usr/lib/apache2/modules/mod_allowmethods.so
+{% endif %}
 {% if apache_server__authz_user_module_enabled %}
 LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
 {% endif %}
@@ -85,6 +88,9 @@ LoadModule env_module /usr/lib/apache2/modules/mod_env.so
 {% if apache_server__expires_module_enabled %}
 LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
 {% endif %}
+{% if apache_server__headers_module_enabled %}
+LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
+{% endif %}
 {% if apache_server__mime_module_enabled %}
 LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
 {% endif %}
@@ -96,9 +102,6 @@ LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
 {% endif %}
 {% if apache_server__setenvif_module_enabled %}
 LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
-{% endif %}
-{% if apache_server__allowmethods_module_enabled %}
-LoadModule allowmethods_module /usr/lib/apache2/modules/mod_allowmethods.so
 {% endif %}
 
 {% if apache_server__deflate_module_enabled %}

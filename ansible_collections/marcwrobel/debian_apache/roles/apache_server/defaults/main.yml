@@ -25,6 +25,7 @@ apache_server__mpm_event_max_connections_per_child: 0
 
 # Modules configuration (https://httpd.apache.org/docs/2.4/mod/).
 apache_server__alias_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_alias.html
+apache_server__allowmethods_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html
 apache_server__auth_basic_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html
 apache_server__authn_file_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html
 apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html
@@ -33,6 +34,7 @@ apache_server__dir_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/
 apache_server__env_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_env.html
 apache_server__expires_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_expires.html
 apache_server__filter_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_filter.html
+apache_server__headers_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_headers.html
 apache_server__mime_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_mime.html
 apache_server__mime_module_types: {} # type to extension mapping (e.g. application/x-gzip: .gz .tgz)
 apache_server__mime_module_languages: {} # language to extension mapping (e.g. en: .en)
@@ -41,4 +43,3 @@ apache_server__negotiation_module_enabled: true # https://httpd.apache.org/docs/
 apache_server__reqtimeout_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html
 apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
 apache_server__setenvif_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html
-apache_server__allowmethods_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html

@@ -19,6 +19,7 @@ Mandatory modules are:
 Optional modules are:
 
 - [alias_module](https://httpd.apache.org/docs/2.4/mod/mod_alias.html),
+- [allowmethods_module](https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html),
 - [auth_basic_module](https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html),
 - [authn_file_module](https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html),
 - [authz_user_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html),
@@ -27,11 +28,11 @@ Optional modules are:
 - [env_module](https://httpd.apache.org/docs/2.4/mod/mod_env.html),
 - [expires_module](https://httpd.apache.org/docs/2.4/mod/mod_expires.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
+- [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html),
 - [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html),
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
 - [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html),
 - [setenvif_module](https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html).
-- [allowmethods_module](https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 
@@ -63,6 +64,7 @@ Available variables are listed below, along with default values:
     apache_server__mpm_event_max_request_workers: 150
     apache_server__mpm_event_max_connections_per_child: 0
     apache_server__alias_module_enabled: false
+    apache_server__allowmethods_module_enabled: true
     apache_server__auth_basic_module_enabled: false
     apache_server__authn_file_module_enabled: false
     apache_server__authz_user_module_enabled: false
@@ -71,6 +73,7 @@ Available variables are listed below, along with default values:
     apache_server__env_module_enabled: false
     apache_server__expires_module_enabled: true
     apache_server__filter_module_enabled: true
+    apache_server__headers_module_enabled: true
     apache_server__mime_module_enabled: true
     apache_server__mime_module_types: {}
     apache_server__mime_module_languages: {}
@@ -79,7 +82,6 @@ Available variables are listed below, along with default values:
     apache_server__reqtimeout_module_enabled: true
     apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
     apache_server__setenvif_module_enabled: false
-    apache_server__allowmethods_module_enabled: true
 
 See `defaults/main.yml` for more information.
 
