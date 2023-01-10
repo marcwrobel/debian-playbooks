@@ -52,6 +52,11 @@ ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
 MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
 MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 
+# mod_authz_* configuration
+LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
+LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
+LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
+
 # mod_filter configuration
 LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
 

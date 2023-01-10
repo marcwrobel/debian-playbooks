@@ -9,10 +9,12 @@ to avoid misinterpretations.
 
 Mandatory modules are:
 
-- [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html): this role is promoting
-  scalability over compatibility with older software.
-- [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html): needed at least by
-  mod_deflate.
+- [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html) (this role is promoting
+  scalability over compatibility with older software),
+- [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
+- [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html),
+- [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html),
+- [authz_user_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html).
 
 Optional modules are:
 
