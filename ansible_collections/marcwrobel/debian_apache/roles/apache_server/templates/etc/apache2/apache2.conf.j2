@@ -91,6 +91,9 @@ LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
 {% if apache_server__reqtimeout_module_enabled %}
 LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
 {% endif %}
+{% if apache_server__setenvif_module_enabled %}
+LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
