@@ -33,4 +33,4 @@ firewalld__services:
   - { zone: 'public', service: 'dhcpv6-client', permanent: true, state: 'disabled', immediate: true }
   - { zone: 'public', service: 'ssh', permanent: false, state: 'disabled', immediate: true }
 
-apache_server__state: 'absent'
+apache_server__state: 'present'

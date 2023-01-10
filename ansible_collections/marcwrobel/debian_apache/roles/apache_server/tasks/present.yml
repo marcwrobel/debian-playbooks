@@ -2,6 +2,27 @@
 
 - name: Install packages
   ansible.builtin.package:
-    name: '{{ apache_server_packages }}'
+    name: '{{ apache_server__packages }}'
     state: 'present'
   become: true
+
+- name: Remove unnecessary configuration
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: 'absent'
+  loop:
+    - '/etc/apache2/ports.conf'
+  become: true
+
+- name: Configure
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+  loop:
+    - 'etc/apache2/apache2.conf'
+    - 'etc/apache2/envvars'
+  become: true
+  notify: 'Restart apache'

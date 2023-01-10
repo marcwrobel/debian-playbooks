@@ -1,3 +1,15 @@
 ---
 # Whether Apache must be installed (`present`) or not (`absent`).
-apache_server__action: 'absent'
+apache_server__state: 'absent'
+
+# IP addresses apache must bind to.
+apache_server__bindings:
+  - name: 'localhost'
+    ip: '127.0.0.1'
+    ports: [80]
+
+# File descriptor limit.
+apache_server__ulimit_max_files: 65536
+
+# Arguments to the web server when it starts.
+apache_server__arguments: ''

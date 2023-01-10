@@ -1,0 +1,83 @@
+{{ ansible_managed | comment }}
+
+# The top of the directory tree under which the server's configuration, error, and log files are kept.
+# Do NOT add a slash at the end of the directory path.
+ServerRoot "/etc/apache2"
+
+# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
+# This directive should normally be left at its default value.
+#Mutex file:${APACHE_LOCK_DIR} default
+
+# The directory where shm and other runtime files will be stored.
+DefaultRuntimeDir ${APACHE_RUN_DIR}
+
+# The file in which the server should record its process identification number when it starts.
+PidFile ${APACHE_PID_FILE}
+
+# The number of seconds before receives and sends time out.
+Timeout 300
+
+# Whether or not to allow persistent connections (more than one request per connection).
+KeepAlive On
+
+# The maximum number of requests to allow during a persistent connection.
+# Leave this number high, for maximum performance.
+MaxKeepAliveRequests 100
+
+# Number of seconds to wait for the next request from the same client on the same connection.
+KeepAliveTimeout 5
+
+# The name (or #number) of the user/group to run httpd as.
+User ${APACHE_RUN_USER}
+Group ${APACHE_RUN_GROUP}
+
+# Log the names of clients or just their IP addresses e.g., www.apache.org (on) or 204.62.129.132 (off).
+# Enabling this means that each client request will result in AT LEAST one lookup request to the nameserver.
+HostnameLookups Off
+
+# The location of the default error log file.
+ErrorLog ${APACHE_LOG_DIR}/error.log
+
+# Control the severity of messages logged to the error_log.
+# Available values: trace8, ..., trace1, debug, info, notice, warn, error, crit, alert, emerg.
+LogLevel warn
+
+# Include module configuration:
+IncludeOptional mods-enabled/*.load
+IncludeOptional mods-enabled/*.conf
+
+# List of ports to listen on
+{% for binding in apache_server__bindings %}
+{% for port in binding.ports %}
+Listen {{ binding.ip }}:{{ port }}
+{% endfor %}
+{% endfor %}
+
+# Sets the default security model of the Apache2 HTTPD server.
+# Disable access to the entire file system except for the directories that are explicitly allowed later.
+<Directory />
+  Options FollowSymLinks
+  AllowOverride None
+  Require all denied
+</Directory>
+
+# The name of the file to look for in each directory for additional configuration directives.
+AccessFileName .htaccess
+
+# Prevents .htaccess and .htpasswd files from being viewed by Web clients.
+<FilesMatch "^\.ht">
+  Require all denied
+</FilesMatch>
+
+# The following directives define some format nicknames for use with a CustomLog directive.
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %O" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+# Include generic snippets of statements
+IncludeOptional conf-enabled/*.conf
+
+# Include the virtual host configurations
+IncludeOptional sites-enabled/*.conf

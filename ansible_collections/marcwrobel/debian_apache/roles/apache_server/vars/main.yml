@@ -1,3 +1,3 @@
 ---
-apache_server_packages:
+apache_server__packages:
   - 'apache2'
