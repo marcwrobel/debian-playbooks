@@ -29,4 +29,5 @@ apache_server__auth_basic_module_enabled: false # https://httpd.apache.org/docs/
 apache_server__authn_file_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html
 apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html
 apache_server__deflate_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_deflate.html
+apache_server__dir_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_dir.html
 apache_server__filter_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_filter.html

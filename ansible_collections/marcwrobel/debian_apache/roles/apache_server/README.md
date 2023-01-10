@@ -23,6 +23,7 @@ Optional modules are:
 - [authn_file_module](https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html),
 - [authz_user_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html),
 - [deflate_module](https://httpd.apache.org/docs/2.4/mod/mod_deflate.html),
+- [dir_module](https://httpd.apache.org/docs/2.4/mod/mod_dir.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
@@ -59,6 +60,7 @@ Available variables are listed below, along with default values:
     apache_server__authn_file_module_enabled: false
     apache_server__authz_user_module_enabled: false
     apache_server__deflate_module_enabled: true
+    apache_server__dir_module_enabled: true
     apache_server__filter_module_enabled: true
 
 See `defaults/main.yml` for more information.

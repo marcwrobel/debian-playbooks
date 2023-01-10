@@ -76,6 +76,9 @@ LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
 {% if apache_server__deflate_module_enabled %}
 LoadModule deflate_module /usr/lib/apache2/modules/mod_deflate.so
 {% endif %}
+{% if apache_server__dir_module_enabled %}
+LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
@@ -84,6 +87,11 @@ AddOutputFilterByType DEFLATE application/x-javascript application/javascript ap
 AddOutputFilterByType DEFLATE application/xml application/json
 AddOutputFilterByType DEFLATE application/rss+xml
 AddOutputFilterByType DEFLATE application/wasm
+
+{% endif %}
+{% if apache_server__dir_module_enabled %}
+# dir_module default configuration
+DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
 
 {% endif %}
 # List of ports to listen on
