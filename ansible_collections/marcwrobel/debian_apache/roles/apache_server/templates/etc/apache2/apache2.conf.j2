@@ -60,7 +60,13 @@ LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
 # mod_filter configuration
 LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
 
-{% if apache_server__mod_alias_enabled %}
+{% if apache_server__authn_file_module_enabled %}
+# mod_authn_file configuration
+LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so
+LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
+{% endif %}
+
+{% if apache_server__alias_module_enabled %}
 # mod_alias configuration
 LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
 {% endif %}

@@ -24,6 +24,10 @@ apache_server__mpm_event_threads_per_child: 25
 apache_server__mpm_event_max_request_workers: 150
 apache_server__mpm_event_max_connections_per_child: 0
 
-# mod_alias configuration.
+# alias_module configuration.
 # See https://httpd.apache.org/docs/2.4/mod/mod_alias.html.
-apache_server__mod_alias_enabled: true
+apache_server__alias_module_enabled: false
+
+# authn_file_module configuration.
+# See https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html.
+apache_server__authn_file_module_enabled: false

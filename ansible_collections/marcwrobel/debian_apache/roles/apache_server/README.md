@@ -12,6 +12,8 @@ Mandatory modules are:
 - [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html) (this role is promoting
   scalability over compatibility with older software),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
+- [authn_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authn_core.html)
+- [authn_file_module]()
 - [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html),
 - [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html),
 - [authz_user_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html).
@@ -19,6 +21,7 @@ Mandatory modules are:
 Optional modules are:
 
 - [alias_module](https://httpd.apache.org/docs/2.4/mod/mod_alias.html).
+- [authn_file_module](https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html).
 
 ## Requirements
 
@@ -47,7 +50,8 @@ Available variables are listed below, along with default values:
     apache_server__mpm_event_threads_per_child: 25
     apache_server__mpm_event_max_request_workers: 150
     apache_server__mpm_event_max_connections_per_child: 0
-    apache_server__mod_alias_enabled: true
+    apache_server__mod_alias_enabled: false
+    apache_server__authn_file_module_enabled: false
 
 See `defaults/main.yml` for more information.
 
