@@ -27,7 +27,8 @@ Optional modules are:
 - [env_module](https://httpd.apache.org/docs/2.4/mod/mod_env.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
 - [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html),
-- [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html).
+- [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
+- [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 
@@ -71,6 +72,8 @@ Available variables are listed below, along with default values:
     apache_server__mime_module_languages: {}
     apache_server__mime_module_charsets: {}
     apache_server__negotiation_module_enabled: true
+    apache_server__reqtimeout_module_enabled: true
+    apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
 
 See `defaults/main.yml` for more information.
 

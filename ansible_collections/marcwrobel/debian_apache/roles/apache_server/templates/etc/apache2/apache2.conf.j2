@@ -88,6 +88,9 @@ LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
 {% if apache_server__negotiation_module_enabled %}
 LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
 {% endif %}
+{% if apache_server__reqtimeout_module_enabled %}
+LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
@@ -121,6 +124,11 @@ AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
 # negotiation_module default configuration
 LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv tr zh-CN zh-TW
 ForceLanguagePriority Prefer Fallback
+
+{% endif %}
+{% if apache_server__reqtimeout_module_enabled %}
+# reqtimeout_module default configuration
+RequestReadTimeout {{ apache_server__reqtimeout_module_timeouts }}
 
 {% endif %}
 # List of ports to listen on
