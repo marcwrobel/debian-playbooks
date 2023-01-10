@@ -2,12 +2,21 @@
 
 Install the [Apache HTTP Server](https://httpd.apache.org/).
 
-Only the event Multi-Processing Module (MPM) can be used with this role.
-
 The `*_available` / `*_enable` configuration scheme, traditionally used on Debian, has not been
 adopted by this role to avoid as much as possible Ansible-unmanaged configurations (and also because
 `community.general.apache2_*` modules are really slow). Those directories are deleted by this role
 to avoid misinterpretations.
+
+Mandatory modules are:
+
+- [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html): this role is promoting
+  scalability over compatibility with older software.
+- [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html): needed at least by
+  mod_deflate.
+
+Optional modules are:
+
+- [alias_module](https://httpd.apache.org/docs/2.4/mod/mod_alias.html).
 
 ## Requirements
 

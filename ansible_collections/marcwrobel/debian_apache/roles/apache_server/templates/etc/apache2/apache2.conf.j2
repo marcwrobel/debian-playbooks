@@ -52,6 +52,9 @@ ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
 MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
 MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 
+# mod_filter configuration
+LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
+
 {% if apache_server__mod_alias_enabled %}
 # mod_alias configuration
 LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
