@@ -14,8 +14,7 @@ apache_server__ulimit_max_files: 65536
 # Arguments to the web server when it starts.
 apache_server__arguments: ''
 
-# mpm_event_module configuration.
-# See https://httpd.apache.org/docs/2.4/mod/event.html.
+# mpm_event_module configuration (https://httpd.apache.org/docs/2.4/mod/event.html).
 apache_server__mpm_event_start_servers: 2
 apache_server__mpm_event_min_spare_threads: 25
 apache_server__mpm_event_max_spare_threads: 75
@@ -24,10 +23,8 @@ apache_server__mpm_event_threads_per_child: 25
 apache_server__mpm_event_max_request_workers: 150
 apache_server__mpm_event_max_connections_per_child: 0
 
-# alias_module configuration.
-# See https://httpd.apache.org/docs/2.4/mod/mod_alias.html.
-apache_server__alias_module_enabled: false
-
-# authn_file_module configuration.
-# See https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html.
-apache_server__authn_file_module_enabled: false
+# Modules configuration (https://httpd.apache.org/docs/2.4/mod/).
+apache_server__alias_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_alias.html
+apache_server__authn_file_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html
+apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html
+apache_server__filter_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_filter.html

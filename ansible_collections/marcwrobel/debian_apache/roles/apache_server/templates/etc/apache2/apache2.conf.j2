@@ -52,24 +52,14 @@ ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
 MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
 MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 
-# mod_authz_* configuration
+# modules configuration
 LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
 LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
-LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
-
-# mod_filter configuration
-LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
-
-{% if apache_server__authn_file_module_enabled %}
-# mod_authn_file configuration
-LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so
-LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
-{% endif %}
-
-{% if apache_server__alias_module_enabled %}
-# mod_alias configuration
-LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
-{% endif %}
+{% if apache_server__alias_module_enabled %}LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so{% endif %}
+{% if apache_server__authz_user_module_enabled %}LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so{% endif %}
+{% if apache_server__authn_file_module_enabled %}LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so{% endif %}
+{% if apache_server__authn_file_module_enabled %}LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so{% endif %}
+{% if apache_server__filter_module_enabled %}LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so{% endif %}
 
 # List of ports to listen on
 {% for binding in apache_server__bindings %}
