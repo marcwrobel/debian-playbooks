@@ -79,6 +79,9 @@ LoadModule deflate_module /usr/lib/apache2/modules/mod_deflate.so
 {% if apache_server__dir_module_enabled %}
 LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
 {% endif %}
+{% if apache_server__env_module_enabled %}
+LoadModule env_module /usr/lib/apache2/modules/mod_env.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
