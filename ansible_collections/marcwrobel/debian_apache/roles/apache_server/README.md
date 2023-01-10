@@ -30,6 +30,7 @@ Optional modules are:
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
 - [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html),
 - [setenvif_module](https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html).
+- [allowmethods_module](https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 
@@ -76,6 +77,7 @@ Available variables are listed below, along with default values:
     apache_server__reqtimeout_module_enabled: true
     apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
     apache_server__setenvif_module_enabled: false
+    apache_server__allowmethods_module_enabled: true
 
 See `defaults/main.yml` for more information.
 

@@ -40,3 +40,4 @@ apache_server__negotiation_module_enabled: true # https://httpd.apache.org/docs/
 apache_server__reqtimeout_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html
 apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
 apache_server__setenvif_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html
+apache_server__allowmethods_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html

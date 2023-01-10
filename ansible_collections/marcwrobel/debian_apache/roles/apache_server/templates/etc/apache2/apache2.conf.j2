@@ -94,6 +94,9 @@ LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
 {% if apache_server__setenvif_module_enabled %}
 LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
 {% endif %}
+{% if apache_server__allowmethods_module_enabled %}
+LoadModule allowmethods_module /usr/lib/apache2/modules/mod_allowmethods.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
