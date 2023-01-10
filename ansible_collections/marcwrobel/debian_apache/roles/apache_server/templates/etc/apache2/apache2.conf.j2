@@ -136,6 +136,9 @@ LoadModule ratelimit_module /usr/lib/apache2/modules/mod_ratelimit.so
 {% if apache_server__reqtimeout_module_enabled %}
 LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
 {% endif %}
+{% if apache_server__rewrite_module_enabled %}
+LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
