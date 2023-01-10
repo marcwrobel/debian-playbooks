@@ -55,13 +55,37 @@ MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 # modules configuration
 LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
 LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
-{% if apache_server__alias_module_enabled %}LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so{% endif %}
-{% if apache_server__authz_user_module_enabled %}LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so{% endif %}
-{% if apache_server__authn_file_module_enabled or apache_server__auth_basic_module_enabled %}LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so{% endif %}
-{% if apache_server__authn_file_module_enabled %}LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so{% endif %}
-{% if apache_server__auth_basic_module_enabled %}LoadModule auth_basic_module /usr/lib/apache2/modules/mod_auth_basic.so{% endif %}
-{% if apache_server__filter_module_enabled %}LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so{% endif %}
+{% if apache_server__alias_module_enabled %}
+LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
+{% endif %}
+{% if apache_server__authz_user_module_enabled %}
+LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
+{% endif %}
+{% if apache_server__authn_file_module_enabled or apache_server__auth_basic_module_enabled %}
+LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so
+{% endif %}
+{% if apache_server__authn_file_module_enabled %}
+LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
+{% endif %}
+{% if apache_server__auth_basic_module_enabled %}
+LoadModule auth_basic_module /usr/lib/apache2/modules/mod_auth_basic.so
+{% endif %}
+{% if apache_server__filter_module_enabled or apache_server__deflate_module_enabled %}
+LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
+{% endif %}
+{% if apache_server__deflate_module_enabled %}
+LoadModule deflate_module /usr/lib/apache2/modules/mod_deflate.so
+{% endif %}
 
+{% if apache_server__deflate_module_enabled %}
+# deflate_module default configuration
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+AddOutputFilterByType DEFLATE application/xml application/json
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/wasm
+
+{% endif %}
 # List of ports to listen on
 {% for binding in apache_server__bindings %}
 {% for port in binding.ports %}
