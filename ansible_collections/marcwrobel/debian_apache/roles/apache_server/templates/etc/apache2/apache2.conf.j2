@@ -82,6 +82,9 @@ LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
 {% if apache_server__env_module_enabled %}
 LoadModule env_module /usr/lib/apache2/modules/mod_env.so
 {% endif %}
+{% if apache_server__mime_module_enabled %}
+LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
+{% endif %}
 
 {% if apache_server__deflate_module_enabled %}
 # deflate_module default configuration
@@ -95,6 +98,20 @@ AddOutputFilterByType DEFLATE application/wasm
 {% if apache_server__dir_module_enabled %}
 # dir_module default configuration
 DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+
+{% endif %}
+{% if apache_server__mime_module_enabled %}
+# mime_module default configuration
+TypesConfig /etc/mime.types
+{% for mime_type in apache_server__mime_module_types %}
+AddType {{ mime_type }} {{ apache_server__mime_module_types[mime_type] }}
+{% endfor %}
+{% for language in apache_server__mime_module_languages %}
+AddLanguage {{ language }} {{ apache_server__mime_module_languages[language] }}
+{% endfor %}
+{% for charset in apache_server__mime_module_charsets %}
+AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
+{% endfor %}
 
 {% endif %}
 # List of ports to listen on

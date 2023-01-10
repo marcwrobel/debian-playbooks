@@ -25,7 +25,8 @@ Optional modules are:
 - [deflate_module](https://httpd.apache.org/docs/2.4/mod/mod_deflate.html),
 - [dir_module](https://httpd.apache.org/docs/2.4/mod/mod_dir.html),
 - [env_module](https://httpd.apache.org/docs/2.4/mod/mod_env.html),
-- [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html).
+- [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
+- [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 
@@ -64,6 +65,10 @@ Available variables are listed below, along with default values:
     apache_server__dir_module_enabled: true
     apache_server__env_module_enabled: false
     apache_server__filter_module_enabled: true
+    apache_server__mime_module_enabled: true
+    apache_server__mime_module_types: {}
+    apache_server__mime_module_languages: {}
+    apache_server__mime_module_charsets: {}
 
 See `defaults/main.yml` for more information.
 
