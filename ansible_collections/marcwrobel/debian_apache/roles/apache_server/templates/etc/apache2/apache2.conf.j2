@@ -42,9 +42,15 @@ ErrorLog ${APACHE_LOG_DIR}/error.log
 # Available values: trace8, ..., trace1, debug, info, notice, warn, error, crit, alert, emerg.
 LogLevel warn
 
-# Include module configuration:
-IncludeOptional mods-enabled/*.load
-IncludeOptional mods-enabled/*.conf
+# mpm_event configuration.
+LoadModule mpm_event_module /usr/lib/apache2/modules/mod_mpm_event.so
+StartServers {{ apache_server__mpm_event_start_servers }}
+MinSpareThreads {{ apache_server__mpm_event_min_spare_threads }}
+MaxSpareThreads {{ apache_server__mpm_event_max_spare_threads }}
+ThreadLimit	{{ apache_server__mpm_event_thread_limit }}
+ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
+MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
+MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 
 # List of ports to listen on
 {% for binding in apache_server__bindings %}
