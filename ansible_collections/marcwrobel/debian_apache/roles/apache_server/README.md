@@ -20,6 +20,7 @@ Optional modules are:
 
 - [alias_module](https://httpd.apache.org/docs/2.4/mod/mod_alias.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
+- [auth_basic_module](https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html),
 - [authn_file_module](https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html),
 - [authz_user_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html).
 
@@ -51,9 +52,10 @@ Available variables are listed below, along with default values:
     apache_server__mpm_event_max_request_workers: 150
     apache_server__mpm_event_max_connections_per_child: 0
     apache_server__alias_module_enabled: false
+    apache_server__auth_basic_module_enabled: false
     apache_server__authn_file_module_enabled: false
     apache_server__authz_user_module_enabled: false
-    apache_server__filter_module_enabled: true
+    apache_server__filter_module_enabled: false
 
 See `defaults/main.yml` for more information.
 
