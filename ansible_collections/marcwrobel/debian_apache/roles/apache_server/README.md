@@ -36,6 +36,7 @@ Available variables are listed below, along with default values:
     apache_server__mpm_event_threads_per_child: 25
     apache_server__mpm_event_max_request_workers: 150
     apache_server__mpm_event_max_connections_per_child: 0
+    apache_server__mod_alias_enabled: true
 
 See `defaults/main.yml` for more information.
 

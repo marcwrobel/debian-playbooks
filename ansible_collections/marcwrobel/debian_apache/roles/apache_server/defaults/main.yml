@@ -23,3 +23,7 @@ apache_server__mpm_event_thread_limit: 64
 apache_server__mpm_event_threads_per_child: 25
 apache_server__mpm_event_max_request_workers: 150
 apache_server__mpm_event_max_connections_per_child: 0
+
+# mod_alias configuration.
+# See https://httpd.apache.org/docs/2.4/mod/mod_alias.html.
+apache_server__mod_alias_enabled: true
