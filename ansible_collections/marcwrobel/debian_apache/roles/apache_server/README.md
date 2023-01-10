@@ -12,6 +12,11 @@ Mandatory modules are:
 - [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html) (this role is promoting
   scalability over compatibility with older software),
 - [http2_module](https://httpd.apache.org/docs/2.4/mod/mod_http2.html),
+- [setenvif](https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html) (required by ssl_module),
+- [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) (required by ssl_module),
+- [socache_shmcb](https://httpd.apache.org/docs/2.4/mod/mod_socache_shmcb.html) (required by
+  ssl_module),
+- [ssl_module](https://httpd.apache.org/docs/2.4/mod/mod_ssl.html),
 - [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html) (required by
   authz_host_module),
 - [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html) (required to set
@@ -30,10 +35,8 @@ Optional modules are:
 - [expires_module](https://httpd.apache.org/docs/2.4/mod/mod_expires.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
 - [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html),
-- [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html),
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
-- [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html),
-- [setenvif_module](https://httpd.apache.org/docs/2.4/mod/mod_setenvif.html).
+- [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 

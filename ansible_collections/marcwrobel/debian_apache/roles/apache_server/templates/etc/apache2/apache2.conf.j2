@@ -56,6 +56,38 @@ MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
 LoadModule http2_module /usr/lib/apache2/modules/mod_http2.so
 Protocols h2 h2c http/1.1
 
+# mime_module default configuration
+LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
+TypesConfig /etc/mime.types
+{% for mime_type in apache_server__mime_module_types %}
+AddType {{ mime_type }} {{ apache_server__mime_module_types[mime_type] }}
+{% endfor %}
+{% for language in apache_server__mime_module_languages %}
+AddLanguage {{ language }} {{ apache_server__mime_module_languages[language] }}
+{% endfor %}
+{% for charset in apache_server__mime_module_charsets %}
+AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
+{% endfor %}
+
+# ssl_module modern configuration (https://ssl-config.mozilla.org/#server=apache&config=modern&guideline=5.6).
+LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
+LoadModule socache_shmcb_module /usr/lib/apache2/modules/mod_socache_shmcb.so
+LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+SSLRandomSeed startup builtin
+SSLRandomSeed startup file:/dev/urandom 512
+SSLRandomSeed connect builtin
+SSLRandomSeed connect file:/dev/urandom 512
+SSLPassPhraseDialog exec:/usr/share/apache2/ask-for-passphrase
+SSLSessionCache shmcb:${APACHE_RUN_DIR}/ssl_scache(512000)
+SSLSessionCacheTimeout 300
+SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1 -TLSv1.2
+SSLHonorCipherOrder Off
+SSLSessionTickets Off
+SSLUseStapling On
+SSLStaplingCache "shmcb:logs/ssl_stapling(32768)"
+
 # modules configuration
 LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
 LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
@@ -95,17 +127,11 @@ LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
 {% if apache_server__headers_module_enabled %}
 LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
 {% endif %}
-{% if apache_server__mime_module_enabled %}
-LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
-{% endif %}
 {% if apache_server__negotiation_module_enabled %}
 LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
 {% endif %}
 {% if apache_server__reqtimeout_module_enabled %}
 LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
-{% endif %}
-{% if apache_server__setenvif_module_enabled %}
-LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
 {% endif %}
 
 {% if apache_server__deflate_module_enabled %}
@@ -120,20 +146,6 @@ AddOutputFilterByType DEFLATE application/wasm
 {% if apache_server__dir_module_enabled %}
 # dir_module default configuration
 DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-
-{% endif %}
-{% if apache_server__mime_module_enabled %}
-# mime_module default configuration
-TypesConfig /etc/mime.types
-{% for mime_type in apache_server__mime_module_types %}
-AddType {{ mime_type }} {{ apache_server__mime_module_types[mime_type] }}
-{% endfor %}
-{% for language in apache_server__mime_module_languages %}
-AddLanguage {{ language }} {{ apache_server__mime_module_languages[language] }}
-{% endfor %}
-{% for charset in apache_server__mime_module_charsets %}
-AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
-{% endfor %}
 
 {% endif %}
 {% if apache_server__negotiation_module_enabled %}
