@@ -11,7 +11,7 @@ repos:
   - repo: local
     hooks:
       - id: ansible-lint
-        name: Ansible-lint
+        name: lint ansible files
         description: This hook runs ansible-lint.
         entry: ansible-lint
         language: system
