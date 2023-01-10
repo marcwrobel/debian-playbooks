@@ -31,6 +31,7 @@ apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/
 apache_server__deflate_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_deflate.html
 apache_server__dir_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_dir.html
 apache_server__env_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_env.html
+apache_server__expires_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_expires.html
 apache_server__filter_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_filter.html
 apache_server__mime_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_mime.html
 apache_server__mime_module_types: {} # type to extension mapping (e.g. application/x-gzip: .gz .tgz)

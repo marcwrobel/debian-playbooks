@@ -25,6 +25,7 @@ Optional modules are:
 - [deflate_module](https://httpd.apache.org/docs/2.4/mod/mod_deflate.html),
 - [dir_module](https://httpd.apache.org/docs/2.4/mod/mod_dir.html),
 - [env_module](https://httpd.apache.org/docs/2.4/mod/mod_env.html),
+- [expires_module](https://httpd.apache.org/docs/2.4/mod/mod_expires.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
 - [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html),
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
@@ -68,6 +69,7 @@ Available variables are listed below, along with default values:
     apache_server__deflate_module_enabled: true
     apache_server__dir_module_enabled: true
     apache_server__env_module_enabled: false
+    apache_server__expires_module_enabled: true
     apache_server__filter_module_enabled: true
     apache_server__mime_module_enabled: true
     apache_server__mime_module_types: {}

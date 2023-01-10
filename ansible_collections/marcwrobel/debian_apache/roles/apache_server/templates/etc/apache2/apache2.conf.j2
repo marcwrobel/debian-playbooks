@@ -82,6 +82,9 @@ LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
 {% if apache_server__env_module_enabled %}
 LoadModule env_module /usr/lib/apache2/modules/mod_env.so
 {% endif %}
+{% if apache_server__expires_module_enabled %}
+LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
+{% endif %}
 {% if apache_server__mime_module_enabled %}
 LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
 {% endif %}
