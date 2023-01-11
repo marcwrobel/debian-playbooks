@@ -51,3 +51,14 @@
     - 'etc/apache2/sites-available/default-ssl.conf'
   become: true
   notify: 'Reload apache'
+
+- name: Configure default VirtualHosts
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'www-data'
+    group: 'www-data'
+    mode: '0644'
+  loop:
+    - 'var/www/html/index.html'
+  become: true

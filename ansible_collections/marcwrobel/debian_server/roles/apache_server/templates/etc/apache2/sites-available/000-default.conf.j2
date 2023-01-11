@@ -7,4 +7,8 @@
   LogLevel warn
   ErrorLog ${APACHE_LOG_DIR}/default-error.log
   CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
+
+  <Directory />
+    Require all granted
+  </Directory>
 </VirtualHost>

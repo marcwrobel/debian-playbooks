@@ -7,6 +7,8 @@
 HostnameLookups Off
 
 # Define some format nicknames for use with a CustomLog directive.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#errorlogformat and
+# https://httpd.apache.org/docs/2.4/mod/mod_log_config.html.
 LogFormat "%v:%p %h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
 LogFormat "%h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" combined
 LogFormat "%h %l %u %t \"%r\" %>s %B" common
