@@ -30,7 +30,16 @@ firewalld__sources:
 
 firewalld__services:
   - { zone: 'trusted', service: 'ssh', permanent: true, state: 'enabled', immediate: true }
+  - { zone: 'public', service: 'http', permanent: true, state: 'enabled', immediate: true }
+  - { zone: 'public', service: 'https', permanent: true, state: 'enabled', immediate: true }
   - { zone: 'public', service: 'dhcpv6-client', permanent: true, state: 'disabled', immediate: true }
-  - { zone: 'public', service: 'ssh', permanent: false, state: 'disabled', immediate: true }
+  - { zone: 'public', service: 'ssh', permanent: true, state: 'disabled', immediate: true }
 
 apache_server__state: 'present'
+apache_server__bindings:
+  - name: 'ipv4'
+    ip: '{{ kimsufi_network__ipv4_address }}'
+    ports: [80, 443]
+  - name: 'ipv6'
+    ip: '[{{ kimsufi_network__ipv6_address }}]'
+    ports: [80, 443]
