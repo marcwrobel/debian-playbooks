@@ -1,0 +1,40 @@
+# Apache Module mod_ssl configuration (https://httpd.apache.org/docs/2.4/mod/mod_ssl.html)
+#
+# setenvif_module and socache_shmcb_module are loaded there because they are required by the ssl_module.
+# mime_module is also required, but managed in its own configuration file.
+#
+# This configuration has been partly generated using the Mozilla SSL Configuration Generator (modern
+# configuration): https://ssl-config.mozilla.org/#server=apache&config=modern&guideline=5.6.
+#
+{{ ansible_managed | comment }}
+
+LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
+LoadModule socache_shmcb_module /usr/lib/apache2/modules/mod_socache_shmcb.so
+LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
+
+# Configure one or more sources to seed the PRNG of the SSL library.
+# The seed data should be of good random quality.
+# See https://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslrandomseed.
+SSLRandomSeed startup builtin
+SSLRandomSeed startup file:/dev/urandom 512
+SSLRandomSeed connect builtin
+SSLRandomSeed connect file:/dev/urandom 512
+
+# Type of pass phrase dialog for encrypted private keys.
+# See https://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslpassphrasedialog.
+SSLPassPhraseDialog exec:/usr/share/apache2/ask-for-passphrase
+
+# Type of the global/inter-process SSL Session Cache.
+# See https://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslsessioncache.
+SSLSessionCache shmcb:${APACHE_RUN_DIR}/ssl_scache(512000)
+SSLSessionCacheTimeout 300
+
+# Modern configuration - TLSv1.3 only.
+SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1 -TLSv1.2
+SSLHonorCipherOrder     off
+SSLSessionTickets       off
+
+# Enable stapling of OCSP responses in the TLS handshake.
+# See https://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslusestapling.
+SSLUseStapling On
+SSLStaplingCache "shmcb:logs/ssl_stapling(32768)"

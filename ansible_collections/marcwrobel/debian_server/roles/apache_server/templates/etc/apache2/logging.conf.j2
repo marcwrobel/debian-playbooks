@@ -1,0 +1,22 @@
+# Apache default logging configuration.
+#
+{{ ansible_managed | comment }}
+
+# Log just clients IP addresses (avoid many DNS lookup request).
+# See https://httpd.apache.org/docs/2.4/mod/core.html#hostnamelookups.
+HostnameLookups Off
+
+# Define some format nicknames for use with a CustomLog directive.
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "%h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %B" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+# Error log configuration.
+# Available level are: trace8, ..., trace1, debug, info, notice, warn, error, crit, alert, emerg.
+LogLevel warn
+ErrorLog ${APACHE_LOG_DIR}/error.log
+
+# Access log for VirtualHosts that don't define their own logfile.
+CustomLog ${APACHE_LOG_DIR}/other_vhosts_access.log vhost_combined

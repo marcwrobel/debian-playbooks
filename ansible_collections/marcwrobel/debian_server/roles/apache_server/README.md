@@ -3,9 +3,9 @@
 Install the [Apache HTTP Server](https://httpd.apache.org/).
 
 The `*_available` / `*_enable` configuration scheme, traditionally used on Debian, has not been
-adopted by this role to avoid as much as possible Ansible-unmanaged configurations (and also because
-`community.general.apache2_*` modules are really slow). Those directories are deleted by this role
-to avoid misinterpretations.
+adopted by this role except for VirtualHosts. This is to avoid as much as possible Ansible-unmanaged
+configurations, but also because `community.general.apache2_*` modules are painfully slow. Unused
+directories are deleted by this role to avoid misinterpretations.
 
 Mandatory modules are:
 
@@ -80,9 +80,6 @@ Available variables are listed below, along with default values:
     apache_server__expires_module_enabled: true
     apache_server__filter_module_enabled: true
     apache_server__headers_module_enabled: true
-    apache_server__mime_module_types: {}
-    apache_server__mime_module_languages: {}
-    apache_server__mime_module_charsets: {}
     apache_server__negotiation_module_enabled: true
     apache_server__ratelimit_module_enabled: false
     apache_server__reqtimeout_module_enabled: true

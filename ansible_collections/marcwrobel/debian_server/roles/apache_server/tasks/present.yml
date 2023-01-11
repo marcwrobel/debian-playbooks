@@ -1,17 +1,16 @@
 ---
 
-- name: Install packages
+- name: Install
   ansible.builtin.package:
     name: '{{ apache_server__packages }}'
     state: 'present'
   become: true
 
-- name: Remove unnecessary configuration
+- name: Remove unnecessary files
   ansible.builtin.file:
     path: '{{ item }}'
     state: 'absent'
   loop:
-    - '/etc/apache2/ports.conf'
     - '/etc/apache2/conf-available'
     - '/etc/apache2/conf-enabled'
     - '/etc/apache2/mods-available'
@@ -27,6 +26,15 @@
     mode: '0640'
   loop:
     - 'etc/apache2/apache2.conf'
+    - 'etc/apache2/default_access.conf'
     - 'etc/apache2/envvars'
+    - 'etc/apache2/headers.conf'
+    - 'etc/apache2/http2.conf'
+    - 'etc/apache2/logging.conf'
+    - 'etc/apache2/mime.conf'
+    - 'etc/apache2/mpm_event.conf'
+    - 'etc/apache2/optional_modules.conf'
+    - 'etc/apache2/ports.conf'
+    - 'etc/apache2/ssl.conf'
   become: true
   notify: 'Restart apache'

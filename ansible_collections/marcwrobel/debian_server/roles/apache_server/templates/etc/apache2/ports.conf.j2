@@ -1,0 +1,9 @@
+# List of ports to listen on.
+#
+{{ ansible_managed | comment }}
+
+{% for binding in apache_server__bindings %}
+{% for port in binding.ports %}
+Listen {{ binding.ip }}:{{ port }}
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,21 @@
+# Sets the default security model of the Apache2 HTTPD server.
+#
+{{ ansible_managed | comment }}
+
+LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
+LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
+
+# Disable access to the entire file system except for the directories that are explicitly allowed later.
+<Directory />
+  Options FollowSymLinks
+  AllowOverride None
+  Require all denied
+</Directory>
+
+# Prevents .htaccess and .htpasswd files from being viewed by Web clients.
+<FilesMatch "^\.ht">
+  Require all denied
+</FilesMatch>
+
+# The name of the file to look for in each directory for additional configuration directives.
+AccessFileName .htaccess

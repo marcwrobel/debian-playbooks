@@ -2,222 +2,53 @@
 
 # The top of the directory tree under which the server's configuration, error, and log files are kept.
 # Do NOT add a slash at the end of the directory path.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#serverroot.
 ServerRoot "/etc/apache2"
 
-# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
-# This directive should normally be left at its default value.
-#Mutex file:${APACHE_LOCK_DIR} default
-
 # The directory where shm and other runtime files will be stored.
+# https://httpd.apache.org/docs/2.4/mod/core.html#defaultruntimedir.
 DefaultRuntimeDir ${APACHE_RUN_DIR}
 
 # The file in which the server should record its process identification number when it starts.
 PidFile ${APACHE_PID_FILE}
 
-# The number of seconds before receives and sends time out.
-Timeout 300
-
-# Whether or not to allow persistent connections (more than one request per connection).
-KeepAlive On
-
-# The maximum number of requests to allow during a persistent connection.
-# Leave this number high, for maximum performance.
-MaxKeepAliveRequests 100
-
-# Number of seconds to wait for the next request from the same client on the same connection.
-KeepAliveTimeout 5
-
 # The name (or #number) of the user/group to run httpd as.
 User ${APACHE_RUN_USER}
 Group ${APACHE_RUN_GROUP}
 
-# Log the names of clients or just their IP addresses e.g., www.apache.org (on) or 204.62.129.132 (off).
-# Enabling this means that each client request will result in AT LEAST one lookup request to the nameserver.
-HostnameLookups Off
+# The number of seconds before receives and sends time out.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#timeout.
+Timeout 300
 
-# The location of the default error log file.
-ErrorLog ${APACHE_LOG_DIR}/error.log
+# Allow persistent connections (more than one request per connection).
+# See https://httpd.apache.org/docs/2.4/mod/core.html#keepalive,
+# https://httpd.apache.org/docs/2.4/mod/core.html#keepalivetimeout
+# and https://httpd.apache.org/docs/2.4/mod/core.html#maxkeepaliverequests.
+KeepAlive On
+KeepAliveTimeout 5
+MaxKeepAliveRequests 100
 
-# Control the severity of messages logged to the error_log.
-# Available values: trace8, ..., trace1, debug, info, notice, warn, error, crit, alert, emerg.
-LogLevel warn
-
-# mpm_event configuration.
-LoadModule mpm_event_module /usr/lib/apache2/modules/mod_mpm_event.so
-StartServers {{ apache_server__mpm_event_start_servers }}
-MinSpareThreads {{ apache_server__mpm_event_min_spare_threads }}
-MaxSpareThreads {{ apache_server__mpm_event_max_spare_threads }}
-ThreadLimit	{{ apache_server__mpm_event_thread_limit }}
-ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
-MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
-MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}
-
-# http2_module configuration.
-LoadModule http2_module /usr/lib/apache2/modules/mod_http2.so
-Protocols h2 h2c http/1.1
-
-# mime_module default configuration
-LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
-TypesConfig /etc/mime.types
-{% for mime_type in apache_server__mime_module_types %}
-AddType {{ mime_type }} {{ apache_server__mime_module_types[mime_type] }}
-{% endfor %}
-{% for language in apache_server__mime_module_languages %}
-AddLanguage {{ language }} {{ apache_server__mime_module_languages[language] }}
-{% endfor %}
-{% for charset in apache_server__mime_module_charsets %}
-AddCharset {{ charset }} {{ apache_server__mime_module_charsets[charset] }}
-{% endfor %}
-
-# ssl_module modern configuration (https://ssl-config.mozilla.org/#server=apache&config=modern&guideline=5.6).
-LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
-LoadModule socache_shmcb_module /usr/lib/apache2/modules/mod_socache_shmcb.so
-LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
-AddType application/x-x509-ca-cert .crt
-AddType application/x-pkcs7-crl    .crl
-SSLRandomSeed startup builtin
-SSLRandomSeed startup file:/dev/urandom 512
-SSLRandomSeed connect builtin
-SSLRandomSeed connect file:/dev/urandom 512
-SSLPassPhraseDialog exec:/usr/share/apache2/ask-for-passphrase
-SSLSessionCache shmcb:${APACHE_RUN_DIR}/ssl_scache(512000)
-SSLSessionCacheTimeout 300
-SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1 -TLSv1.2
-SSLHonorCipherOrder Off
-SSLSessionTickets Off
-SSLUseStapling On
-SSLStaplingCache "shmcb:logs/ssl_stapling(32768)"
-
-# modules configuration
-LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
-LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
-LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
-{% if apache_server__alias_module_enabled %}
-LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
-{% endif %}
-{% if apache_server__allowmethods_module_enabled %}
-LoadModule allowmethods_module /usr/lib/apache2/modules/mod_allowmethods.so
-{% endif %}
-{% if apache_server__authz_user_module_enabled %}
-LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
-{% endif %}
-{% if apache_server__authn_file_module_enabled or apache_server__auth_basic_module_enabled %}
-LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so
-{% endif %}
-{% if apache_server__authn_file_module_enabled %}
-LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
-{% endif %}
-{% if apache_server__auth_basic_module_enabled %}
-LoadModule auth_basic_module /usr/lib/apache2/modules/mod_auth_basic.so
-{% endif %}
-{% if apache_server__filter_module_enabled or apache_server__deflate_module_enabled %}
-LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
-{% endif %}
-{% if apache_server__deflate_module_enabled %}
-LoadModule deflate_module /usr/lib/apache2/modules/mod_deflate.so
-{% endif %}
-{% if apache_server__dir_module_enabled %}
-LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
-{% endif %}
-{% if apache_server__env_module_enabled or apache_server__ratelimit_module_enabled %}
-LoadModule env_module /usr/lib/apache2/modules/mod_env.so
-{% endif %}
-{% if apache_server__expires_module_enabled %}
-LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
-{% endif %}
-{% if apache_server__negotiation_module_enabled %}
-LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
-{% endif %}
-{% if apache_server__ratelimit_module_enabled %}
-LoadModule ratelimit_module /usr/lib/apache2/modules/mod_ratelimit.so
-{% endif %}
-{% if apache_server__reqtimeout_module_enabled %}
-LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
-{% endif %}
-{% if apache_server__rewrite_module_enabled %}
-LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
-{% endif %}
-
-{% if apache_server__deflate_module_enabled %}
-# deflate_module default configuration
-AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
-AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
-AddOutputFilterByType DEFLATE application/xml application/json
-AddOutputFilterByType DEFLATE application/rss+xml
-AddOutputFilterByType DEFLATE application/wasm
-
-{% endif %}
-{% if apache_server__dir_module_enabled %}
-# dir_module default configuration
-DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-
-{% endif %}
-{% if apache_server__negotiation_module_enabled %}
-# negotiation_module default configuration
-LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv tr zh-CN zh-TW
-ForceLanguagePriority Prefer Fallback
-
-{% endif %}
-{% if apache_server__reqtimeout_module_enabled %}
-# reqtimeout_module default configuration
-RequestReadTimeout {{ apache_server__reqtimeout_module_timeouts }}
-
-{% endif %}
-# List of ports to listen on
-{% for binding in apache_server__bindings %}
-{% for port in binding.ports %}
-Listen {{ binding.ip }}:{{ port }}
-{% endfor %}
-{% endfor %}
-
-# Sets the default security model of the Apache2 HTTPD server.
-# Disable access to the entire file system except for the directories that are explicitly allowed later.
-<Directory />
-  Options FollowSymLinks
-  AllowOverride None
-  Require all denied
-</Directory>
-
-# The name of the file to look for in each directory for additional configuration directives.
-AccessFileName .htaccess
-
-# Prevents .htaccess and .htpasswd files from being viewed by Web clients.
-<FilesMatch "^\.ht">
-  Require all denied
-</FilesMatch>
-
-# The following directives define some format nicknames for use with a CustomLog directive.
-LogFormat "%v:%p %h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
-LogFormat "%h %l %u %t \"%r\" %>s %B \"%{Referer}i\" \"%{User-Agent}i\"" combined
-LogFormat "%h %l %u %t \"%r\" %>s %B" common
-LogFormat "%{Referer}i -> %U" referer
-LogFormat "%{User-agent}i" agent
-
-# Define an access log for VirtualHosts that don't define their own logfile
-CustomLog ${APACHE_LOG_DIR}/other_vhosts_access.log vhost_combined
-
-# Default security configuration
+# Don't reveal versions in 'Server' HTTP response header.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#servertokens.
 ServerTokens Prod
+
+# Don't add footer on server-generated documents.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#serversignature.
 ServerSignature Off
+
+# Disable the TRACE method.
+# See https://httpd.apache.org/docs/2.4/mod/core.html#traceenable.
 TraceEnable Off
-{% if apache_server__default_csp_rules_enabled %}
-Header setifempty Content-Security-Policy "{{ apache_server__default_csp_rules }}"
-{% endif %}
-{% if apache_server__default_referrer_policy_header_enabled %}
-Header setifempty Referrer-Policy {{ apache_server__default_referrer_policy_header }}
-{% endif %}
-{% if apache_server__default_strict_transport_security_enabled %}
-Header setifempty Strict-Transport-Security "{{ apache_server__default_strict_transport_security }}"
-{% endif %}
-{% if apache_server__default_x_content_type_options_header_enabled %}
-Header setifempty X-Content-Type-Options {{ apache_server__default_x_content_type_options_header }}
-{% endif %}
-{% if apache_server__default_x_frame_options_header_enabled %}
-Header setifempty X-Frame-Options {{ apache_server__default_x_frame_options_header }}
-{% endif %}
-{% if apache_server__default_x_xss_protection_header_enabled %}
-Header setifempty X-XSS-Protection "{{ apache_server__default_x_xss_protection_header }}"
-{% endif %}
+
+Include logging.conf
+Include ports.conf
+Include mpm_event.conf
+Include http2.conf
+Include ssl.conf
+Include mime.conf
+Include headers.conf
+Include default_access.conf
+Include optional_modules.conf
 
 # Include the virtual host configurations
 IncludeOptional sites-enabled/*.conf

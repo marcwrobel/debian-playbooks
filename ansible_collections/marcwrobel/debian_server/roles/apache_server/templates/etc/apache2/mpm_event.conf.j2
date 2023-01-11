@@ -1,0 +1,33 @@
+# Apache MPM event module configuration (https://httpd.apache.org/docs/2.4/mod/event.html)
+#
+{{ ansible_managed | comment }}
+
+LoadModule mpm_event_module /usr/lib/apache2/modules/mod_mpm_event.so
+
+# Number of child server processes created at startup
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#startservers.
+StartServers {{ apache_server__mpm_event_start_servers }}
+
+# Minimum number of idle threads available to handle request spikes.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#minsparethreads.
+MinSpareThreads {{ apache_server__mpm_event_min_spare_threads }}
+
+# Maximum number of idle threads.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#maxsparethreads.
+MaxSpareThreads {{ apache_server__mpm_event_max_spare_threads }}
+
+# The upper limit on the configurable number of threads per child process.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#threadlimit.
+ThreadLimit	{{ apache_server__mpm_event_thread_limit }}
+
+# Number of threads created by each child process.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#threadsperchild.
+ThreadsPerChild {{ apache_server__mpm_event_threads_per_child }}
+
+# Maximum number of connections that will be processed simultaneously.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#maxrequestworkers.
+MaxRequestWorkers {{ apache_server__mpm_event_max_request_workers }}
+
+# Limit on the number of connections that an individual child server will handle during its life.
+# See https://httpd.apache.org/docs/2.4/mod/mpm_common.html#maxconnectionsperchild.
+MaxConnectionsPerChild {{ apache_server__mpm_event_max_connections_per_child }}

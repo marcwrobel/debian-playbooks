@@ -1,0 +1,30 @@
+# Default security-headers configuration. Those headers applies when a VirtualHost does not set it
+# explicitly.
+#
+# X-XSS-Protection has not been added because it is non-standard, is not on a standards track and,
+# in some cases, can create XSS vulnerabilities. See
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection.
+#
+{{ ansible_managed | comment }}
+
+LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
+
+# Default Content-Security-Policy header.
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP.
+Header setifempty Content-Security-Policy "{{ apache_server__default_csp_rules }}"
+
+# Default Referrer-Policy header.
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy.
+Header setifempty Referrer-Policy {{ apache_server__default_referrer_policy_header }}
+
+# Default Strict-Transport-Security header.
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security.
+Header setifempty Strict-Transport-Security "{{ apache_server__default_strict_transport_security }}"
+
+# Default X-Content-Type-Options header.
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP.
+Header setifempty X-Content-Type-Options {{ apache_server__default_x_content_type_options_header }}
+
+# Default X-Frame-Options header.
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options.
+Header setifempty X-Frame-Options {{ apache_server__default_x_frame_options_header }}

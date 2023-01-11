@@ -1,0 +1,89 @@
+# Optional modules configuration.
+#
+{{ ansible_managed | comment }}
+
+
+{% if apache_server__alias_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_alias.html.
+LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
+
+{% endif %}
+{% if apache_server__allowmethods_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html.
+LoadModule allowmethods_module /usr/lib/apache2/modules/mod_allowmethods.so
+
+{% endif %}
+{% if apache_server__authz_user_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html.
+LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
+
+{% endif %}
+{% if apache_server__authn_file_module_enabled or apache_server__auth_basic_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_authn_core.html.
+LoadModule authn_core_module /usr/lib/apache2/modules/mod_authn_core.so
+
+{% endif %}
+{% if apache_server__authn_file_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html.
+LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
+
+{% endif %}
+{% if apache_server__auth_basic_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html.
+LoadModule auth_basic_module /usr/lib/apache2/modules/mod_auth_basic.so
+
+{% endif %}
+{% if apache_server__filter_module_enabled or apache_server__deflate_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_filter.html.
+LoadModule filter_module /usr/lib/apache2/modules/mod_filter.so
+
+{% endif %}
+{% if apache_server__deflate_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_deflate.html.
+LoadModule deflate_module /usr/lib/apache2/modules/mod_deflate.so
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+AddOutputFilterByType DEFLATE application/xml application/json
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/wasm
+
+{% endif %}
+{% if apache_server__dir_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_dir.html.
+LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
+DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+
+{% endif %}
+{% if apache_server__env_module_enabled or apache_server__ratelimit_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_env.html.
+LoadModule env_module /usr/lib/apache2/modules/mod_env.so
+
+{% endif %}
+{% if apache_server__expires_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_expires.html.
+LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
+
+{% endif %}
+{% if apache_server__negotiation_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_alias.html.
+LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
+LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv tr zh-CN zh-TW
+ForceLanguagePriority Prefer Fallback
+
+{% endif %}
+{% if apache_server__ratelimit_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_ratelimit.html.
+LoadModule ratelimit_module /usr/lib/apache2/modules/mod_ratelimit.so
+
+{% endif %}
+{% if apache_server__reqtimeout_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html.
+LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
+RequestReadTimeout {{ apache_server__reqtimeout_module_timeouts }}
+
+{% endif %}
+{% if apache_server__rewrite_module_enabled %}
+# See https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html.
+LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
+
+{% endif %}
