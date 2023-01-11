@@ -1,0 +1,13 @@
+---
+
+- name: Install
+  ansible.builtin.package:
+    name: '{{ certbot__packages }}'
+    state: 'present'
+  become: true
+
+- name: Create certificates
+  ansible.builtin.include_tasks: 'create-cert.yml'
+  with_items: '{{ certbot__certs }}'
+  loop_control:
+    loop_var: 'cert'

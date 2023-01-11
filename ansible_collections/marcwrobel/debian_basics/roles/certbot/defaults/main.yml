@@ -1,0 +1,17 @@
+---
+
+# Whether to run certbot in dry-run.
+certbot__dryrun_mode: false
+
+# Whether to run certbot in test mode.
+certbot__test_mode: false
+
+# Certificates to manage with certbot.
+# Format is :
+# - email: user@example.com
+#   webroot: "/var/www/html"
+#   domains:
+#     - example.com
+#     - example1.com
+#     - example2.com
+certbot__certs: []

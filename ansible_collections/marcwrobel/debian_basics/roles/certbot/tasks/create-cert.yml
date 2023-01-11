@@ -1,0 +1,19 @@
+---
+
+- name: Check if the certificate already exists
+  ansible.builtin.stat:
+    path: '/etc/letsencrypt/live/{{ cert.domains | first }}/cert.pem'
+  register: 'cert_pem'
+
+# See https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options.
+- name: Generate new certificate
+  ansible.builtin.command: >
+    certbot certonly
+      {{ '--test-cert' if certbot__test_mode else '' }}
+      {{ '--dry-run' if certbot__dryrun_mode else '' }}
+      --webroot --hsts --non-interactive --agree-tos
+      --webroot-path {{ cert.webroot }}
+      --email {{ cert.email }}
+      -d {{ cert.domains | join(',') }}
+  become: true
+  when: not cert_pem.stat.exists

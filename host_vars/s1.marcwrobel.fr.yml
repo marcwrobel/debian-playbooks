@@ -47,6 +47,14 @@ firewalld__services:
   - { zone: 'public', service: 'dhcpv6-client', permanent: true, state: 'disabled', immediate: true }
   - { zone: 'public', service: 'ssh', permanent: true, state: 'disabled', immediate: true }
 
+certbot__certs:
+  - email: 'marc.wrobel@gmail.com'
+    webroot: '/var/www/html'
+    domains:
+      - 'marcwrobel.fr'
+      - 'jbanking.marcwrobel.fr'
+      - 's1.marcwrobel.fr'
+
 apache_server__state: 'present'
 apache_server__bindings:
   - name: 'ipv4'
