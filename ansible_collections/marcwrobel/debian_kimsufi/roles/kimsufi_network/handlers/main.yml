@@ -1,4 +1,0 @@
----
-- name: 'Reload sysctl settings'
-  ansible.builtin.command: '/sbin/sysctl -p'
-  become: true

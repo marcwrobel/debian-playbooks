@@ -1,0 +1,18 @@
+---
+# configuration resides only in /etc/network/interfaces
+- name: 'Remove interfaces.d'
+  ansible.builtin.file:
+    path: '/etc/network/interfaces.d'
+    state: 'absent'
+  become: true
+
+- name: 'Configure'
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/network/interfaces'
+  become: true

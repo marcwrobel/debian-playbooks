@@ -17,6 +17,9 @@ Available variables are listed below, along with default values:
     sysctl__shmmax: '{{ sysctl__kernel_shmmax_default }}'
     sysctl__shmall: '{{ sysctl__kernel_shmall_default }}'
     sysctl__ip_forward: false
+    sysctl__default_additional_variables: {}
+    sysctl__group_additional_variables: {}
+    sysctl__hosts_additional_variables: {}
 
 See `defaults/main.yml` for more information.
 

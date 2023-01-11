@@ -8,3 +8,18 @@ sysctl__shmall: '{{ sysctl__kernel_shmall_default }}'
 
 # Wether to enable or disable ip forward
 sysctl__ip_forward: false
+
+# Additional parameters propagated via configuration.
+# Format is :
+# - <variable>:
+#    description: <description>
+#    value: <value>
+sysctl__default_additional_variables: {}
+sysctl__group_additional_variables: {}
+sysctl__hosts_additional_variables: {}
+sysctl__additional_variables: >-
+  {{
+    sysctl__default_additional_variables
+    | combine(sysctl__group_additional_variables)
+    | combine(sysctl__hosts_additional_variables)
+  }}

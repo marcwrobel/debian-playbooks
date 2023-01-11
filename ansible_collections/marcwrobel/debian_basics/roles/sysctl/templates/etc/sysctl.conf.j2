@@ -152,3 +152,10 @@ fs.protected_regular = 2
 # This restricts loading TTY line disciplines to the CAP_SYS_MODULE capability to prevent unprivileged attackers from loading vulnerable line disciplines with
 # the TIOCSETD ioctl which has been abused in a number of exploits before. See also https://lkml.org/lkml/2019/4/15/890.
 dev.tty.ldisc_autoload = 0
+{% if sysctl__additional_variables.keys() | length %}
+{% for variable in sysctl__additional_variables.keys() %}
+
+# {{ sysctl__additional_variables[variable].description }}
+{{ variable }} = {{ sysctl__additional_variables[variable].value }}
+{% endfor %}
+{% endif %}

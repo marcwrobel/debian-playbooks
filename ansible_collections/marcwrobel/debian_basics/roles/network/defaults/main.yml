@@ -1,0 +1,20 @@
+---
+# Name of the interface
+# network__interface: eth0
+
+# Static IPv4 of the interface
+# network__ipv4_address: '192.168.0.0'
+
+# Subnet mask of the network
+network__ipv4_netmask: '255.255.255.0'
+
+# IPv4 of the network gateway
+# network__ipv4_gateway: '192.168.0.254'
+
+# Static IPv6 of the interface
+# network__ipv6_address: '2021:40d0:a:aa1f::1'
+
+# Subnet mask of the network
+network__ipv6_netmask: '128'
+# IPv6 of the network gateway
+# network__ipv6_gateway: '2021:40d0:a:aaff:ff:ff:ff:ff'

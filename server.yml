@@ -18,8 +18,8 @@
       tags: ['banner']
     - role: 'marcwrobel.debian_basics.sudo'
       tags: ['sudo']
-    - role: 'marcwrobel.debian_kimsufi.kimsufi_network'
-      tags: ['net']
+    - role: 'marcwrobel.debian_basics.network'
+      tags: ['net', 'network']
     - role: 'marcwrobel.debian_basics.firewalld'
       tags: ['fw', 'firewall', 'firewalld']
     - role: 'marcwrobel.debian_basics.git'

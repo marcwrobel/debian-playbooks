@@ -1,0 +1,23 @@
+{{ ansible_managed | comment }}
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The main network interface
+auto {{ network__interface }}
+allow-hotplug {{ network__interface }}
+
+iface {{ network__interface }} inet static
+  address {{ network__ipv4_address }}
+  netmask {{ network__ipv4_netmask }}
+  gateway {{ network__ipv4_gateway }}
+
+iface {{ network__interface }} inet6 static
+  address {{ network__ipv6_address }}
+  netmask {{ network__ipv6_netmask }}
+  post-up /sbin/ip -f inet6 route add {{ network__ipv6_gateway }} dev {{ network__interface }}; /sbin/ip -f inet6 route add default via {{ network__ipv6_gateway }}
+  pre-down /sbin/ip -f inet6 route del {{ network__ipv6_gateway }} dev {{ network__interface }}; /sbin/ip -f inet6 route del default via {{ network__ipv6_gateway }}
