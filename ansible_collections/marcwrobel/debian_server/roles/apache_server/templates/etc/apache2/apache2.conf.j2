@@ -91,6 +91,7 @@ SSLStaplingCache "shmcb:logs/ssl_stapling(32768)"
 # modules configuration
 LoadModule authz_core_module /usr/lib/apache2/modules/mod_authz_core.so
 LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
+LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
 {% if apache_server__alias_module_enabled %}
 LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
 {% endif %}
@@ -123,9 +124,6 @@ LoadModule env_module /usr/lib/apache2/modules/mod_env.so
 {% endif %}
 {% if apache_server__expires_module_enabled %}
 LoadModule expires_module /usr/lib/apache2/modules/mod_expires.so
-{% endif %}
-{% if apache_server__headers_module_enabled %}
-LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
 {% endif %}
 {% if apache_server__negotiation_module_enabled %}
 LoadModule negotiation_module /usr/lib/apache2/modules/mod_negotiation.so
@@ -195,8 +193,31 @@ LogFormat "%h %l %u %t \"%r\" %>s %B" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 
-# Include generic snippets of statements
-IncludeOptional conf-enabled/*.conf
+# Define an access log for VirtualHosts that don't define their own logfile
+CustomLog ${APACHE_LOG_DIR}/other_vhosts_access.log vhost_combined
+
+# Default security configuration
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+{% if apache_server__default_csp_rules_enabled %}
+Header setifempty Content-Security-Policy "{{ apache_server__default_csp_rules }}"
+{% endif %}
+{% if apache_server__default_referrer_policy_header_enabled %}
+Header setifempty Referrer-Policy {{ apache_server__default_referrer_policy_header }}
+{% endif %}
+{% if apache_server__default_strict_transport_security_enabled %}
+Header setifempty Strict-Transport-Security "{{ apache_server__default_strict_transport_security }}"
+{% endif %}
+{% if apache_server__default_x_content_type_options_header_enabled %}
+Header setifempty X-Content-Type-Options {{ apache_server__default_x_content_type_options_header }}
+{% endif %}
+{% if apache_server__default_x_frame_options_header_enabled %}
+Header setifempty X-Frame-Options {{ apache_server__default_x_frame_options_header }}
+{% endif %}
+{% if apache_server__default_x_xss_protection_header_enabled %}
+Header setifempty X-XSS-Protection "{{ apache_server__default_x_xss_protection_header }}"
+{% endif %}
 
 # Include the virtual host configurations
 IncludeOptional sites-enabled/*.conf

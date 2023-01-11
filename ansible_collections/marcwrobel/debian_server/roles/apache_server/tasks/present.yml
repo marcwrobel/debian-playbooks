@@ -12,6 +12,8 @@
     state: 'absent'
   loop:
     - '/etc/apache2/ports.conf'
+    - '/etc/apache2/conf-available'
+    - '/etc/apache2/conf-enabled'
     - '/etc/apache2/mods-available'
     - '/etc/apache2/mods-enabled'
   become: true

@@ -34,7 +34,6 @@ apache_server__dir_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/
 apache_server__env_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_env.html
 apache_server__expires_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_expires.html
 apache_server__filter_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_filter.html
-apache_server__headers_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_headers.html
 apache_server__mime_module_types: {} # type to extension mapping (e.g. application/x-gzip: .gz .tgz)
 apache_server__mime_module_languages: {} # language to extension mapping (e.g. en: .en)
 apache_server__mime_module_charsets: {} # language to extension mapping (e.g. UTF-8: .utf8)
@@ -43,3 +42,17 @@ apache_server__ratelimit_module_enabled: false # https://httpd.apache.org/docs/2
 apache_server__reqtimeout_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html
 apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
 apache_server__rewrite_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html
+
+# Security configuration
+apache_server__default_csp_rules_enabled: true
+apache_server__default_csp_rules: "default-src 'self'"
+apache_server__default_referrer_policy_header: 'same-origin'
+apache_server__default_referrer_policy_header_enabled: true
+apache_server__default_strict_transport_security: 'max-age=86400' # 1 day
+apache_server__default_strict_transport_security_enabled: true
+apache_server__default_x_content_type_options_header: 'nosniff'
+apache_server__default_x_content_type_options_header_enabled: true
+apache_server__default_x_frame_options_header: 'SAMEORIGIN'
+apache_server__default_x_frame_options_header_enabled: true
+apache_server__default_x_xss_protection_header: '1; mode=block'
+apache_server__default_x_xss_protection_header_enabled: true

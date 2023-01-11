@@ -17,6 +17,7 @@ Mandatory modules are:
 - [socache_shmcb](https://httpd.apache.org/docs/2.4/mod/mod_socache_shmcb.html) (required by
   ssl_module),
 - [ssl_module](https://httpd.apache.org/docs/2.4/mod/mod_ssl.html),
+- [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html),
 - [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html) (required by
   authz_host_module),
 - [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html) (required to set
@@ -34,7 +35,6 @@ Optional modules are:
 - [env_module](https://httpd.apache.org/docs/2.4/mod/mod_env.html),
 - [expires_module](https://httpd.apache.org/docs/2.4/mod/mod_expires.html),
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
-- [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html),
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
 - [ratelimit_module](https://httpd.apache.org/docs/2.4/mod/mod_ratelimit.html),
 - [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html),
