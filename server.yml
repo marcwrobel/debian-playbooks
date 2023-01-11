@@ -26,5 +26,5 @@
       tags: ['packages', 'git']
     - role: 'marcwrobel.debian_basics.vim'
       tags: ['packages', 'vim']
-    - role: 'marcwrobel.debian_apache.apache_server'
+    - role: 'marcwrobel.debian_server.apache_server'
       tags: ['apache']

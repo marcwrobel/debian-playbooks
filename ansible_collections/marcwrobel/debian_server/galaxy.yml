@@ -1,7 +1,7 @@
 ---
 namespace: 'marcwrobel'
-name: 'debian_apache'
-description: 'A collection of roles for running Apache on Debian.'
+name: 'debian_server'
+description: 'A collection of roles for servers.'
 version: '1.0.0'
 license: ['MIT']
 
