@@ -14,5 +14,6 @@
     group: 'root'
     mode: '0644'
   loop:
+    - 'etc/hosts'
     - 'etc/network/interfaces'
   become: true
