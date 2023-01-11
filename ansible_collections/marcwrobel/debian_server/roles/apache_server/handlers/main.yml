@@ -5,3 +5,9 @@
     name: 'apache2'
     state: 'restarted'
   become: true
+
+- name: Reload apache
+  ansible.builtin.service:
+    name: 'apache2'
+    state: 'reloaded'
+  become: true

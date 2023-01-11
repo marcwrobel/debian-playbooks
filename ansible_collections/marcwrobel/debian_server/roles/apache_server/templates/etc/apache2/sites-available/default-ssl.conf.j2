@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+<VirtualHost *:443>
+  ServerAdmin webmaster@localhost
+  DocumentRoot /var/www/html
+
+  LogLevel warn
+  ErrorLog ${APACHE_LOG_DIR}/default-error.log
+  CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
+
+  SSLEngine on
+  SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
+  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</VirtualHost>

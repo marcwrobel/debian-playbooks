@@ -38,3 +38,16 @@
     - 'etc/apache2/ssl.conf'
   become: true
   notify: 'Restart apache'
+
+- name: Configure default VirtualHosts
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+  loop:
+    - 'etc/apache2/sites-available/000-default.conf'
+    - 'etc/apache2/sites-available/default-ssl.conf'
+  become: true
+  notify: 'Reload apache'

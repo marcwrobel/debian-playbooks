@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+<VirtualHost *:80>
+  ServerAdmin webmaster@localhost
+  DocumentRoot /var/www/html
+
+  LogLevel warn
+  ErrorLog ${APACHE_LOG_DIR}/default-error.log
+  CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
+</VirtualHost>
