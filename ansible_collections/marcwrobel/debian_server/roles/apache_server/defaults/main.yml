@@ -43,6 +43,6 @@ apache_server__rewrite_module_enabled: false # https://httpd.apache.org/docs/2.4
 # Security configuration
 apache_server__default_csp_rules: "default-src 'self'"
 apache_server__default_referrer_policy_header: 'same-origin'
-apache_server__default_strict_transport_security: 'max-age=86400' # 1 day
+apache_server__default_strict_transport_security: 'max-age=31536000; includeSubDomains' # 1 year
 apache_server__default_x_content_type_options_header: 'nosniff'
 apache_server__default_x_frame_options_header: 'SAMEORIGIN'
