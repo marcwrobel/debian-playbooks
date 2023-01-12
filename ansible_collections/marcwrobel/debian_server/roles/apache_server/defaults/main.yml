@@ -14,7 +14,7 @@ apache_server__ulimit_max_files: 65536
 # Arguments to the web server when it starts.
 apache_server__arguments: ''
 
-# mpm_event_module configuration (https://httpd.apache.org/docs/2.4/mod/event.html).
+# mpm_event_module configuration (see https://httpd.apache.org/docs/2.4/mod/event.html).
 apache_server__mpm_event_start_servers: 2
 apache_server__mpm_event_min_spare_threads: 25
 apache_server__mpm_event_max_spare_threads: 75
@@ -24,24 +24,30 @@ apache_server__mpm_event_max_request_workers: 150
 apache_server__mpm_event_max_connections_per_child: 0
 
 # Optional configuration (https://httpd.apache.org/docs/2.4/mod/).
-apache_server__alias_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_alias.html
 apache_server__allowmethods_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_allowmethods.html
-apache_server__auth_basic_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html
-apache_server__authn_file_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html
-apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html
 apache_server__deflate_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_deflate.html
 apache_server__dir_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_dir.html
-apache_server__env_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_env.html
 apache_server__expires_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_expires.html
 apache_server__filter_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_filter.html
 apache_server__negotiation_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html
-apache_server__ratelimit_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_ratelimit.html
 apache_server__reqtimeout_module_enabled: true # https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html
 apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
 
-# Security configuration
+apache_server__alias_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_alias.html
+apache_server__auth_basic_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_auth_basic.html
+apache_server__authn_file_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authn_file.html
+apache_server__authz_user_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_authz_user.html
+apache_server__env_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_env.html
+apache_server__ratelimit_module_enabled: false # https://httpd.apache.org/docs/2.4/mod/mod_ratelimit.html
+
+# Default Security header configuration
 apache_server__default_csp_rules: "default-src 'self'"
 apache_server__default_referrer_policy_header: 'same-origin'
 apache_server__default_strict_transport_security: 'max-age=31536000; includeSubDomains' # 1 year
 apache_server__default_x_content_type_options_header: 'nosniff'
 apache_server__default_x_frame_options_header: 'SAMEORIGIN'
+
+# Default configuration for the default SSL VirtualHost
+apache_server__default_vhost_redirect_target: 'https://www.debian.org/'
+apache_server__default_vhost_ssl_certificate_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+apache_server__default_vhost_ssl_certificate_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'

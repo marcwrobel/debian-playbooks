@@ -7,6 +7,11 @@ adopted by this role except for VirtualHosts. This is to avoid as much as possib
 configurations, but also because `community.general.apache2_*` modules are painfully slow. Unused
 directories are deleted by this role to avoid misinterpretations.
 
+This role also manage default VirtualHosts. By default :
+
+- all HTTP traffic is redirected to HTTPS (except for `/.well-known/acme-challenge/`).
+- all HTTPS traffic is redirected to the URL configured by `apache_server__default_vhost_redirect_target`.
+
 Mandatory modules are:
 
 - [mpm_event_module](https://httpd.apache.org/docs/2.4/mod/event.html) (this role is promoting
@@ -72,20 +77,28 @@ Available variables are listed below, along with default values:
     apache_server__mpm_event_threads_per_child: 25
     apache_server__mpm_event_max_request_workers: 150
     apache_server__mpm_event_max_connections_per_child: 0
-    apache_server__alias_module_enabled: false
     apache_server__allowmethods_module_enabled: true
-    apache_server__auth_basic_module_enabled: false
-    apache_server__authn_file_module_enabled: false
-    apache_server__authz_user_module_enabled: false
     apache_server__deflate_module_enabled: true
     apache_server__dir_module_enabled: true
-    apache_server__env_module_enabled: false
     apache_server__expires_module_enabled: true
     apache_server__filter_module_enabled: true
     apache_server__negotiation_module_enabled: true
-    apache_server__ratelimit_module_enabled: false
     apache_server__reqtimeout_module_enabled: true
     apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
+    apache_server__alias_module_enabled: false
+    apache_server__auth_basic_module_enabled: false
+    apache_server__authn_file_module_enabled: false
+    apache_server__authz_user_module_enabled: false
+    apache_server__env_module_enabled: false
+    apache_server__ratelimit_module_enabled: false
+    apache_server__default_csp_rules: "default-src 'self'"
+    apache_server__default_referrer_policy_header: 'same-origin'
+    apache_server__default_strict_transport_security: 'max-age=31536000; includeSubDomains'
+    apache_server__default_x_content_type_options_header: 'nosniff'
+    apache_server__default_x_frame_options_header: 'SAMEORIGIN'
+    apache_server__default_vhost_redirect_target: 'https://www.debian.org/'
+    apache_server__default_vhost_ssl_certificate_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+    apache_server__default_vhost_ssl_certificate_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'
 
 See `defaults/main.yml` for more information.
 

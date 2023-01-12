@@ -39,17 +39,6 @@
   become: true
   notify: 'Restart apache'
 
-- name: Configure default page
-  ansible.builtin.template:
-    src: '{{ item }}.j2'
-    dest: '/{{ item }}'
-    owner: 'www-data'
-    group: 'www-data'
-    mode: '0644'
-  loop:
-    - 'var/www/html/index.html'
-  become: true
-
 - name: Configure default VirtualHosts
   ansible.builtin.template:
     src: 'etc/apache2/sites-available/{{ item }}.j2'

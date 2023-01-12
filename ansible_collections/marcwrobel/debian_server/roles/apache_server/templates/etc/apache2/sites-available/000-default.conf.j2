@@ -2,12 +2,19 @@
 
 <VirtualHost *:80>
   ServerAdmin webmaster@localhost
+  DocumentRoot /var/www/html
 
   LogLevel warn
   ErrorLog ${APACHE_LOG_DIR}/default-error.log
   CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
 
+  # giving access to /.well-known/acme-challenge/ is required for certbot HTTP-01 challenge
   RewriteEngine On
   RewriteCond %{HTTPS} !=on
-  RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+  RewriteCond %{REQUEST_URI} !^/.well-known/acme-challenge/.*$
+  RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R=permanent,L]
+
+  <Directory />
+    Require all granted
+  </Directory>
 </VirtualHost>

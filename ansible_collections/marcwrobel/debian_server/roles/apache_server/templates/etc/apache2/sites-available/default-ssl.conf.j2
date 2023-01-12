@@ -2,17 +2,15 @@
 
 <VirtualHost _default_:443>
   ServerAdmin webmaster@localhost
-  DocumentRoot /var/www/html
 
   LogLevel warn
   ErrorLog ${APACHE_LOG_DIR}/default-error.log
   CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
 
   SSLEngine on
-  SSLCertificateFile	/etc/letsencrypt/live/marcwrobel.fr/fullchain.pem
-  SSLCertificateKeyFile /etc/letsencrypt/live/marcwrobel.fr/privkey.pem
+  SSLCertificateFile	{{ apache_server__default_vhost_ssl_certificate_file }}
+  SSLCertificateKeyFile {{ apache_server__default_vhost_ssl_certificate_key_file }}
 
-  <Directory />
-    Require all granted
-  </Directory>
+  RewriteEngine On
+  RewriteRule ^/.* {{ apache_server__default_vhost_redirect_target }} [R=permanent,L]
 </VirtualHost>
