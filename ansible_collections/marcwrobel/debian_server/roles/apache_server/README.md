@@ -16,8 +16,12 @@ Mandatory modules are:
 - [mime_module](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) (required by ssl_module),
 - [socache_shmcb](https://httpd.apache.org/docs/2.4/mod/mod_socache_shmcb.html) (required by
   ssl_module),
-- [ssl_module](https://httpd.apache.org/docs/2.4/mod/mod_ssl.html),
-- [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html),
+- [ssl_module](https://httpd.apache.org/docs/2.4/mod/mod_ssl.html) (required because traffic must be
+  HTTPS-only),
+- [headers_module](https://httpd.apache.org/docs/2.4/mod/mod_headers.html) (required because this
+  role sets default security headers, such as Content-Security-Policy),
+- [rewrite_module](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html) (required to redirect
+  HTTP traffic to HTTPS),
 - [authz_core_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html) (required by
   authz_host_module),
 - [authz_host_module](https://httpd.apache.org/docs/2.4/mod/mod_authz_host.html) (required to set
@@ -37,8 +41,7 @@ Optional modules are:
 - [filter_module](https://httpd.apache.org/docs/2.4/mod/mod_filter.html),
 - [negotiation_module](https://httpd.apache.org/docs/2.4/mod/mod_negotiation.html),
 - [ratelimit_module](https://httpd.apache.org/docs/2.4/mod/mod_ratelimit.html),
-- [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html),
-- [rewrite_module](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html).
+- [reqtimeout_module](https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html).
 
 See _Role Variables_ to know whether those modules are enabled by default.
 
@@ -79,12 +82,10 @@ Available variables are listed below, along with default values:
     apache_server__env_module_enabled: false
     apache_server__expires_module_enabled: true
     apache_server__filter_module_enabled: true
-    apache_server__headers_module_enabled: true
     apache_server__negotiation_module_enabled: true
     apache_server__ratelimit_module_enabled: false
     apache_server__reqtimeout_module_enabled: true
     apache_server__reqtimeout_module_timeouts: header=20-40,MinRate=500 body=20,MinRate=500
-    apache_server__rewrite_module_enabled: false
 
 See `defaults/main.yml` for more information.
 

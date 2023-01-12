@@ -82,8 +82,3 @@ LoadModule reqtimeout_module /usr/lib/apache2/modules/mod_reqtimeout.so
 RequestReadTimeout {{ apache_server__reqtimeout_module_timeouts }}
 
 {% endif %}
-{% if apache_server__rewrite_module_enabled %}
-# See https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html.
-LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
-
-{% endif %}

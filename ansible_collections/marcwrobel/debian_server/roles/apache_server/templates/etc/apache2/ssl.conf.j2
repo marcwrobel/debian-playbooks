@@ -2,6 +2,7 @@
 #
 # setenvif_module and socache_shmcb_module are loaded there because they are required by the ssl_module.
 # mime_module is also required, but managed in its own configuration file.
+# rewrite_module is required to redirect HTTP traffic to HTTPS.
 #
 # This configuration has been partly generated using the Mozilla SSL Configuration Generator (modern
 # configuration): https://ssl-config.mozilla.org/#server=apache&config=modern&guideline=5.6.
@@ -10,6 +11,7 @@
 
 LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
 LoadModule socache_shmcb_module /usr/lib/apache2/modules/mod_socache_shmcb.so
+LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
 LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
 
 # Configure one or more sources to seed the PRNG of the SSL library.

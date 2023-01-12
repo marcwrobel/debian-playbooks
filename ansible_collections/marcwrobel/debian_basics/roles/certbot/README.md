@@ -4,7 +4,8 @@ Manage certificates using [certbot](https://certbot.eff.org/), the tool for auto
 Let’s Encrypt certificates on administrated websites to enable HTTPS.
 
 Certificates are obtained using the [webroot](https://eff-certbot.readthedocs.io/en/stable/using.html#webroot)
-method, so be sure the `<webroot>/.well-known` directory is properly exposed.
+method, so be sure the `<webroot>/.well-known` directory is properly exposed. More information on
+[Let’s Encrypt HTTP-01 challenge documentation](https://letsencrypt.org/docs/challenge-types/#http-01-challenge).
 
 ## Requirements
 
