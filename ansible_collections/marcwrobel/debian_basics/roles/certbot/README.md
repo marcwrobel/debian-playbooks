@@ -18,7 +18,10 @@ None.
 
 Available variables are listed below, along with default values:
 
-    N/A
+    certbot__dryrun_mode: false
+    certbot__test_mode: false
+    certbot__certs: []
+    certbot__auto_renew_frequency: 'daily'
 
 See `defaults/main.yml` for more information.
 
@@ -30,7 +33,13 @@ See `defaults/main.yml` for more information.
       roles:
         - role: 'certbot'
           vars:
-            N/A
+            certbot__certs
+              - email: user@example.com
+                webroot: "/var/www/html"
+                domains:
+                  - example.com
+                  - example1.com
+                  - example2.com
           tags: [ 'certbot' ]
 
 ## Links

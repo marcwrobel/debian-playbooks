@@ -11,3 +11,12 @@
   with_items: '{{ certbot__certs }}'
   loop_control:
     loop_var: 'cert'
+
+- name: Add cron job for renewals
+  ansible.builtin.cron:
+    name: certbot automatic renewal
+    job: 'certbot renew --quiet --no-self-upgrade'
+    special_time: '{{ certbot__auto_renew_frequency }}'
+    user: 'root'
+    state: 'present'
+  become: true

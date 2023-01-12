@@ -15,3 +15,7 @@ certbot__test_mode: false
 #     - example1.com
 #     - example2.com
 certbot__certs: []
+
+# Frequency of the certbot automatic renewal job.
+# Allowed values are: daily, weekly, monthly.
+certbot__auto_renew_frequency: 'daily'
