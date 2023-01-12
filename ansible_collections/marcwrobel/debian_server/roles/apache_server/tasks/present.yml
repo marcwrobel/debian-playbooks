@@ -39,20 +39,7 @@
   become: true
   notify: 'Restart apache'
 
-- name: Configure default VirtualHosts
-  ansible.builtin.template:
-    src: '{{ item }}.j2'
-    dest: '/{{ item }}'
-    owner: 'root'
-    group: 'root'
-    mode: '0640'
-  loop:
-    - 'etc/apache2/sites-available/000-default.conf'
-    - 'etc/apache2/sites-available/default-ssl.conf'
-  become: true
-  notify: 'Reload apache'
-
-- name: Configure default VirtualHosts
+- name: Configure default page
   ansible.builtin.template:
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
@@ -62,3 +49,29 @@
   loop:
     - 'var/www/html/index.html'
   become: true
+
+- name: Configure default VirtualHosts
+  ansible.builtin.template:
+    src: 'etc/apache2/sites-available/{{ item }}.j2'
+    dest: '/etc/apache2/sites-available/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+  loop:
+    - '000-default.conf'
+    - 'default-ssl.conf'
+  become: true
+  notify: 'Reload apache'
+
+- name: Activate default VirtualHosts
+  ansible.builtin.file:
+    src: '/etc/apache2/sites-available/{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    state: 'link'
+  loop:
+    - '000-default.conf'
+    - 'default-ssl.conf'
+  become: true
+  notify: 'Reload apache'

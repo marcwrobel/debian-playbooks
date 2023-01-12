@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-<VirtualHost *:443>
+<VirtualHost _default_:443>
   ServerAdmin webmaster@localhost
   DocumentRoot /var/www/html
 
@@ -9,8 +9,8 @@
   CustomLog ${APACHE_LOG_DIR}/default-access.log vhost_combined
 
   SSLEngine on
-  SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
-  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+  SSLCertificateFile	/etc/letsencrypt/live/marcwrobel.fr/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/marcwrobel.fr/privkey.pem
 
   <Directory />
     Require all granted
