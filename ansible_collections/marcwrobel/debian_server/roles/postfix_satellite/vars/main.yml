@@ -1,0 +1,6 @@
+---
+postfix_satellite__packages:
+  - 'bsd-mailx'
+  - 'postfix'
+  - 'libsasl2-modules'
+  - 'ssl-cert' # for the snakeoil ssl certificate

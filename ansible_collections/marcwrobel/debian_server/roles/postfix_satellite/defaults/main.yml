@@ -1,0 +1,22 @@
+---
+# Whether postfix must be installed (`present`) or not (`absent`).
+postfix_satellite__state: 'absent'
+
+# The internet hostname of this mail system.
+postfix_satellite__myhostname: '{{ inventory_hostname }}'
+
+# The domain name that locally-posted mail appears to come from.
+postfix_satellite__myorigin: '{{ inventory_hostname.split(".")[1:] | join(".") }}'
+
+# The list of "trusted" remote SMTP clients that have more privileges than "strangers".
+postfix_satellite__mynetworks: '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128'
+
+# The next-hop destination for non-local mail, with its credentials.
+# postfix_satellite__relay_host: '<host>:<port>'
+# postfix_satellite__relay_login: '<login>'
+# postfix_satellite__relay_password: '<password>'
+
+# File with the Postfix SMTP client certificate and private key in PEM format.
+# See https://www.postfix.org/TLS_README.html.
+postfix_satellite__tls_cert: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+postfix_satellite__tls_key: '/etc/ssl/private/ssl-cert-snakeoil.key'

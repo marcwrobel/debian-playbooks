@@ -1,0 +1,13 @@
+---
+
+- name: Uninstall packages
+  ansible.builtin.package:
+    name: '{{ postfix_satellite_packages }}'
+    state: 'absent'
+  become: true
+
+- name: Remove configuration
+  ansible.builtin.file:
+    name: '/etc/postfix'
+    state: 'absent'
+  become: true

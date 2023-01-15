@@ -1,0 +1,68 @@
+---
+
+- name: Install
+  ansible.builtin.package:
+    name: '{{ postfix_satellite__packages }}'
+    state: 'present'
+  become: true
+
+- name: Remove unnecessary files
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: 'absent'
+  loop:
+    - '/etc/postfix/dynamicmaps.cf.d'
+    - '/etc/postfix/main.cf.proto'
+    - '/etc/postfix/master.cf.proto'
+    - '/etc/postfix/postfix-files.d'
+    - '/etc/postfix/sasl'
+  become: true
+
+- name: Configure
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/aliases'
+    - 'etc/mailname'
+    - 'etc/postfix/dynamicmaps.cf'
+    - 'etc/postfix/main.cf'
+    - 'etc/postfix/master.cf'
+  become: true
+  notify: 'Restart postfix'
+
+- name: Manage password
+  block:
+    - name: Set password
+      ansible.builtin.template:
+        src: 'etc/postfix/sasl_passwd.j2'
+        dest: '/etc/postfix/sasl_passwd'
+        owner: 'root'
+        group: 'root'
+        mode: '0600'
+      become: true
+      register: 'sasl_passwd'
+
+    - name: Regenerate password database
+      ansible.builtin.command: 'postmap /etc/postfix/sasl_passwd'
+      become: true
+      when: 'sasl_passwd is changed'
+      notify: 'Restart postfix'
+
+    - name: Set permission on password database
+      ansible.builtin.file:
+        path: '/etc/postfix/sasl_passwd.db'
+        owner: 'root'
+        group: 'root'
+        mode: '0600'
+      become: true
+
+- name: Activate service
+  ansible.builtin.service:
+    name: 'postfix'
+    enabled: true
+    state: 'started'
+  become: true

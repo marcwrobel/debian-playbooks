@@ -1,4 +1,6 @@
 ---
+root_email: admin@marcwrobel.fr
+
 packages__host_list:
   - 'htop' # Interactive process viewer
 packages__host_blacklist:
@@ -23,8 +25,8 @@ sysctl__hosts_additional_variables:
       value: 0
 
 firewalld__sources:
-  - { zone: 'trusted', source: '{{ home_ipv4 }}', permanent: true, state: 'enabled', immediate: true }
-  - { zone: 'trusted', source: '{{ home_ipv6 }}', permanent: true, state: 'enabled', immediate: true }
+  - { zone: 'trusted', source: '{{ my_home_ipv4 }}', permanent: true, state: 'enabled', immediate: true }
+  - { zone: 'trusted', source: '{{ my_home_ipv6 }}', permanent: true, state: 'enabled', immediate: true }
 
 firewalld__services:
   - { zone: 'trusted', service: 'ssh', permanent: true, state: 'enabled', immediate: true }
@@ -52,3 +54,8 @@ apache_server__bindings:
 apache_server__default_vhost_redirect_target: 'https://www.marcwrobel.fr/'
 apache_server__default_vhost_ssl_certificate_file: '/etc/letsencrypt/live/marcwrobel.fr/fullchain.pem'
 apache_server__default_vhost_ssl_certificate_key_file: '/etc/letsencrypt/live/marcwrobel.fr/privkey.pem'
+
+postfix_satellite__state: 'present'
+postfix_satellite__relay_host: '{{ my_relay_host }}'
+postfix_satellite__relay_login: '{{ my_relay_login }}'
+postfix_satellite__relay_password: '{{ my_relay_password }}'

@@ -26,6 +26,8 @@
       tags: ['net', 'network']
     - role: 'marcwrobel.debian_basics.firewalld'
       tags: ['fw', 'firewall', 'firewalld']
+    - role: 'marcwrobel.debian_server.postfix_satellite'
+      tags: ['postfix', 'smtp']
     - role: 'marcwrobel.debian_server.apache_server'
       tags: ['apache']
     - role: 'marcwrobel.debian_basics.certbot'
