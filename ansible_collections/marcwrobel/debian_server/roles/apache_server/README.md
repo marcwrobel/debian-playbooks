@@ -62,7 +62,6 @@ None.
 
 Available variables are listed below, along with default values:
 
-    # Whether Apache must be installed (`present`) or not (`absent`).
     apache_server__state: 'absent'
     apache_server__bindings:
     - name: 'localhost'
@@ -104,9 +103,9 @@ See `defaults/main.yml` for more information.
 
 ## Usage
 
-    - hosts: desktop
+    - hosts: server
       roles:
-        - role: 'marcwrobel.debian_apache.apache_server'
+        - role: 'marcwrobel.debian_server.apache_server'
 
 ## Links
 
