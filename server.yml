@@ -18,15 +18,15 @@
       tags: ['banner']
     - role: 'marcwrobel.debian_basics.sudo'
       tags: ['sudo']
-    - role: 'marcwrobel.debian_basics.network'
-      tags: ['net', 'network']
-    - role: 'marcwrobel.debian_basics.firewalld'
-      tags: ['fw', 'firewall', 'firewalld']
     - role: 'marcwrobel.debian_basics.git'
       tags: ['packages', 'git']
     - role: 'marcwrobel.debian_basics.vim'
       tags: ['packages', 'vim']
-    - role: 'marcwrobel.debian_basics.certbot'
-      tags: ['certbot', 'ssl']
+    - role: 'marcwrobel.debian_basics.network'
+      tags: ['net', 'network']
+    - role: 'marcwrobel.debian_basics.firewalld'
+      tags: ['fw', 'firewall', 'firewalld']
     - role: 'marcwrobel.debian_server.apache_server'
       tags: ['apache']
+    - role: 'marcwrobel.debian_basics.certbot'
+      tags: ['certbot', 'ssl']
