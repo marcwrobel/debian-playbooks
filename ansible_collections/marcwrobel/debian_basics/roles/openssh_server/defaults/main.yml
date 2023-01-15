@@ -1,0 +1,14 @@
+---
+# The local addresses sshd should listen on.
+openssh_server__listen_addresses: ['{{ ansible_default_ipv4.address }}:22']
+
+# Available host keys (by order of preference).
+# Size must be specified for each type.
+# See https://infosec.mozilla.org/guidelines/openssh#modern-openssh-67.
+openssh_server__host_keys:
+  - type: 'ed25519'
+    size: '0'
+  - type: 'ecdsa'
+    size: '256'
+  - type: 'rsa'
+    size: '4096'

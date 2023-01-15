@@ -1,0 +1,52 @@
+---
+
+- name: Install
+  ansible.builtin.package:
+    name: '{{ openssh_server__packages }}'
+    state: 'present'
+  become: true
+
+- name: Remove unnecessary files
+  ansible.builtin.file:
+    path: '/etc/ssh/sshd_config.d'
+    state: 'absent'
+  become: true
+
+- name: Configure
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/ssh/sshd_config'
+    - 'etc/ssh/moduli'
+    - 'etc/pam.d/sshd'
+  become: true
+  notify: 'Restart openssh-server'
+
+- name: Generate server keypairs
+  ansible.builtin.command: "ssh-keygen -q -t {{ item.type }} -b {{ item.size }} -N '' -f ssh_host_{{ item.type }}_key"
+  args:
+    chdir: '/etc/ssh'
+    creates: '/etc/ssh/ssh_host_{{ item.type }}_key'
+  loop: '{{ openssh_server__host_keys }}'
+
+- name: Enforce private keys permissions
+  ansible.builtin.file:
+    path: '/etc/ssh/ssh_host_{{ item.type }}_key'
+    state: 'file'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+  loop: '{{ openssh_server__host_keys }}'
+
+- name: Enforce public keys permissions
+  ansible.builtin.file:
+    path: '/etc/ssh/ssh_host_{{ item.type }}_key.pub'
+    state: 'file'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop: '{{ openssh_server__host_keys }}'

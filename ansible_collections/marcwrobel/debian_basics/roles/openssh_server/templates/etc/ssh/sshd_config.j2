@@ -1,0 +1,95 @@
+{{ ansible_managed | comment }}
+
+# This configuration is based on Mozilla modern configuration.
+# See https://infosec.mozilla.org/guidelines/openssh#modern-openssh-67 and
+# https://man.openbsd.org/sshd_config.
+
+## Binding
+Port 22
+AddressFamily any
+{% for address in openssh_server__listen_addresses %}
+ListenAddress {{ address }}
+{% endfor %}
+
+
+## Logging
+SyslogFacility AUTHPRIV
+
+# Logs user's key fingerprint on login. Needed to have a clear audit track of which key was using to log in.
+LogLevel VERBOSE
+
+
+## Ciphers and algorithms
+# Supported HostKey algorithms by order of preference.
+{% for key in openssh_server__host_keys %}
+HostKey /etc/ssh/ssh_host_{{ key.type }}_key
+{% endfor %}
+
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+## Limits
+# Causes the server to disconnect after the specified amount of time has passed without a user successfully logging in.
+LoginGraceTime 30
+
+# Kick-out idle clients after 10 minutes.
+ClientAliveInterval 600
+ClientAliveCountMax 0
+
+# Maximum number of authentication attempts permitted per connection.
+MaxAuthTries 4
+
+# Maximum number of open shell, login or subsystem sessions permitted per network connection.
+MaxSessions 10
+
+# Maximum number of concurrent unauthenticated connections to the SSH daemon (start:rate:full).
+MaxStartups 10:30:100
+
+
+## Authentication
+# Root login is not allowed for auditing reasons.
+# Using regular users in combination with /bin/su or /usr/bin/sudo ensure a clear audit track.
+PermitRootLogin no
+
+# Password based logins are disabled - only public key based logins are allowed.
+AuthenticationMethods publickey
+HostbasedAuthentication no
+PasswordAuthentication no
+KerberosAuthentication no
+GSSAPIAuthentication no
+ChallengeResponseAuthentication no
+
+# Enable authentication rule enforcement using PAM.
+UsePAM yes
+
+# Disable unsafe / obsolete RSH command.
+IgnoreRhosts yes
+
+# Allow client to pass locale environment variables.
+AcceptEnv LANG LC_*
+
+# Enabling environment processing may enable users to bypass access restrictions in some configurations using mechanisms such as LD_PRELOAD.
+PermitUserEnvironment no
+
+# It's useful to see the last login to the system for security reasons.
+PrintLastLog yes
+
+# Make sure motd is displayed also for SSH sessions.
+PrintMotd yes
+
+## SFTP
+# Log sftp level file access (read/write/etc.) that would not be easily logged otherwise.
+Subsystem sftp /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO
+
+## Misc
+# Use kernel sandbox mechanisms where possible in unprivileged processes.
+UsePrivilegeSeparation sandbox
+
+# Prevent the use of insecure home directory and key file permissions.
+StrictModes yes
+
+# Disable forwarding
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
