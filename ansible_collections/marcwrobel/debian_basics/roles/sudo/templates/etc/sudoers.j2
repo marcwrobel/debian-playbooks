@@ -1,7 +1,7 @@
 {{ ansible_managed | comment }}
 
 # To enable sudo to be invoked from a real tty but not through methods such as cron or cgi-bin scripts.
-# Not activated - needed by Ansible
+# Not activated - needed by Ansible for pipelining (see https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-pipelining).
 #Defaults requiretty
 
 # Prevent arbitrary code execution as your user when sudoing to another user due to TTY hijacking via TIOCSTI ioctl.
