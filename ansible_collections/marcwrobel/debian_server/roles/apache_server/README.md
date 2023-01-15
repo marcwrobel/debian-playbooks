@@ -106,6 +106,19 @@ See `defaults/main.yml` for more information.
     - hosts: server
       roles:
         - role: 'marcwrobel.debian_server.apache_server'
+          vars:
+            apache_server__state: 'present'
+            apache_server__bindings:
+              - name: 'ipv4'
+                ip: '{{ network__ipv4_address }}'
+                ports: [80, 443]
+              - name: 'ipv6'
+                ip: '[{{ network__ipv6_address }}]'
+                ports: [80, 443]
+            apache_server__default_vhost_redirect_target: 'https://www.marcwrobel.fr/'
+            apache_server__default_vhost_ssl_certificate_file: '/etc/letsencrypt/live/marcwrobel.fr/fullchain.pem'
+            apache_server__default_vhost_ssl_certificate_key_file: '/etc/letsencrypt/live/marcwrobel.fr/privkey.pem'
+
 
 ## Links
 

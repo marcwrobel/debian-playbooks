@@ -1,3 +1,4 @@
 ---
 apache_server__packages:
   - 'apache2'
+  - 'ssl-cert' # for the snakeoil ssl certificate
