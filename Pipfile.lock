@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "011ed51d522d0dcd52e6882f75a7550ab48e9c112f3018c096c7f1830e8713b0"
+            "sha256": "0d1a5b6fc2129a621e6e473feffc11137c1684bfea4641e49e92de2cf77d500b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -36,6 +36,7 @@
                 "sha256:06e136c8eda4d8695251995d3c3efa612ebb3ac66948bf42492d4c7b46a75ff2",
                 "sha256:589257f2560fffd5d4465352cd4504e2cbfc418ba49e0c4265cd54e16070c938"
             ],
+            "markers": "python_version >= '3.9'",
             "version": "==2.14.1"
         },
         "ansible-lint": {
@@ -211,10 +212,10 @@
         },
         "identify": {
             "hashes": [
-                "sha256:0bc96b09c838310b6fcfcc61f78a981ea07f94836ef6ef553da5bb5d4745d662",
-                "sha256:e8a400c3062d980243d27ce10455a52832205649bbcaf27ffddb3dfaaf477bad"
+                "sha256:8aa48ce56e38c28b6faa9f261075dea0a942dfbb42b341b4e711896cbb40f3f7",
+                "sha256:abb546bca6f470228785338a01b539de8a85bbf46491250ae03363956d8ebb10"
             ],
-            "version": "==2.5.12"
+            "version": "==2.5.13"
         },
         "jinja2": {
             "hashes": [
@@ -426,10 +427,10 @@
         },
         "rich": {
             "hashes": [
-                "sha256:25f83363f636995627a99f6e4abc52ed0970ebbd544960cc63cbb43aaac3d6f0",
-                "sha256:41fe1d05f433b0f4724cda8345219213d2bfa472ef56b2f64f415b5b94d51b04"
+                "sha256:81c73a30b144bbcdedc13f4ea0b6ffd7fdc3b0d3cc259a9402309c8e4aee1964",
+                "sha256:f846bff22a43e8508aebf3f0f2410ce1c6f4cde429098bd58d91fde038c57299"
             ],
-            "version": "==13.0.1"
+            "version": "==13.1.0"
         },
         "ruamel.yaml": {
             "hashes": [
@@ -517,11 +518,11 @@
         },
         "yamllint": {
             "hashes": [
-                "sha256:89bb5b5ac33b1ade059743cf227de73daa34d5e5a474b06a5e17fc16583b0cf2",
-                "sha256:9e3d8ddd16d0583214c5fdffe806c9344086721f107435f68bad990e5a88826b"
+                "sha256:5153bf9f8205aa9dc6af6217e38bd4f5baf09d9a7c6f4ae1e23f90d9c00c49c5",
+                "sha256:66a755d5fbcbb8831f1a9568676329b5bac82c37995bcc9afd048b6459f9fa48"
             ],
             "index": "pypi",
-            "version": "==1.28.0"
+            "version": "==1.29.0"
         }
     },
     "develop": {}
