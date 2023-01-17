@@ -1,0 +1,5 @@
+profile: production
+use_default_rules: true
+
+skip_list:
+  - 'galaxy[no-changelog]' # Collection not published to Ansible Galaxy, changelog not needed.
