@@ -2,7 +2,7 @@ galaxy_info:
   author: 'Marc Wrobel'
   description: 'Manage basic packages commonly needed (or not) on Debian, but not always installed by default.'
   license: 'MIT'
-  min_ansible_version: '2.9'
+  min_ansible_version: '6.0.0'
   platforms:
     - name: 'Debian'
       versions:

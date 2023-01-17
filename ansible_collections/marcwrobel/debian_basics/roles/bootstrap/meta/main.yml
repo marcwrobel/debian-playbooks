@@ -2,7 +2,7 @@ galaxy_info:
   author: 'Marc Wrobel'
   description: 'Bootstrap a freshly installed Debian system for Ansible management'
   license: 'MIT'
-  min_ansible_version: '2.9'
+  min_ansible_version: '6.0.0'
   platforms:
     - name: 'Debian'
       versions:
