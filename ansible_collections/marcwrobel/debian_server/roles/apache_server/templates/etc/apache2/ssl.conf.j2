@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 # Apache Module mod_ssl configuration (https://httpd.apache.org/docs/2.4/mod/mod_ssl.html)
 #
 # setenvif_module and socache_shmcb_module are loaded there because they are required by the ssl_module.
@@ -6,8 +8,6 @@
 #
 # This configuration has been partly generated using the Mozilla SSL Configuration Generator (modern
 # configuration): https://ssl-config.mozilla.org/#server=apache&config=modern&guideline=5.6.
-#
-{{ ansible_managed | comment }}
 
 LoadModule setenvif_module /usr/lib/apache2/modules/mod_setenvif.so
 LoadModule socache_shmcb_module /usr/lib/apache2/modules/mod_socache_shmcb.so

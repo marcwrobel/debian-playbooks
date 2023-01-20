@@ -1,8 +1,8 @@
+# {{ ansible_managed }}
+
 # Apache Module mod_mime configuration (https://httpd.apache.org/docs/2.4/mod/mod_mime.html)
 # This config is the default config from the Debian apache2 package, without the type-map handler
 # and the shtml output filter.
-#
-{{ ansible_managed | comment }}
 
 LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
 

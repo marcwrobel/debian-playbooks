@@ -1,11 +1,11 @@
+# {{ ansible_managed }}
+
 # Default security-headers configuration. Those headers applies when a VirtualHost does not set it
 # explicitly.
 #
 # X-XSS-Protection has not been added because it is non-standard, is not on a standards track and,
 # in some cases, can create XSS vulnerabilities. See
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection.
-#
-{{ ansible_managed | comment }}
 
 LoadModule headers_module /usr/lib/apache2/modules/mod_headers.so
 
