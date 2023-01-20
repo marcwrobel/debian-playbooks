@@ -16,14 +16,14 @@ None.
 
 Available variables are listed below, along with default values:
 
-    openssh_server__myhostname: '{{ inventory_hostname }}'
-    openssh_server__myorigin: '{{ inventory_hostname.split(".")[1:] | join(".") }}'
-    openssh_server__mynetworks: '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128'
-    #openssh_server__relay_host: '<host>:<port>'
-    #openssh_server__relay_login: '<login>'
-    #openssh_server__relay_password: '<password>'
-    openssh_server__tls_cert: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
-    openssh_server__tls_key: '/etc/ssl/private/ssl-cert-snakeoil.key'
+    openssh_server__listen_addresses: ['{{ ansible_default_ipv4.address }}:22']
+    openssh_server__host_keys:
+    - type: 'ed25519'
+      size: '0'
+    - type: 'ecdsa'
+      size: '256'
+    - type: 'rsa'
+      size: '4096'
 
 See `defaults/main.yml` for more information.
 
@@ -33,9 +33,7 @@ See `defaults/main.yml` for more information.
       roles:
         - role: 'marcwrobel.debian_server.openssh_server'
           vars:
-            openssh_server__relay_host: '{{ my_relay_host }}'
-            openssh_server__relay_login: '{{ my_relay_login }}'
-            openssh_server__relay_password: '{{ my_relay_password }}'
+            openssh_server__listen_addresses: ['127.0.0.1:22']
 
 ## Regenerating moduli
 

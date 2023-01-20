@@ -22,6 +22,8 @@
       tags: ['packages', 'git']
     - role: 'marcwrobel.debian_basics.vim'
       tags: ['packages', 'vim']
+    - role: 'marcwrobel.debian_basics.openssh_client'
+      tags: ['openssh', 'ssh']
     - role: 'marcwrobel.debian_basics.openssh_server'
       tags: ['openssh', 'ssh']
     - role: 'marcwrobel.debian_desktop.docker'

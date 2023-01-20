@@ -1,0 +1,24 @@
+---
+
+- name: Install
+  ansible.builtin.package:
+    name: '{{ openssh_client__packages }}'
+    state: 'present'
+  become: true
+
+- name: Remove unnecessary files
+  ansible.builtin.file:
+    path: '/etc/ssh/ssh_config.d'
+    state: 'absent'
+  become: true
+
+- name: Configure
+  ansible.builtin.template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  loop:
+    - 'etc/ssh/ssh_config'
+  become: true

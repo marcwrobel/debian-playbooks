@@ -73,6 +73,8 @@ packages__host_list:
   - 'virtualbox-7.0' # from virtualbox
   - 'gh' # from github-cli
 
+openssh_server__listen_addresses: ['127.0.0.1:22']
+
 asdf__plugins:
   - name: 'ruby'
   - name: 'nodejs'

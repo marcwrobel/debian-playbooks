@@ -2,4 +2,4 @@
 s1.marcwrobel.fr
 
 [desktops]
-l1.marcwrobel.fr
+l1.marcwrobel.fr ansible_host=localhost

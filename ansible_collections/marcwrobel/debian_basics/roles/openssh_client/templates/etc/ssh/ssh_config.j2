@@ -1,0 +1,32 @@
+# {{ ansible_managed }}
+
+# See https://man.openbsd.org/ssh_config.
+
+# Sane (overridable) default for all users.
+Host *
+  # Authentication
+  HostbasedAuthentication no
+  PasswordAuthentication no
+  GSSAPIAuthentication no
+  ChallengeResponseAuthentication no
+
+  # Ciphers and algorithms
+  IdentityFile ~/.ssh/id_ed25519
+  IdentityFile ~/.ssh/id_ecdsa
+  IdentityFile ~/.ssh/id_rsa
+  KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+  # Misc
+  CheckHostIP yes
+  StrictHostKeyChecking ask
+  HashKnownHosts yes
+  ForwardAgent no
+  ForwardX11 no
+  Tunnel no
+  PermitLocalCommand no
+  RekeyLimit 1G 1h
+
+  # Pass locale environment variables
+  SendEnv LANG LC_*
