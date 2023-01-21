@@ -26,6 +26,8 @@
       tags: ['net', 'network']
     - role: 'marcwrobel.debian_basics.firewalld'
       tags: ['fw', 'firewall', 'firewalld']
+    - role: 'marcwrobel.debian_server.monit'
+      tags: ['monit', 'mon']
     - role: 'marcwrobel.debian_basics.openssh_client'
       tags: ['openssh', 'ssh']
     - role: 'marcwrobel.debian_basics.openssh_server'

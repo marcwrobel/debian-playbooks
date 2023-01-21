@@ -1,0 +1,13 @@
+---
+
+- name: Uninstall packages
+  ansible.builtin.package:
+    name: '{{ monit_packages }}'
+    state: 'absent'
+  become: true
+
+- name: Remove configuration
+  ansible.builtin.file:
+    name: '/etc/monit'
+    state: 'absent'
+  become: true

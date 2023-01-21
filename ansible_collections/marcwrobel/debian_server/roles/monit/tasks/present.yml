@@ -1,0 +1,49 @@
+---
+
+- name: Install
+  ansible.builtin.package:
+    name: '{{ monit__packages }}'
+    state: 'present'
+  become: true
+
+- name: Remove unnecessary files
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: 'absent'
+  loop:
+    - '/etc/monit/conf-available'
+    - '/etc/monit/templates'
+  become: true
+
+- name: Create directories
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+  loop:
+    - '/etc/monit/conf.d'
+    - '/var/lib/monit'
+  become: true
+
+- name: Configure
+  ansible.builtin.template:
+    src: '{{ item.name }}.j2'
+    dest: '/{{ item.name }}'
+    owner: 'root'
+    group: 'root'
+    mode: '{{ item.mode }}'
+  loop:
+    - { name: 'etc/monit/monitrc', mode: '0600' }
+    - { name: 'etc/monit/conf.d/system', mode: '0600' }
+    - { name: 'etc/pam.d/monit', mode: '0644' }
+  notify: 'Restart monit'
+  become: true
+
+- name: Activate service
+  ansible.builtin.service:
+    name: 'monit'
+    enabled: true
+    state: 'started'
+  become: true

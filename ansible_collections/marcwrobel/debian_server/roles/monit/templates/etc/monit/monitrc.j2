@@ -1,0 +1,34 @@
+# {{ ansible_managed }}
+
+# See https://mmonit.com/monit/documentation/monit.html.
+
+# Run Monit in daemon mode
+set daemon {{ monit__period }}
+    with start delay {{ monit__start_delay }}
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+# Log to syslog
+set log syslog
+
+# Global SSL options
+set ssl {
+  verify     : enable,
+  selfsigned : reject
+}
+
+# Configure alert delivery.
+set alert {{ monit__default_alert_email }}
+set mailserver localhost with timeout 5 seconds
+set eventqueue
+  basedir /var/lib/monit/events
+  slots 100
+
+# Allow using Monit CLI to interact with Monit daemon
+set httpd unixsocket /var/run/monit.sock
+  uid root
+  gid root
+  allow localhost
+
+# Include additional configuration parts
+include /etc/monit/conf.d/*

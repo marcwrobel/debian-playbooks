@@ -1,0 +1,28 @@
+# {{ ansible_managed }}
+
+# See https://mmonit.com/monit/documentation/monit.html.
+
+check system loadavg
+  if loadavg (1min) > {{ monit__loadavg_1min_threshold }} then alert
+  if loadavg (5min) > {{ monit__loadavg_5min_threshold }} then alert
+  if loadavg (15min) > {{ monit__loadavg_15min_threshold }} then alert
+  if loadavg (15min) > {{ monit__loadavg_15min_long_threshold }} for {{ monit__loadavg_15min_long_cycles }} cycles then alert
+  group system
+
+check system memory
+  if memory usage > {{ monit__memory_usage_threshold }} for 3 cycles then alert
+  if swap usage > {{ monit__swap_usage_threshold }} for 10 cycles then alert
+  group system
+{% for fs in ansible_local.monit__mountpoints | d([]) | sort(attribute='target') %}
+
+check filesystem fs-{{ fs.target }} with path {{ fs.target }}
+   if SPACE usage > {{ monit__space_usage_threshold }} for 3 cycles then alert
+   if INODE usage > {{ monit__inode_usage_threshold }} for 3 cycles then alert
+   group system
+{% endfor %}
+{% for interface in ansible_local.monit__interfaces | d([]) | sort(attribute='ifname') %}
+
+check network net-{{ interface.ifname }} with interface {{ interface.ifname }}
+   if saturation > {{ monit__interface_saturation_threshold }} for 3 cycles then alert
+   group system
+{% endfor %}

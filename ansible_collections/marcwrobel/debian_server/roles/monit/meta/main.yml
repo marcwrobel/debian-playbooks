@@ -1,0 +1,13 @@
+dependencies:
+  - role: 'marcwrobel.debian_common.local_facts'
+    local_facts__scripts:
+      - namespace: 'monit__mountpoints'
+        description: 'Get a list of all of the ext4 mountpoints.'
+        script: findmnt -t ext4 -J -l | jq '.filesystems'
+        dependencies: ['jq']
+        state: 'present'
+      - namespace: 'monit__interfaces'
+        description: 'Get a list of all active ethernet interfaces.'
+        script: ip -json link show | jq 'map(select(.link_type == "ether" and (.operstate == "UP")))'
+        dependencies: ['jq']
+        state: 'present'

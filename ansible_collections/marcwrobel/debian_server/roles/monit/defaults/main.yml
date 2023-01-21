@@ -1,0 +1,25 @@
+---
+# Whether monit must be installed (`present`) or not (`absent`).
+monit__state: 'absent'
+
+# Monit poll cycle (in seconds)
+monit__period: 60
+
+# Monit start delay (in seconds)
+monit__start_delay: 30
+
+# Alert email configuration
+monit__smtp_server: 'localhost'
+monit__default_alert_email: '{{ root_email }}'
+
+# System monitoring
+monit__loadavg_1min_threshold: '{{ ansible_processor_vcpus * 4 }}'
+monit__loadavg_5min_threshold: '{{ ansible_processor_vcpus * 3 }}'
+monit__loadavg_15min_threshold: '{{ ansible_processor_vcpus * 2 }}'
+monit__loadavg_15min_long_cycles: '60'
+monit__loadavg_15min_long_threshold: '{{ ansible_processor_vcpus }}'
+monit__memory_usage_threshold: '75%'
+monit__swap_usage_threshold: '50%'
+monit__inode_usage_threshold: '75%'
+monit__space_usage_threshold: '75%'
+monit__interface_saturation_threshold: '75%'

@@ -1,0 +1,3 @@
+---
+- name: 'Include required tasks'
+  ansible.builtin.include_tasks: "{{ postfix_satellite__state }}.yml"

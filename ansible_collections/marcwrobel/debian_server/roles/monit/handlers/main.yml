@@ -1,0 +1,7 @@
+---
+
+- name: Restart monit
+  ansible.builtin.service:
+    name: 'monit'
+    state: 'restarted'
+  become: true
