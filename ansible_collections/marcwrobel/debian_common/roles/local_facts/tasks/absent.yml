@@ -1,6 +1,6 @@
 ---
 
-- name: Uninstall {{ item.namespace }}
+- name: Uninstall {{ local_facts__script.namespace }}
   ansible.builtin.file:
     path: '/etc/ansible/facts.d/{{ local_facts__script.namespace }}.fact'
     state: 'absent'
