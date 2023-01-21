@@ -25,6 +25,7 @@ header_size_limit = 4096000
 # Lookup tables
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
+smtp_generic_maps = hash:/etc/postfix/generic
 
 # TLS parameters
 smtpd_tls_cert_file = {{ postfix_satellite__tls_cert }}

@@ -34,31 +34,35 @@
   become: true
   notify: 'Restart postfix'
 
-- name: Manage password
+- name: Manage lookup tables
   block:
-    - name: Set password
+    - name: Configure lookup tables
       ansible.builtin.template:
-        src: 'etc/postfix/sasl_passwd.j2'
-        dest: '/etc/postfix/sasl_passwd'
+        src: 'etc/postfix/{{ item }}.j2'
+        dest: '/etc/postfix/{{ item }}'
         owner: 'root'
         group: 'root'
         mode: '0600'
+      loop: ['sasl_passwd', 'generic']
       become: true
-      register: 'sasl_passwd'
+      register: 'lookup_tables'
 
-    - name: Regenerate password database
-      ansible.builtin.command: 'postmap /etc/postfix/sasl_passwd'
+    - name: Regenerate lookup tables
+      ansible.builtin.command: 'postmap /etc/postfix/{{ item }}'
+      loop: ['sasl_passwd', 'generic']
+      when: 'lookup_tables is changed'
       become: true
-      when: 'sasl_passwd is changed'
       notify: 'Restart postfix'
 
-    - name: Set permission on password database
+    - name: Set permission on lookup tables
       ansible.builtin.file:
-        path: '/etc/postfix/sasl_passwd.db'
+        path: '/etc/postfix/{{ item }}.db'
         owner: 'root'
         group: 'root'
         mode: '0600'
+      loop: ['sasl_passwd', 'generic']
       become: true
+      ignore_errors: '{{ ansible_check_mode }}' # file may not exist if launched first in check mode
 
 - name: Activate service
   ansible.builtin.service:

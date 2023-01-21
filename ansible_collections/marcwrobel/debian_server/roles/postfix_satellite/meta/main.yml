@@ -1,0 +1,8 @@
+dependencies:
+  - role: 'marcwrobel.debian_common.local_facts'
+    local_facts__scripts:
+      - namespace: 'postfix__users'
+        description: 'Get a list of all of the users declared in /etc/passwd.'
+        script: cat /etc/passwd | jc --passwd
+        dependencies: ['jc']
+        state: 'present'
