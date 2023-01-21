@@ -1,0 +1,16 @@
+---
+
+- name: Uninstall {{ item.namespace }}
+  ansible.builtin.file:
+    path: '/etc/ansible/facts.d/{{ local_facts__script.namespace }}.fact'
+    state: 'absent'
+  register: 'local_facts__uninstall'
+  become: true
+
+# changed_when has been forced because this module never returns changes. It do not know if it's a
+# bug because fact are actually reloaded, but it feels more natural that way.
+- name: Reload facts # noqa no-handler we want it to run now, not at the end of the play
+  ansible.builtin.setup:
+    gather_subset: 'local'
+  when: 'local_facts__uninstall is changed'
+  changed_when: 'local_facts__uninstall is changed'

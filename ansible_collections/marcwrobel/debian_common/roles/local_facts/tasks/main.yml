@@ -1,0 +1,7 @@
+---
+
+- name: Include tasks
+  ansible.builtin.include_tasks: '{{ local_facts__script.state }}.yml'
+  loop: '{{ local_facts__scripts }}'
+  loop_control:
+    loop_var: 'local_facts__script'

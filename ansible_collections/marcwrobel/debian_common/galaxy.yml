@@ -1,0 +1,18 @@
+---
+namespace: 'marcwrobel'
+name: 'debian_common'
+description: 'A collection of simple and common roles that are used by other roles.'
+version: '1.0.0'
+license: ['MIT']
+
+readme: 'README.md'
+authors: ['Marc Wrobel (https://www.marcwrobel.fr/)']
+
+dependencies: {}
+
+tags: ['linux', 'debian', 'common']
+
+repository: 'https://github.com/marcwrobel/debian-playbooks'
+documentation: 'https://github.com/marcwrobel/debian-playbooks'
+homepage: 'https://github.com/marcwrobel/debian-playbooks'
+issues: 'https://github.com/marcwrobel/debian-playbooks/issues'

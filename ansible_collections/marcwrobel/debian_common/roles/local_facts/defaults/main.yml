@@ -1,0 +1,24 @@
+---
+
+# Local facts scripts to be declared.
+# Each item has the following format:
+# - namespace: <string>
+#   description: <string>
+#   shebang: <string>
+#   comment_style: <string>
+#   script: <string>
+#   dependencies: <array of string>
+#   state: <enabled|disabled>
+# with:
+# - namespace: The name under which the result of the script will be available in ansible_local.
+#     Prefixing the namespace by the role name is usually a good idea to avoid conflicts.
+#     This must be a valid Python identifier, see https://docs.python.org/3/reference/lexical_analysis.html#identifiers.
+# - description: A description of what the script does, it will be added as a comment.
+# - shebang (default = /usr/bin/env bash): shebang to be declared in the script.
+# - comment_style (default = plain): script's comment style, for a list of available styles see
+#                 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/comment_filter.html#parameter-style.
+# - script: The script to be executed.
+# - dependencies: A list of packages to be installed for the script to work.
+# - state: whether the script must be installed (present) or uninstalled (absent). Dependencies are
+#     not uninstalled because it could conflict with other roles.
+local_facts__scripts: []

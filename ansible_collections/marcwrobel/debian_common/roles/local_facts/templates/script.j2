@@ -1,0 +1,5 @@
+#!{{ local_facts__script.shebang | d('/usr/bin/env bash') }}
+{{ ansible_managed | comment(local_facts__script.comment_style | d('plain')) }}
+
+{{ local_facts__script.description | comment(local_facts__script.comment_style | d('plain')) }}
+{{ local_facts__script.script }}
