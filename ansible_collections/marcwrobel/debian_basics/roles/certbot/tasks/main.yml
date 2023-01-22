@@ -8,7 +8,7 @@
 
 - name: Create certificates
   ansible.builtin.include_tasks: 'create-cert.yml'
-  with_items: '{{ certbot__certs }}'
+  loop: '{{ certbot__certs }}'
   loop_control:
     loop_var: 'cert'
 
