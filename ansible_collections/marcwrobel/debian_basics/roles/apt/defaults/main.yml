@@ -8,3 +8,7 @@
 #   state: '<present|absent>',
 # }
 apt__extra_repositories: []
+
+# Mail configuration.
+apt__mail_to: '{{ root_email }}'
+apt__mail_on_upgrade: 'only-on-error' # "always", "only-on-error" or "on-change".

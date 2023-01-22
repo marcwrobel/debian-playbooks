@@ -1,5 +1,7 @@
 // {{ ansible_managed }}
 
+// See https://github.com/mvo5/unattended-upgrades.
+
 // Controls which packages are upgraded.
 Unattended-Upgrade::Origins-Pattern {
   "origin=Debian,archive=stable,label=Debian";
@@ -36,9 +38,9 @@ Unattended-Upgrade::Remove-Unused-Dependencies "true";
 Unattended-Upgrade::Automatic-Reboot "false";
 Unattended-Upgrade::Automatic-Reboot-WithUsers "false";
 
-// Do not send emails.
-Unattended-Upgrade::Mail "root";
-Unattended-Upgrade::MailReport "only-on-error";
+// Email configuration.
+Unattended-Upgrade::Mail "{{ apt__mail_to }}";
+Unattended-Upgrade::MailReport "{{ apt__mail_on_upgrade }}";
 
 // Enable logging to syslog.
 Unattended-Upgrade::SyslogEnable "true";
