@@ -1,7 +1,7 @@
 ---
 root_email: admin@marcwrobel.fr
 
-apt__mail_on_upgrade: 'on-change'
+apt__mail_report: 'on-change'
 
 packages__host_list:
   - 'htop' # Interactive process viewer

@@ -13,6 +13,7 @@
     group: 'root'
     mode: '0644'
   loop:
+    - 'etc/apt/apt.conf.d/05etckeeper'
     - 'etc/etckeeper/etckeeper.conf'
   become: true
 

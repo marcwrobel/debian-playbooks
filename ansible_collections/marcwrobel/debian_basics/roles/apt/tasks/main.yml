@@ -34,11 +34,13 @@
     - 'etc/apt/sources.list'
     - 'etc/apt/listchanges.conf'
     - 'etc/apt/apt.conf.d/00aptitude'
+    - 'etc/apt/apt.conf.d/00InstallRecommends'
     - 'etc/apt/apt.conf.d/01autoremove'
     - 'etc/apt/apt.conf.d/20auto-upgrades'
     - 'etc/apt/apt.conf.d/20listchanges'
     - 'etc/apt/apt.conf.d/50unattended-upgrades'
     - 'etc/apt/apt.conf.d/70debconf'
+    - 'etc/apt/preferences.d/99custom-repositories'
     - 'etc/dpkg/dpkg.cfg'
   notify:
     - 'Update package indexes'

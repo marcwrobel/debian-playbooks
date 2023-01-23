@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+# Prefer official Debian packages over custom debian packages.
+
+{% for repository in apt__extra_repositories %}
+Package: *
+Pin: origin {{ repository.repo | regex_search('https:\/\/[^/ ]+', ignorecase=True) | urlsplit('hostname') }}
+Pin-Priority: 1
+
+{% endfor %}

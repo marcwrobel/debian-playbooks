@@ -1,5 +1,7 @@
 ---
 
+root_email: 'root'
+
 apt__extra_repositories:
   - name: 'vscodium'
     key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'

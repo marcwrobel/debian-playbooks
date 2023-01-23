@@ -1,11 +1,11 @@
 // {{ ansible_managed }}
 
 // See https://github.com/mvo5/unattended-upgrades.
+// Use sudo unattended-upgrade -v -d --dry-run to check.
 
-// Controls which packages are upgraded.
+// Apply all security updates, except those explicitly excluded.
 Unattended-Upgrade::Origins-Pattern {
-  "origin=Debian,archive=stable,label=Debian";
-  "origin=Debian,archive=stable,label=Debian-Security";
+  "origin=Debian,label=Debian-Security";
 };
 
 // Python regular expressions matching packages to exclude from upgrading.
@@ -13,7 +13,7 @@ Unattended-Upgrade::Package-Blacklist {
   "libc6";
   "linux-";
   "openssh-server";
-  "docker*";
+  "docker";
 };
 
 // Download and install upgrades only when conditions are favorable.
@@ -40,7 +40,7 @@ Unattended-Upgrade::Automatic-Reboot-WithUsers "false";
 
 // Email configuration.
 Unattended-Upgrade::Mail "{{ apt__mail_to }}";
-Unattended-Upgrade::MailReport "{{ apt__mail_on_upgrade }}";
+Unattended-Upgrade::MailReport "{{ apt__mail_report }}";
 
 // Enable logging to syslog.
 Unattended-Upgrade::SyslogEnable "true";
