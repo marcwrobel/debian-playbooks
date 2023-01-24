@@ -2,6 +2,7 @@
 
 root_email: 'root'
 
+apt__install_recommends: true
 apt__extra_repositories:
   - name: 'vscodium'
     key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'
@@ -38,7 +39,10 @@ packages__host_list:
   # Desktop
   - 'chromium' # The open-source version of Chrome
   - 'fonts-liberation' # A replacement for Times New Roman, Arial and Courier New
+  - 'fonts-liberation2' # Fonts with the same metrics as Times, Arial and Courier (v2)
   - 'gthumb' # image viewer and browser
+  - 'libreoffice' # office productivity suite (metapackage)
+  - 'libreoffice-gtk3' # LibreOffice - GTK+3.0 GUI
   - 'meld' # graphical tool to diff and merge files
   # Development
   - 'build-essential' # Required by asdf, nodejs

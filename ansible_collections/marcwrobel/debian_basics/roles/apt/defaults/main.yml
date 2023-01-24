@@ -1,4 +1,12 @@
 ---
+
+# Whether APT must install recommended packages.
+apt__install_recommends: false
+
+# Mail configuration.
+apt__mail_to: '{{ root_email }}'
+apt__mail_report: 'only-on-error' # "always", "only-on-error" or "on-change".
+
 # Extra repositories to install.
 # Syntax: {
 #   zone: '<name>',
@@ -8,7 +16,3 @@
 #   state: '<present|absent>',
 # }
 apt__extra_repositories: []
-
-# Mail configuration.
-apt__mail_to: '{{ root_email }}'
-apt__mail_report: 'only-on-error' # "always", "only-on-error" or "on-change".

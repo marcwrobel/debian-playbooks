@@ -4,8 +4,8 @@ docker__gpg_key_url: 'https://download.docker.com/linux/debian/gpg'
 docker__repo: 'deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable'
 docker__packages:
   - 'docker-ce'
-  - 'docker-ce-cli'
-  - 'containerd.io'
+  - 'docker-ce-rootless-extras'
+  - 'docker-scan-plugin'
   - 'docker-compose-plugin'
 
 # https://docs.docker.com/engine/install/debian/#uninstall-old-versions

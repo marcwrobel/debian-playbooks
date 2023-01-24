@@ -19,6 +19,9 @@ None.
 
 Available variables are listed below, along with default values:
 
+    apt__install_recommends: false
+    apt__mail_to: '{{ root_email }}'
+    apt__mail_report: 'only-on-error'
     apt__extra_repositories: []
 
 See `defaults/main.yml` for more information.
