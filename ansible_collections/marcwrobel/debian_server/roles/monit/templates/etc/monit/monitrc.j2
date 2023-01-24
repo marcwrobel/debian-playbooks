@@ -19,6 +19,7 @@ set ssl {
 
 # Configure alert delivery.
 set alert {{ monit__default_alert_email }}
+set mail-format { from: {{ monit__default_alert_email }} }
 set mailserver localhost with timeout 5 seconds
 set eventqueue
   basedir /var/lib/monit/events
