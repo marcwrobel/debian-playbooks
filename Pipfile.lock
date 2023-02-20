@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bcffa429be6f144dc254ef1fd0dd34fdd2020e7d3224c5297303dbbb797cd06f"
+            "sha256": "91d27a666501fadf6ec08f5b7ccc9a73bf0887a5e694bcda0e00b218879a1a0f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,11 +34,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:088f3a80a756dd8ed8c8df2e22aafd8f62b5b2d17f0efef662dc3ac618d1bcd5",
-                "sha256:ab33152834c95fcfc4fb65ecd53c9cd1bf1c9b3ead179edd6304274b82b34852"
+                "sha256:419b1a2c8523fbe0c0e8a6c51a5c41a692badb5a530e880a9050ac3a69c3fde3",
+                "sha256:435c12b4fd88da815af6821f3bf8b04ebb651811da89a11c9d190baff21badaa"
             ],
             "index": "pypi",
-            "version": "==6.12.2"
+            "version": "==6.13.1"
         },
         "attrs": {
             "hashes": [
@@ -218,11 +218,11 @@
         },
         "identify": {
             "hashes": [
-                "sha256:7d526dd1283555aafcc91539acc061d8f6f59adb0a7bba462735b0a318bff7ed",
-                "sha256:93cc61a861052de9d4c541a7acb7e3dcc9c11b398a2144f6e52ae5285f5f4f06"
+                "sha256:89e144fa560cc4cffb6ef2ab5e9fb18ed9f9b3cb054384bab4b95c12f6c309fe",
+                "sha256:93aac7ecf2f6abf879b8f29a8002d3c6de7086b8c28d88e1ad15045a15ab63f9"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.5.17"
+            "version": "==2.5.18"
         },
         "jinja2": {
             "hashes": [
@@ -551,11 +551,11 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc93087aa",
-                "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"
+                "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb",
+                "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"
             ],
             "markers": "python_version < '3.10'",
-            "version": "==4.4.0"
+            "version": "==4.5.0"
         },
         "virtualenv": {
             "hashes": [
