@@ -7,7 +7,7 @@
   register: 'cert_pem'
 
 # See https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options.
-- name: Generate new certificate
+- name: Generate new certificate # noqa no-changed-when run only when cert_pem.stat.exists
   ansible.builtin.command: >
     certbot certonly
       {{ '--test-cert' if certbot__test_mode else '' }}

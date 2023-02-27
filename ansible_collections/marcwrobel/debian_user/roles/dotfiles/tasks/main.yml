@@ -20,7 +20,7 @@
         recurse: false
       register: 'dotfiles__dirs_result'
 
-    - name: Build dotfiles directories list
+    - name: Build dotfiles directories list # noqa jinja[invalid] don't understand why it is problematic
       ansible.builtin.set_fact:
         dotfiles__dirs: "{{ dotfiles__dirs_result | json_query('files[*].path') }}"
 
@@ -40,7 +40,7 @@
 
     - name: Build dotfiles list
       ansible.builtin.set_fact:
-        dotfiles__files: "{{ dotfiles__files_result | json_query('files[*].path') }}"
+        dotfiles__files: "{{ dotfiles__files_result | json_query('files[*].path') }}"  # noqa jinja[invalid] don't understand why it is problematic
 
 - name: Create directories
   ansible.builtin.file:
