@@ -2,5 +2,6 @@ profile: production
 use_default_rules: true
 
 skip_list:
-  - 'galaxy[no-changelog]' # Collection not published to Ansible Galaxy, changelog not needed.
+  - 'galaxy[no-changelog]' # Collection not published to Ansible Galaxy, not needed.
+  - 'galaxy[no-runtime]' # Collection not published to Ansible Galaxy, not needed.
   - 'meta-no-info' # 'galaxy_info' is not needed, we do not want to publish on Ansible Galaxy.
