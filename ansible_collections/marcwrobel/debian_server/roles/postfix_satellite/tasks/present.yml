@@ -34,35 +34,16 @@
   become: true
   notify: 'Restart postfix'
 
-- name: Manage lookup tables
-  block:
-    - name: Configure lookup tables
-      ansible.builtin.template:
-        src: 'etc/postfix/{{ item }}.j2'
-        dest: '/etc/postfix/{{ item }}'
-        owner: 'root'
-        group: 'root'
-        mode: '0600'
-      loop: ['sasl_passwd', 'generic']
-      become: true
-      register: 'lookup_tables'
-
-    - name: Regenerate lookup tables # noqa no-changed-when run only when lookup_tables is changed
-      ansible.builtin.command: 'postmap /etc/postfix/{{ item }}'
-      loop: ['sasl_passwd', 'generic']
-      when: 'lookup_tables is changed'
-      become: true
-      notify: 'Restart postfix'
-
-    - name: Set permission on lookup tables
-      ansible.builtin.file:
-        path: '/etc/postfix/{{ item }}.db'
-        owner: 'root'
-        group: 'root'
-        mode: '0600'
-      loop: ['sasl_passwd', 'generic']
-      become: true
-      ignore_errors: '{{ ansible_check_mode }}' # file may not exist if launched first in check mode
+- name: Configure lookup tables
+  ansible.builtin.template:
+    src: 'etc/postfix/{{ item }}.j2'
+    dest: '/etc/postfix/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+  loop: ['sasl_passwd', 'generic']
+  become: true
+  notify: 'Regenerate lookup tables and set permissions'
 
 - name: Activate service
   ansible.builtin.service:

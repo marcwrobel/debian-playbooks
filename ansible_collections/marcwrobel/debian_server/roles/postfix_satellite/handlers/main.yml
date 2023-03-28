@@ -5,3 +5,20 @@
     name: 'postfix'
     state: 'restarted'
   become: true
+
+- name: Regenerate lookup tables # noqa no-changed-when run each time any lookup table is changed
+  ansible.builtin.command: 'postmap /etc/postfix/{{ item }}'
+  loop: ['sasl_passwd', 'generic']
+  become: true
+  listen: 'Regenerate lookup tables and set permissions'
+
+- name: Set permission on lookup tables
+  ansible.builtin.file:
+    path: '/etc/postfix/{{ item }}.db'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+  loop: ['sasl_passwd', 'generic']
+  listen: 'Regenerate lookup tables and set permissions'
+  ignore_errors: '{{ ansible_check_mode }}' # file may not exist if launched first in check mode
+  become: true
