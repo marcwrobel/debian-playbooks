@@ -61,6 +61,7 @@ packages__host_list:
   - 'openjdk-17-jdk' # OpenJDK Development Kit (JDK)
   - 'openjdk-17-source' # OpenJDK Development Kit (JDK) source files
   - 'pipenv' # creates and manages a virtualenv for your projects
+  - 'postgresql-client' # front-end programs for PostgreSQL (supported version)
   # Editors
   - 'geany' # fast and lightweight IDE
   - 'geany-plugins' # set of plugins for Geany
