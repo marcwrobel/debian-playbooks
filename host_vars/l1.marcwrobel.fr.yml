@@ -2,6 +2,14 @@
 
 root_email: 'root'
 
+sysctl__hosts_additional_variables:
+  - vm.max_map_count:
+      description: >-
+        Elasticsearch uses a mmapfs directory by default to store its indices. The default operating
+        system limits on mmap counts is likely to be too low, which may result in out of memory
+        exceptions. See https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html.
+      value: 262144
+
 apt__install_recommends: true
 apt__extra_repositories:
   - name: 'vscodium'
