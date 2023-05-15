@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 setuptools = "*"
 ansible = "~=7.5"
-ansible-lint = "~=6.15"
+ansible-lint = "~=6.16"
 yamllint = "~=1.31"
 jmespath = "~=1.0"
 pre-commit = "*"
