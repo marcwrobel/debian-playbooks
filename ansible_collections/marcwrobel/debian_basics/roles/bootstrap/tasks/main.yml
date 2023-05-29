@@ -16,12 +16,12 @@
       ansible.builtin.apt:
         update_cache: true
         upgrade: 'safe'
-      register: 'local__upgraded'
+      register: 'bootstrap__upgraded'
 
     - name: 'Reboot after upgrading packages'
       ansible.builtin.reboot:
         reboot_timeout: '{{ bootstrap__reboot_timeout }}'
-      when: 'bootstrap__reboot_after_upgrade and local__upgraded is changed'
+      when: 'bootstrap__reboot_after_upgrade and bootstrap__upgraded is changed'
 
 - name: 'Install python3-apt'
   ansible.builtin.package:

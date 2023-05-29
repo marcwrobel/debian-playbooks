@@ -4,10 +4,10 @@
   ansible.builtin.stat:
     path: '/etc/letsencrypt/live/{{ cert.domains | first }}/cert.pem'
   become: true
-  register: 'cert_pem'
+  register: 'certbot__pem'
 
 # See https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options.
-- name: Generate new certificate # noqa no-changed-when run only when cert_pem.stat.exists
+- name: Generate new certificate # noqa no-changed-when run only when certbot__pem.stat.exists
   ansible.builtin.command: >
     certbot certonly
       {{ '--test-cert' if certbot__test_mode else '' }}
@@ -17,4 +17,4 @@
       --email {{ cert.email }}
       -d {{ cert.domains | join(',') }}
   become: true
-  when: not cert_pem.stat.exists
+  when: not certbot__pem.stat.exists
