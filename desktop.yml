@@ -19,14 +19,12 @@
     - role: 'marcwrobel.debian_basics.sudo'
       tags: ['sudo']
     - role: 'marcwrobel.debian_basics.git'
-      tags: ['packages', 'git']
+      tags: ['git']
     - role: 'marcwrobel.debian_basics.vim'
-      tags: ['packages', 'vim']
+      tags: ['vim']
     - role: 'marcwrobel.debian_basics.openssh_client'
       tags: ['openssh', 'ssh']
     - role: 'marcwrobel.debian_basics.openssh_server'
       tags: ['openssh', 'ssh']
-    - role: 'marcwrobel.debian_desktop.docker'
-      tags: ['packages', 'docker']
     - role: 'marcwrobel.debian_desktop.protonvpn'
-      tags: ['packages', 'protonvpn']
+      tags: ['protonvpn']

@@ -7,54 +7,6 @@
     version: '{{ dotfiles__repository_version }}'
     force: true
 
-# Too bad we can't exclude a whole directory with ansible.builtin.find
-- name: Look for dotfiles
-  block:
-    - name: Find dotfiles directories
-      ansible.builtin.find:
-        paths: '{{ ansible_env.HOME }}/{{ dotfiles__repository_path }}'
-        file_type: 'directory'
-        excludes:
-          - '.git'
-        hidden: true
-        recurse: false
-      register: 'dotfiles__dirs_result'
-
-    - name: Build dotfiles directories list # noqa jinja[invalid] don't understand why it is problematic
-      ansible.builtin.set_fact:
-        dotfiles__dirs: "{{ dotfiles__dirs_result | json_query('files[*].path') }}"
-
-    - name: Find dotfiles
-      ansible.builtin.find:
-        paths: "{{ [ansible_env.HOME + '/' + dotfiles__repository_path] + dotfiles__dirs }}"
-        file_type: 'file'
-        excludes:
-          - '.editorconfig'
-          - '.gitignore'
-          - 'README.md'
-          - 'LICENSE'
-          - 'refresh'
-        hidden: true
-        recurse: false
-      register: dotfiles__files_result
-
-    - name: Build dotfiles list
-      ansible.builtin.set_fact:
-        dotfiles__files: "{{ dotfiles__files_result | json_query('files[*].path') }}"  # noqa jinja[invalid] don't understand why it is problematic
-
-- name: Create directories
-  ansible.builtin.file:
-    path: '{{ item | regex_replace(dotfiles__repository_path) }}'
-    owner: '{{ ansible_user_id }}'
-    group: '{{ ansible_user_id }}'
-    mode: '0750'
-    state: 'directory'
-  loop: '{{ dotfiles__dirs }}'
-
-- name: Symlink dotfiles
-  ansible.builtin.file:
-    path: '{{ item | regex_replace(dotfiles__repository_path) }}'
-    src: '{{ item }}'
-    force: '{{ dotfiles__remove_existing_files | bool }}'
-    state: 'link'
-  loop: '{{ dotfiles__files }}'
+- name: Install dotfiles
+  ansible.builtin.script: '{{ ansible_env.HOME }}/{{ dotfiles__repository_path }}/install'
+  check_mode: false

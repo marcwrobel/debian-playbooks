@@ -2,11 +2,11 @@
 
 # Debian playbooks
 
-A set of opinionated [Ansible](https://www.ansible.com/) playbooks, collections and roles for Debian 11.
+A set of opinionated [Ansible](https://www.ansible.com/) playbooks, collections and roles for Debian 12.
 
 ## Requirements
 
-Playbooks, collections and roles in this repository needs Ansible 2.12+ and are targeted for Debian 11.
+Playbooks, collections and roles in this repository needs Ansible 2.12+ and are targeted for Debian 12.
 
 For Ansible installation and own requirements have a look at [the official documentation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 

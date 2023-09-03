@@ -5,14 +5,17 @@
     state: '{{ protonvpn__state }}' # noqa: args[module] (variable)
   register: 'protonvpn__install_state'
   when: "protonvpn__state == 'present'"
+  become: true
 
 - name: Update cache # noqa no-handler
   ansible.builtin.apt:
     update_cache: true
   when: 'protonvpn__install_state is changed'
+  become: true
 
 - name: Set up packages
   ansible.builtin.package:
     name: '{{ protonvpn__packages }}'
     state: '{{ protonvpn__state }}'
   ignore_errors: '{{ ansible_check_mode }}'
+  become: true

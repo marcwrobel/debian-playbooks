@@ -12,10 +12,15 @@ sysctl__hosts_additional_variables:
 
 apt__install_recommends: true
 apt__extra_repositories:
-  - name: 'vscodium'
-    key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'
+  - name: 'docker'
+    key_url: 'https://download.docker.com/linux/debian/gpg'
     key_format: 'asc'
-    repo: 'deb [ signed-by=/usr/share/keyrings/vscodium.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main'
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    state: 'present'
+  - name: 'github-cli'
+    key_url: 'https://cli.github.com/packages/githubcli-archive-keyring.gpg'
+    key_format: 'gpg'
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/github-cli.gpg] https://cli.github.com/packages stable main"
     state: 'present'
   - name: 'node_16.x'
     key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
@@ -27,29 +32,32 @@ apt__extra_repositories:
     key_format: 'asc'
     repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.asc] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib" # noqa: yaml[line-length]
     state: 'present'
-  - name: 'github-cli'
-    key_url: 'https://cli.github.com/packages/githubcli-archive-keyring.gpg'
-    key_format: 'gpg'
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/github-cli.gpg] https://cli.github.com/packages stable main"
+  - name: 'vscodium'
+    key_url: 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg'
+    key_format: 'asc'
+    repo: 'deb [ signed-by=/usr/share/keyrings/vscodium.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main'
     state: 'present'
 
+
+packages__host_blacklist:
+  - 'containerd' # see https://docs.docker.com/engine/install/debian/
+  - 'docker.io' # see https://docs.docker.com/engine/install/debian/
+  - 'docker-compose' # see https://docs.docker.com/engine/install/debian/
+  - 'docker-doc' # see https://docs.docker.com/engine/install/debian/
+  - 'podman-docker' # see https://docs.docker.com/engine/install/debian/
+  - 'runc' # see https://docs.docker.com/engine/install/debian/
 
 # Description from https://pkgs.org
 packages__host_list:
   # Clients
   - 'curl' # command line tool for transferring data with URL syntax
   - 'httpie' # cURL-like tool for humans
-  - 'lftp' # sophisticated command-line FTP/HTTP/BitTorrent client programs
   # Compression
   - 'atool' # tool for managing file archives of various types
-  - 'p7zip' # 7zr file archiver with high compression ratio
-  - 'xz-utils' # XZ-format compression utilities
   # Desktop
   - 'chromium' # The open-source version of Chrome
   - 'fonts-recommended' # set of recommended fonts
   - 'gthumb' # image viewer and browser
-  - 'libreoffice' # office productivity suite (metapackage)
-  - 'libreoffice-gtk3' # LibreOffice - GTK+3.0 GUI
   - 'meld' # graphical tool to diff and merge files
   # Development
   - 'build-essential' # Required by asdf, nodejs
@@ -61,7 +69,6 @@ packages__host_list:
   - 'openjdk-17-jdk' # OpenJDK Development Kit (JDK)
   - 'openjdk-17-source' # OpenJDK Development Kit (JDK) source files
   - 'pipenv' # creates and manages a virtualenv for your projects
-  - 'postgresql-client' # front-end programs for PostgreSQL (supported version)
   # Editors
   - 'geany' # fast and lightweight IDE
   - 'geany-plugins' # set of plugins for Geany
@@ -70,9 +77,6 @@ packages__host_list:
   - 'htop' # Interactive process viewer
   - 'ncdu' # ncurses disk usage viewer
   - 'netcat-openbsd' # TCP/IP swiss army knife
-  - 'nmon' # performance monitoring tool for Linux
-  # Security
-  - 'torbrowser-launcher' # helps download and run the Tor Browser Bundle
   # Misc
   - 'dos2unix' # convert text file line endings between CRLF and LF
   - 'gnupg' # GNU privacy guard - a free PGP replacement
@@ -83,9 +87,14 @@ packages__host_list:
   - 'renrot' # rename and rotate files according to EXIF tags
   # Packages from external repositories
   - 'codium' # from vscodium
+  - 'containerd.io' # from docker
+  - 'docker-ce' # from docker
+  - 'docker-ce-cli' # from docker
+  - 'docker-buildx-plugin' # from docker
+  - 'docker-compose-plugin' # from docker
+  - 'gh' # from github-cli
   - 'nodejs' # from node_NN.x
   - 'virtualbox-7.0' # from virtualbox
-  - 'gh' # from github-cli
 
 openssh_server__listen_addresses: ['127.0.0.1:22']
 
@@ -94,6 +103,7 @@ asdf__plugins:
   - name: 'nodejs'
   - name: 'java'
   - name: 'maven'
+  - name: 'gradle'
   - name: 'quarkus'
 
 dotfiles__repository: 'https://github.com/marcwrobel/dotfiles.git'

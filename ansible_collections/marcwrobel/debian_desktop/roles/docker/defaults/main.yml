@@ -1,3 +1,0 @@
----
-# Whether Docker must be installed (`present`) or not (`absent`).
-docker__state: 'present'

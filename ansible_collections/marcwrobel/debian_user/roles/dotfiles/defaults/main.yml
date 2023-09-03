@@ -1,5 +1,5 @@
 ---
 # dotfiles__repository: 'git@github.com:marcwrobel/dotfiles.git'
-dotfiles__repository_path: '.config/dotfiles/'
+dotfiles__repository_path: '.config/dotfiles'
 dotfiles__repository_version: 'HEAD'
 dotfiles__remove_existing_files: false

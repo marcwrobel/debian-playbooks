@@ -12,7 +12,7 @@ packages__group_blacklist: []
 packages__host_blacklist: []
 packages__blacklist: '{{ packages__default_blacklist + packages__group_blacklist + packages__host_blacklist }}'
 
-# Default packages to install, along with variables for adding packages for an host or an hosts group.
+# Default packages to install, along with variables for adding packages for a host or a hosts group.
 packages__default_list:
   # Clients
   - 'rsync' # fast, versatile, remote (and local) file-copying tool
