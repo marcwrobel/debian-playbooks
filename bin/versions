@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ansible --version
 ansible-lint --version
