@@ -1,4 +1,4 @@
-[![Build](https://github.com/marcwrobel/debian-playbooks/workflows/CI/badge.svg)](https://github.com/marcwrobel/debian-playbooks/actions)
+**This repository is not maintained anymore, part of it were migrated to [marcwrobel/setup](https://github.com/marcwrobel/setup)**
 
 # Debian playbooks
 
